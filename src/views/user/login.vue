@@ -215,6 +215,7 @@
 <style lang="less" scoped>
 	.basic_wrap{
 		position: relative;
+    padding: calc(16px + env(safe-area-inset-top)) 18px 40px;
 	}
 	.form_div {
 		height: 600px;

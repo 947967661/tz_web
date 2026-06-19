@@ -6,25 +6,28 @@
 	    		warning:false,
 	    		errors:false
 	    	},
-			proxy:{
-				'/api':{
+			proxy: {
+				'/api': {
 					target: 'http://localhost:8810',
 					changeOrigin: true,
-					// rewrite: (p) => p.replace(/^\/api/, 'api')
+					secure: false
 				},
-				'/images':{
+				'/images': {
 					target: 'http://localhost:8810',
 					changeOrigin: true,
+					secure: false
 				},
-				'/static':{
+				'/static': {
 					target: 'http://localhost:8810',
 					changeOrigin: true,
+					secure: false
 				},
-				'/upload':{
+				'/upload': {
 					target: 'http://localhost:8810',
 					changeOrigin: true,
+					secure: false
 				}
 			}
 	    },
         publicPath: process.env.NODE_ENV === 'production' ? './' : './'  
-   };
+   };  

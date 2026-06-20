@@ -1,44 +1,83 @@
 <template>
-	<div class="basic_wrap">
-		<div class="back_left" @click="$router.back()">
-			<img src="../img/common/back_b.png">
-		</div>
-		<div class="language" @click="$router.push('/language')">
-			<img :src="language_logo">
-		</div>
-		<div class="logo">
-			<img :src="config.logo" />
-		</div>
-		<div class="form_div">
-			<form class="form">
-				<div v-if="!config.register_phone" class="item">
-					<input v-model.trim="data.username" type="text" class="inp" :placeholder="$t('login.username')">
+	<div class="page-inner">
+    <div class="topbar">
+      <div class="topbar-action" @click="$router.back()">
+        <img class="topbar-icon-image" src="../img/common/back_b.png">
+      </div>
+      <div class="topbar-action topbar-action-lang" @click="$router.push('/language')">
+        <img class="topbar-icon-image-lang" :src="language_logo">
+      </div>
+    </div>
+    <div class="hero">
+      <div class="hero-logo-shell">
+          <img class="hero-logo" :src="config.logo" />
+      </div>
+      <div class="hero-title">
+          &nbsp;
+      </div>
+    </div>
+
+		<div class="auth-shell">
+      <div class="auth-tabs">
+        <div class="auth-tab auth-tab-active">{{$t('login.loginNow')}}</div>
+        <div class="auth-tab"><router-link to="/register">{{$t('login.registerNow')}}</router-link></div>
+      </div>
+			<form class="auth-form">
+				<div v-if="!config.register_phone" class="field-group">
+          <div class="field-label">{{$t('login.username')}}</div>
+          <div class="field-control">
+            <div class="field-icon">
+              <div class="field-icon-text iconfont icon-login_icon_phone_number"><span>
+                <van-dropdown-menu :overlay="false">
+                  <van-dropdown-item v-model="value" :options="country_code" />
+                </van-dropdown-menu>
+              </span></div>
+            </div>
+            <input v-model.trim="data.username" type="text" class="uni-input-input" :placeholder="$t('login.username')">
+          </div>
 				</div>
-				<div v-if="config.register_phone" class="item">
-					<input v-model.trim="data.username" type="number" class="inp" :placeholder="$t('login.phone')">
+				<div v-if="config.register_phone" class="field-group">
+          <div class="field-label">{{$t('login.phone')}}</div>
+          <div class="field-control">
+            <div class="field-icon">
+              <div class="field-icon-text iconfont icon-login_icon_phone_number"><span></span></div>
+            </div>
+            <div class="field-prefix">
+              <div class="field-prefix-text"></div>
+            </div>
+            <input v-model.trim="data.username" type="number" class="uni-input-input" :placeholder="$t('login.phone')">
+          </div>
 				</div>
-				<div class="item">
-					<input v-model.trim="data.password" :type="password" class="inp" :placeholder="$t('login.password')">
-					<div class="eye_bi" :class="password == 'text' ? 'eye' : ''" @click="showPwd" />
+				<div class="field-group">
+          <div class="field-label">{{$t('login.password')}}</div>
+          <div class="field-control">
+            <div class="field-icon">
+              <div class="field-icon-text iconfont icon-login_icon_password"><span></span></div>
+            </div>
+            <input v-model.trim="data.password" :type="password" class="field-input field-input-with-action" :placeholder="$t('login.password')">
+            <div class="field-action">
+              <div class="field-action-text wlIcon wlIcon-chakan field-action-icon-muted" :class="password == 'text' ? 'eye' : ''" @click="showPwd" />
+            </div>
+          </div>
 				</div>
-				<div class="item">
-					<input v-model.trim="data.code" type="text" class="inp" :placeholder="$t('login.code')">
-					<img style="height: 32px;margin-bottom: 8px;" :src="verify_img" @click="getVerifyCode()">
+				<div class="field-group">
+          <div class="field-label">{{$t('login.code')}}</div>
+          <div class="field-control">
+            <div class="field-icon">
+              <div class="field-icon-text iconfont icon-login_icon_password"><span></span></div>
+            </div>
+            <input v-model.trim="data.code" type="text" class="inp" :placeholder="$t('login.code')">
+            <img style="height: 32px;margin-bottom: 8px;" :src="verify_img" @click="getVerifyCode()">
+          </div>
 				</div>
-				<div class="register_btn"
+				<div class="submit-button"
 					 :class="data.username == '' || data.password == '' || data.code == ''? 'no_touch' : ''" @click="submit">
-					→
+          {{$t('login.loginNow')}}
 				</div>
 			</form>
 		</div>
 		
-		<div class="login_register">
-			<router-link to="/register">
-				<div>
-					{{$t('login.registerNow')}}
-				</div>
-			</router-link>
-		</div>
+
 		<div class="kefu" :class="show_kefu ? '' : 'kefu_hide'" @click="kefu_to">
 			<img class="kefu_img" src="../img/index/kefu.png">
 		</div>
@@ -51,8 +90,12 @@
 	import {
 		CountDown,
 		Checkbox,
-		Dialog
+		Dialog,
+    DropdownMenu,
+    DropdownItem,
+    Popup
 	} from "vant";
+  Vue.use(CountDown).use(Checkbox).use(Dialog).use(DropdownMenu).use(DropdownItem).use(Popup);
 	import Fetch from "../../utils/fetch";
 
 	Vue.use(CountDown)
@@ -71,6 +114,7 @@
 				password: "password",
 				loading: false,
 				data: {
+          country_code: '',
 					username: "",
 					password: "",
 					code: "",
@@ -79,6 +123,8 @@
 					register_phone: 1
 				},
 				verify_img: "",
+        country_code: [],
+        value: 0,
 			};
 		},
 		created() {
@@ -88,7 +134,6 @@
 			}
 			this.$parent.footer("user", false);
 		},
-
 		mounted() {
 			// if (this.$route.query.agent) {
 			// 	localStorage.setItem('agent', this.$route.query.agent);
@@ -119,6 +164,7 @@
 				false
 			);
 			this.start();
+      this.getLanguages();
 			this.getVerifyCode();
 		},
 		methods: {
@@ -127,6 +173,24 @@
 					this.config = r.data;
 				});
 			},
+      getLanguages() {
+        Fetch('/index/getLanguages').then((r) => {
+          var list = r.data.list;
+          var countryCode = [];
+          for (var i = 0; i < list.length; i++) {
+            countryCode.push({
+              text: list[i]['country_code'],
+              value: i,
+              counrty: list[i]['country']
+            });
+          }
+          this.country_code = countryCode;
+          let country = this.country_code.find((country) => {
+            return country['counrty'] === this.lang;
+          });
+          this.value = country.value;
+        });
+      },
 			kefu_to() {
 				if (this.show_kefu) {
 					this.$router.push("/service");
@@ -213,15 +277,180 @@
 </script>
 
 <style lang="less" scoped>
-	.basic_wrap{
-		position: relative;
+	.page-inner{
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
     padding: calc(16px + env(safe-area-inset-top)) 18px 40px;
 	}
+  .topbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar-action{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    background: #ffffffb8;
+    border: 1px solid #ffffffeb;
+    box-shadow: 0 9px 20px #464a8714;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .topbar-icon-image {
+    width: 22px;
+    height: 20px;
+  }
+  .topbar-icon-image-lang {
+    width: 50px;
+    height: 50px;
+  }
+  .topbar-action-lang{
+    padding: 0 10px;
+    width: auto;
+    min-width: 58px;
+  }
+  .hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 6px 20px;
+    text-align: center;
+  }
+  .hero-logo {
+    width: 64px;
+    height: 64px;
+  }
+  .hero-logo-shell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 93px;
+    height: 93px;
+    border-radius: 26px;
+    background: #ffffffd1;
+    border: 1px solid #fffffff0;
+    box-shadow: 0 12px 28px #464a871a;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .hero-title {
+    margin-top: 18px;
+    font-size: 37px;
+    font-weight: 700;
+    line-height: 1.12;
+    color: #00001c;
+    text-align: center;
+  }
+  .auth-shell {
+    background: #ffffffdb;
+    border: 1px solid #fff;
+    border-radius: 26px;
+    box-shadow: 0 12px 28px #464a8714;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    padding: 16px;
+  }
+  .auth-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+    background: #747cfd14;
+    border-radius: 668px;
+  }
+  .auth-tab {
+    flex: 1;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 668px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #6b7280;
+  }
+  .auth-tab-active {
+    background: #fff;
+    box-shadow: 0 8px 18px #464a8714;
+    color: #111827;
+    font-weight: 700;
+  }
+  .auth-form {
+    padding-top: 22px;
+  }
+  .field-group + .field-group {
+    margin-top: 18px;
+  }
+  .field-label {
+    margin-bottom: 9px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #22273d;
+  }
+  .field-control{
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 64px;
+    background: #fffffff5;
+    border: 1px solid #ecebff;
+    border-radius: 16px;
+    box-shadow: inset 0 1px 0 #fffc;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .field-icon-text {
+    font-size: 17px;
+    line-height: 1;
+    color: #747cfd;
+  }
+   .iconfont {
+     font-family: iconfont !important;
+     font-size: 16px;
+     font-style: normal;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+   }
+  .field-prefix {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 64px;
+    padding-right: 10px;
+    border-right: 1px solid #ecebff;
+    flex-shrink: 0;
+  }
+  .submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 64px;
+    margin-top: 20px;
+    border-radius: 16px;
+    background: #767dff !important;
+    border-color: #0000 !important;
+    box-shadow: 0 10px 21px #747cfd3d;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    line-height: 28px;
+    color: #fff !important;
+  }
+  .field-prefix-text, .field-prefix-arrow {
+    font-size: 16px;
+    line-height: 1;
+    color: #4f46e5;
+    font-weight: 600;
+  }
+
+
 	.form_div {
 		height: 600px;
 		width: 100%;
-		background: url(../img/user/login_background.png) no-repeat center center;
-		background-size: 150% 100%;
 		position: relative;
 		top: -88px;
 

@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
-		<router-view></router-view>
-		<div v-show="is_show_footer" id="footer" class="footer">
+    <router-view></router-view>
+    <div v-show="is_show_footer" id="footer" class="footer">
 			<router-link to="/" class="footer_item" :class="show_icon_type === 'index' ? 'footer_item_active' : ''">
 				<span class="footer_icon footer_icon_home" />
 				<p class="footer_info">
@@ -104,6 +104,10 @@
 </script>
 <style lang="less">
 	// @import "./assets/font/font.css";
+  #app{
+    background-image: url("/static/images/web3/bg.png");
+    background-size: 100% 100%; background-repeat: no-repeat center center;;
+  }
 	.kefu {
 		width: 80px;
 		height: 80px;

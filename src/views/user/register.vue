@@ -368,8 +368,6 @@
 	.form_div {
 		height: 600px;
 		width: 100%;
-		background: url(../img/user/login_background.png) no-repeat center center;
-		background-size: 150% 100%;
 		position: relative;
 		top: -88px;
 

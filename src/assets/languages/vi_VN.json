@@ -45,7 +45,9 @@
 		"index": "Trang chủ",
 		"invest": "Đầu tư",
 		"team": "Đội của tôi",
-		"my": "Tài khoản"
+		"my": "Tài khoản",
+		"subscription": "Kontrak",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Lãi suất: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "Số lượng trận hòa đã được sử dụng hết",
 		"congratulation": "Xin chúc mừng nhận được: ",
 		"unfortunately": "Thật không may, không có giải thưởng chiến thắng",
-		"myPoints": "Điểm: " ,
+		"myPoints": "Điểm: ",
 		"pointsEmpty": "Thiếu điểm"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "Mô tả Sản phẩm",
 		"redeemMoney": "Số tiền",
 		"redeemMoneyPlaceholder": "Vui lòng nhập số tiền",
-		"redeemMoneyAva": "Số tiền có sẵn: " ,
+		"redeemMoneyAva": "Số tiền có sẵn: ",
 		"redeemRules": "Luật lệ",
 		"redeemRulesTips1": "Chuộc lại",
 		"redeemRulesTips2": "Tài khoản",
@@ -374,5 +376,41 @@
 		"hotGoods": "Sản phẩm phổ biến",
 		"exchange": "Trao đổi",
 		"exchangeRecord": "Hồ sơ trao đổi"
+	},
+	"subscription": {
+		"inProgress": "In Progress",
+		"completed": "Completed",
+		"monthlyYieldRate": "Monthly Yield",
+		"orderNo": "Order No",
+		"investmentAmount": "Amount",
+		"duration": "Duration",
+		"day": "d",
+		"subscriptionTime": "Time",
+		"interestPeriod": "Interest Period",
+		"everyDay": "Daily",
+		"yieldDistribution": "Distribution",
+		"nextDay": "Next Day",
+		"endTime": "End Time",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"earnedIncome": "Earned Income",
+		"autoRenew": "Auto Renew",
+		"noAutoRenew": "Manual",
+		"cancelRenewal": "Cancel Renewal",
+		"renewal": "Renew",
+		"renewalEnabledSuccess": "Auto renewal enabled",
+		"renewalDisabledSuccess": "Auto renewal cancelled"
+	},
+	"analyst": {
+		"fixedTerm": "Fixed Term",
+		"referenceAnnualized": "Ref. APY",
+		"dailyYieldRate": "Daily Rate",
+		"duration": "Duration",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"subscribe": "Subscribe",
+		"notOpen": "Not Open",
+		"notOpenCannotBuy": "Not available for purchase",
+		"day": "d"
 	}
 }

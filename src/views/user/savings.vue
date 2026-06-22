@@ -92,6 +92,7 @@
 			};
 		},
 		created() {
+			window.document.title = this.$t('savings.savings');
 			if (window.plus) {
 				plus.navigator.setStatusBarBackground('#000002');
 				plus.navigator.setStatusBarStyle('light');

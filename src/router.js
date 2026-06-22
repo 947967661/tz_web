@@ -220,6 +220,12 @@ export default new Router({
                 import(/* webpackChunkName: "home" */ "./views/user/savings.vue")
         },
 		{
+		    path: "/subscription",
+		    name: "subscription",
+		    component: () =>
+		        import(/* webpackChunkName: "home" */ "./views/user/subscription.vue")
+		},
+		{
 		    path: "/savings/redeem",
 		    name: "redeem",
 		    component: () =>

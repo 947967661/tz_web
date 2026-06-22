@@ -210,6 +210,7 @@
 			};
 		},
 		created() {
+			window.document.title = this.$t('home.team');
 			if (window.plus) {
 				plus.navigator.setStatusBarBackground('#0F6EFF');
 				plus.navigator.setStatusBarStyle('light');

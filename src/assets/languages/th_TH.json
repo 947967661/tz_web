@@ -45,7 +45,9 @@
 		"index": "โฮมเพจ",
 		"invest": "ลงทุน",
 		"team": "ทีมของฉัน",
-		"my": "บัญชี"
+		"my": "บัญชี",
+		"subscription": "Kontrak",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "อัตราดอกเบี้ย: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "จำนวนการจับฉลากถูกใช้ไปแล้ว",
 		"congratulation": "ขอแสดงความยินดีกับการรับ: ",
 		"unfortunately": "น่าเสียดายที่ไม่มีรางวัลชนะเลิศ",
-		"myPoints": "คะแนน: " ,
+		"myPoints": "คะแนน: ",
 		"pointsEmpty": "ขาดคะแนน"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "คำอธิบายผลิตภัณฑ์",
 		"redeemMoney": "ไถ่ถอนจำนวนเงิน",
 		"redeemMoneyPlaceholder": "โปรดป้อนจำนวนเงิน",
-		"redeemMoneyAva": "จำนวนเงินที่มีอยู่: " ,
+		"redeemMoneyAva": "จำนวนเงินที่มีอยู่: ",
 		"redeemRules": "กฎการไถ่ถอน",
 		"redeemRulesTips1": "ไถ่ถอน",
 		"redeemRulesTips2": "ไปที่บัญชีทันที",
@@ -374,5 +376,41 @@
 		"hotGoods": "สินค้ายอดนิยม",
 		"exchange": "การแลกเปลี่ยน",
 		"exchangeRecord": "บันทึกการแลกเปลี่ยน"
+	},
+	"subscription": {
+		"inProgress": "In Progress",
+		"completed": "Completed",
+		"monthlyYieldRate": "Monthly Yield",
+		"orderNo": "Order No",
+		"investmentAmount": "Amount",
+		"duration": "Duration",
+		"day": "d",
+		"subscriptionTime": "Time",
+		"interestPeriod": "Interest Period",
+		"everyDay": "Daily",
+		"yieldDistribution": "Distribution",
+		"nextDay": "Next Day",
+		"endTime": "End Time",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"earnedIncome": "Earned Income",
+		"autoRenew": "Auto Renew",
+		"noAutoRenew": "Manual",
+		"cancelRenewal": "Cancel Renewal",
+		"renewal": "Renew",
+		"renewalEnabledSuccess": "Auto renewal enabled",
+		"renewalDisabledSuccess": "Auto renewal cancelled"
+	},
+	"analyst": {
+		"fixedTerm": "Fixed Term",
+		"referenceAnnualized": "Ref. APY",
+		"dailyYieldRate": "Daily Rate",
+		"duration": "Duration",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"subscribe": "Subscribe",
+		"notOpen": "Not Open",
+		"notOpenCannotBuy": "Not available for purchase",
+		"day": "d"
 	}
 }

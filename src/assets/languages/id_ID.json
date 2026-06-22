@@ -45,7 +45,9 @@
 		"index": "Beranda",
 		"invest": "Investas",
 		"team": "Tim saya",
-		"my": "Pusat Pribadi"
+		"my": "Pusat Pribadi",
+		"subscription": "Kontrak",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Suku bunga: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "Jumlah undian telah digunakan",
 		"congratulation": "Selamat atas mendapatkan: ",
 		"unfortunately": "Sayangnya, tidak ada hadiah kemenangan",
-		"myPoints": "Poin: " ,
+		"myPoints": "Poin: ",
 		"pointsEmpty": "Kurangnya poin"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "Deskripsi Produk",
 		"redeemMoney": "Jumlah Penukaran",
 		"redeemMoneyPlaceholder": "Harap masukkan jumlah penebusan",
-		"redeemMoneyAva": "Jumlah yang tersedia: " ,
+		"redeemMoneyAva": "Jumlah yang tersedia: ",
 		"redeemRules": "Aturan Penebusan",
 		"redeemRulesTips1": "Kirim",
 		"redeemRulesTips2": "Menyelesaikan",
@@ -374,5 +376,41 @@
 		"hotGoods": "Produk populer",
 		"exchange": "Pertukaran",
 		"exchangeRecord": "Catatan pertukaran"
+	},
+	"subscription": {
+		"inProgress": "In Progress",
+		"completed": "Completed",
+		"monthlyYieldRate": "Monthly Yield",
+		"orderNo": "Order No",
+		"investmentAmount": "Amount",
+		"duration": "Duration",
+		"day": "d",
+		"subscriptionTime": "Time",
+		"interestPeriod": "Interest Period",
+		"everyDay": "Daily",
+		"yieldDistribution": "Distribution",
+		"nextDay": "Next Day",
+		"endTime": "End Time",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"earnedIncome": "Earned Income",
+		"autoRenew": "Auto Renew",
+		"noAutoRenew": "Manual",
+		"cancelRenewal": "Cancel Renewal",
+		"renewal": "Renew",
+		"renewalEnabledSuccess": "Auto renewal enabled",
+		"renewalDisabledSuccess": "Auto renewal cancelled"
+	},
+	"analyst": {
+		"fixedTerm": "Fixed Term",
+		"referenceAnnualized": "Ref. APY",
+		"dailyYieldRate": "Daily Rate",
+		"duration": "Duration",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"subscribe": "Subscribe",
+		"notOpen": "Not Open",
+		"notOpenCannotBuy": "Not available for purchase",
+		"day": "d"
 	}
 }

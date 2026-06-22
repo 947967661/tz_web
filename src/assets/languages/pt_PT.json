@@ -45,7 +45,9 @@
 		"index": "Pagina inicial",
 		"invest": "Investir",
 		"team": "Meu time",
-		"my": "Conta"
+		"my": "Conta",
+		"subscription": "Kontrak",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Taxa de juros: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "O número de sorteios foi esgotado",
 		"congratulation": "Parabéns por obter: ",
 		"unfortunately": "Infelizmente, não há prêmio vencedor",
-		"myPoints": "Pontos: " ,
+		"myPoints": "Pontos: ",
 		"pointsEmpty": "Falta de pontos"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "Descrição do produto",
 		"redeemMoney": "Quantia",
 		"redeemMoneyPlaceholder": "Por favor, insira a quantia",
-		"redeemMoneyAva": "Quantia disponível: " ,
+		"redeemMoneyAva": "Quantia disponível: ",
 		"redeemRules": "Regra de resgate",
 		"redeemRulesTips1": "Enviar",
 		"redeemRulesTips2": "Vá para a conta imediatamente",
@@ -374,5 +376,41 @@
 		"hotGoods": "Produto popular",
 		"exchange": "Exchaange",
 		"exchangeRecord": "Registro de troca"
+	},
+	"subscription": {
+		"inProgress": "In Progress",
+		"completed": "Completed",
+		"monthlyYieldRate": "Monthly Yield",
+		"orderNo": "Order No",
+		"investmentAmount": "Amount",
+		"duration": "Duration",
+		"day": "d",
+		"subscriptionTime": "Time",
+		"interestPeriod": "Interest Period",
+		"everyDay": "Daily",
+		"yieldDistribution": "Distribution",
+		"nextDay": "Next Day",
+		"endTime": "End Time",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"earnedIncome": "Earned Income",
+		"autoRenew": "Auto Renew",
+		"noAutoRenew": "Manual",
+		"cancelRenewal": "Cancel Renewal",
+		"renewal": "Renew",
+		"renewalEnabledSuccess": "Auto renewal enabled",
+		"renewalDisabledSuccess": "Auto renewal cancelled"
+	},
+	"analyst": {
+		"fixedTerm": "Fixed Term",
+		"referenceAnnualized": "Ref. APY",
+		"dailyYieldRate": "Daily Rate",
+		"duration": "Duration",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"subscribe": "Subscribe",
+		"notOpen": "Not Open",
+		"notOpenCannotBuy": "Not available for purchase",
+		"day": "d"
 	}
 }

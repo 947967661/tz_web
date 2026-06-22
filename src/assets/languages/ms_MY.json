@@ -45,7 +45,9 @@
 		"index": "Laman Utama",
 		"invest": "Melabur",
 		"team": "Pasukan saya",
-		"my": "Akaun"
+		"my": "Akaun",
+		"subscription": "Kontrak",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Kadar faedah: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "Bilangan cabutan telah digunakan",
 		"congratulation": "Tahniah untuk mendapatkan: ",
 		"unfortunately": "Malangnya, tidak ada hadiah yang menang",
-		"myPoints": "Mata: " ,
+		"myPoints": "Mata: ",
 		"pointsEmpty": "Kekurangan mata"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "Penerangan Produk",
 		"redeemMoney": "Jumlah",
 		"redeemMoneyPlaceholder": "Sila masukkan jumlahnya",
-		"redeemMoneyAva": "Jumlah yang ada: " ,
+		"redeemMoneyAva": "Jumlah yang ada: ",
 		"redeemRules": "Peraturan penebusan",
 		"redeemRulesTips1": "Menebus",
 		"redeemRulesTips2": "Pergi ke akaun dengan segera",
@@ -374,5 +376,41 @@
 		"hotGoods": "Produk popular",
 		"exchange": "Extaange",
 		"exchangeRecord": "Rekod pertukaran"
+	},
+	"subscription": {
+		"inProgress": "In Progress",
+		"completed": "Completed",
+		"monthlyYieldRate": "Monthly Yield",
+		"orderNo": "Order No",
+		"investmentAmount": "Amount",
+		"duration": "Duration",
+		"day": "d",
+		"subscriptionTime": "Time",
+		"interestPeriod": "Interest Period",
+		"everyDay": "Daily",
+		"yieldDistribution": "Distribution",
+		"nextDay": "Next Day",
+		"endTime": "End Time",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"earnedIncome": "Earned Income",
+		"autoRenew": "Auto Renew",
+		"noAutoRenew": "Manual",
+		"cancelRenewal": "Cancel Renewal",
+		"renewal": "Renew",
+		"renewalEnabledSuccess": "Auto renewal enabled",
+		"renewalDisabledSuccess": "Auto renewal cancelled"
+	},
+	"analyst": {
+		"fixedTerm": "Fixed Term",
+		"referenceAnnualized": "Ref. APY",
+		"dailyYieldRate": "Daily Rate",
+		"duration": "Duration",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"subscribe": "Subscribe",
+		"notOpen": "Not Open",
+		"notOpenCannotBuy": "Not available for purchase",
+		"day": "d"
 	}
 }

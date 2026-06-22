@@ -1,5 +1,5 @@
 <template>
-  <div class="analyst-page">
+  <div class="subscription-page">
     <img
       class="page-bg bg-main"
       src="../img/index/web3/bg.png"
@@ -19,22 +19,24 @@
     <div class="header_container" />
 
     <h1 class="page-title">
-      {{ $t('home.holdings') }}
+      {{ $t('home.subscription') }}
     </h1>
 
-    <div
-      v-show="show_tabs"
-      class="select_container"
-    >
+    <div class="select_container">
       <div class="left_tab">
         <div
-          v-for="(tab, index) in tabs"
-          :key="index"
           class="left_tab_item"
-          :class="active === index ? 'left_tab_item_active' : ''"
-          @click="sort(index)"
+          :class="selectCurrent === 0 ? 'left_tab_item_active' : ''"
+          @click="tabChange(0)"
         >
-          {{ tab.title }}
+          {{ $t('subscription.inProgress') }}
+        </div>
+        <div
+          class="left_tab_item"
+          :class="selectCurrent === 1 ? 'left_tab_item_active' : ''"
+          @click="tabChange(1)"
+        >
+          {{ $t('subscription.completed') }}
         </div>
       </div>
     </div>
@@ -49,7 +51,7 @@
         </div>
       </div>
       <div
-        v-else-if="analystList.length === 0"
+        v-else-if="myOrderList.length === 0"
         class="card_item card_item--empty"
       >
         <div class="empty-text">
@@ -57,7 +59,7 @@
         </div>
       </div>
       <div
-        v-for="(item, index) in analystList"
+        v-for="(item, index) in myOrderList"
         :key="index"
         class="card_item"
       >
@@ -65,7 +67,7 @@
           <div class="top_left">
             <img
               class="avatar"
-              :src="item.img || defaultAvatar"
+              :src="item.image || defaultAvatar"
               alt=""
             >
             <div class="user_info">
@@ -73,19 +75,19 @@
                 {{ item.title || '-' }}
               </div>
               <div class="text2">
-                {{ item.subTitle || $t('analyst.fixedTerm') }}
+                {{ item.subTitle || $t('invest.invest') }}
               </div>
             </div>
           </div>
           <div
-            v-if="showReferenceAnnualized(item)"
+            v-if="showMonthlyYield(item)"
             class="top_right"
           >
             <div class="text3">
-              {{ $t('analyst.referenceAnnualized') }}
+              {{ $t('subscription.monthlyYieldRate') }}
             </div>
             <div class="text4">
-              {{ displayAnnualizedRate(item) }}%
+              {{ displayMonthlyReturnRate(item) }}%
             </div>
           </div>
         </div>
@@ -93,18 +95,26 @@
         <div class="bottom">
           <div class="item">
             <div class="label">
-              {{ $t('analyst.dailyYieldRate') }}
+              {{ $t('subscription.orderNo') }}
             </div>
             <div class="value">
-              {{ item.rate }}%
+              {{ item.order_no || item.id }}
             </div>
           </div>
           <div class="item">
             <div class="label">
-              {{ $t('analyst.duration') }}
+              {{ $t('subscription.investmentAmount') }}
             </div>
             <div class="value">
-              {{ item.day }}{{ $t('analyst.day') }}
+              {{ platformMoneySymbol }} {{ formatMoney(item.money) }}
+            </div>
+          </div>
+          <div class="item">
+            <div class="label">
+              {{ $t('subscription.duration') }}
+            </div>
+            <div class="value">
+              {{ item.day }}{{ $t('subscription.day') }}
             </div>
           </div>
         </div>
@@ -112,27 +122,87 @@
         <div class="bottom">
           <div class="item">
             <div class="label">
-              {{ $t('analyst.dailyIncome') }}
+              {{ $t('subscription.subscriptionTime') }}
             </div>
             <div class="value">
-              {{ calcDailyIncome(item) }}
+              {{ item.time_actual || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom">
+          <div class="item">
+            <div class="label">
+              {{ $t('subscription.interestPeriod') }}
+            </div>
+            <div class="value">
+              {{ $t('subscription.everyDay') }}
             </div>
           </div>
           <div class="item">
             <div class="label">
-              {{ $t('analyst.maturityIncome') }}
+              {{ $t('subscription.yieldDistribution') }}
             </div>
             <div class="value">
-              {{ calcMaturityIncome(item) }}
+              {{ $t('subscription.nextDay') }} 8:00 am
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom">
+          <div class="item">
+            <div class="label">
+              {{ $t('subscription.endTime') }}
+            </div>
+            <div class="value">
+              {{ item.time2_actual || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom">
+          <div class="item">
+            <div class="label">
+              {{ $t('subscription.dailyIncome') }}
+            </div>
+            <div class="value">
+              {{ platformMoneySymbol }} {{ calcDailyIncome(item) }}
+            </div>
+          </div>
+          <div class="item">
+            <div class="label">
+              {{ $t('subscription.maturityIncome') }}
+            </div>
+            <div class="value">
+              {{ platformMoneySymbol }} {{ calcMaturityIncome(item) }}
+            </div>
+          </div>
+          <div class="item">
+            <div class="label">
+              {{ $t('subscription.earnedIncome') }}
+            </div>
+            <div class="value">
+              {{ platformMoneySymbol }} {{ formatMoney(item.total_interest) }}
             </div>
           </div>
         </div>
 
         <div
-          class="button"
-          @click="subscribe(item)"
+          v-if="item.is_renew !== undefined && selectCurrent === 0"
+          class="status-and-action"
         >
-          {{ getSubscribeButtonText(item) }}
+          <div
+            class="renewal-status"
+            :class="{ active: item.is_renew }"
+          >
+            {{ item.is_renew ? $t('subscription.autoRenew') : $t('subscription.noAutoRenew') }}
+          </div>
+          <div
+            class="renewal-button"
+            @click="toggleRenewal(item)"
+          >
+            {{ item.is_renew ? $t('subscription.cancelRenewal') : $t('subscription.renewal') }}
+          </div>
         </div>
       </div>
     </div>
@@ -143,129 +213,94 @@
 import Fetch from '../../utils/fetch';
 
 export default {
-	name: "Analyst",
+	name: "Subscription",
 	data() {
 		return {
 			pageLoading: true,
-			show_tabs: false,
-			active: 0,
-			tabs: [{
-				id: 0,
-				title: this.$t('tabs.all')
-			}],
-			analystList: [],
-			page: 1,
-			listRows: 20,
-			finished: false,
+			selectCurrent: 0,
+			myOrderList: [],
+			platformMoneySymbol: localStorage.getItem('currency_symbol_basic') || '$',
 			defaultAvatar: '/static/images/web3/icon-avatar.png'
 		};
 	},
 	created() {
-		window.document.title = this.$t('home.holdings');
+		window.document.title = this.$t('home.subscription');
 		if (window.plus) {
 			plus.navigator.setStatusBarBackground('#faf7ff');
 			plus.navigator.setStatusBarStyle('dark');
 		}
-		this.$parent.footer('holdings', true);
+		this.$parent.footer('subscription', true);
 	},
 	mounted() {
-		if (this.$router.history.current.query.type) {
-			this.active = parseInt(this.$router.history.current.query.type);
-		}
-		this.start();
+		this.loadData();
 	},
 	methods: {
-		start() {
-			Fetch('/index/item_class').then((r) => {
-				var tabs1 = [{
-					id: 0,
-					title: this.$t('tabs.all')
-				}];
-				r.data.classes.forEach(item => {
-					tabs1.push({
-						id: item.id,
-						title: item.title,
-					});
-				});
-				this.tabs = tabs1;
-				this.show_tabs = tabs1.length > 1;
-				this.loadData();
-			}).catch(() => {
-				this.loadData();
-			});
-		},
-		sort(index) {
-			this.active = index;
-			this.page = 1;
-			this.analystList = [];
-			this.finished = false;
+		tabChange(index) {
+			this.selectCurrent = index;
 			this.loadData();
 		},
 		loadData() {
 			this.pageLoading = true;
-			Fetch('/index/item_list', {
-				page: this.page,
-				listRows: this.listRows,
-				type: this.tabs[this.active]['id']
-			}).then(r => {
-				var list = r.data.list || [];
-				if (this.page === 1) {
-					this.analystList = list;
-				} else {
-					this.analystList = this.analystList.concat(list);
+			Fetch('/user/investRecord', {
+				status: this.selectCurrent === 0 ? 0 : 1,
+				page: 1,
+				listRows: 100
+			}).then((r) => {
+				let list = r.data.list || [];
+				// Fallback client-side filtering if backend ignores status param
+				const expectedStatus = this.selectCurrent === 0 ? 0 : 1;
+				if (list.length && list[0].status !== undefined) {
+					const filtered = list.filter(item => Number(item.status) === expectedStatus);
+					if (filtered.length > 0 || list.some(item => Number(item.status) === expectedStatus)) {
+						list = filtered;
+					}
 				}
-				if (this.analystList.length >= r.data.length) {
-					this.finished = true;
-				} else {
-					this.page = this.page + 1;
-				}
+				this.myOrderList = list;
 			}).catch(() => {
-				if (this.page === 1) {
-					this.analystList = [];
-				}
+				this.myOrderList = [];
 			}).finally(() => {
 				this.pageLoading = false;
 			});
 		},
-		showReferenceAnnualized(item) {
+		formatMoney(val) {
+			if (val === undefined || val === null) return '0.00';
+			return Number(val).toFixed(2);
+		},
+		showMonthlyYield(item) {
 			return item.rate && Number(item.rate) > 0;
 		},
 		getDailyRate(item) {
 			return Number(item.rate || 0) / 100;
 		},
-		displayAnnualizedRate(item) {
+		displayMonthlyReturnRate(item) {
 			const daily = this.getDailyRate(item);
 			if (!daily) return '0.00';
 			const monthly = Math.pow(1 + daily, 30) - 1;
-			return (monthly * 100 * 12).toFixed(2);
+			return (monthly * 100).toFixed(2);
 		},
 		calcDailyIncome(item) {
 			const rate = this.getDailyRate(item);
-			const min = Number(item.min || 0);
-			return (rate * min).toFixed(4);
+			const money = Number(item.money || 0);
+			return (rate * money).toFixed(4);
 		},
 		calcMaturityIncome(item) {
 			const rate = this.getDailyRate(item);
-			const min = Number(item.min || 0);
+			const money = Number(item.money || 0);
 			const day = Number(item.day || 0);
-			return (rate * min * day).toFixed(4);
+			return (rate * money * day).toFixed(4);
 		},
-		getSubscribeButtonText(item) {
-			return item.open_status === 'closed' ? this.$t('analyst.notOpen') : this.$t('analyst.subscribe');
-		},
-		subscribe(item) {
-			if (item.open_status === 'closed') {
-				this.$toast(this.$t('analyst.notOpenCannotBuy'));
-				return;
-			}
-			this.$router.push('/invest/detail/' + item.id);
+		toggleRenewal(item) {
+			// Current PHP backend does not expose a toggle_renewal endpoint,
+			// so we only reflect the state change locally.
+			item.is_renew = !item.is_renew;
+			this.$toast(item.is_renew ? this.$t('subscription.renewalEnabledSuccess') : this.$t('subscription.renewalDisabledSuccess'));
 		}
 	}
 };
 </script>
 
 <style lang="less" scoped>
-.analyst-page {
+.subscription-page {
 	position: relative;
 	box-sizing: border-box;
 	width: 100%;
@@ -504,19 +539,36 @@ export default {
 			}
 		}
 
-		.button {
+		.status-and-action {
 			display: flex;
-			justify-content: center;
+			justify-content: space-between;
 			align-items: center;
-			width: 100%;
-			height: 44px;
-			background: #767dff;
-			border-radius: 12px;
-			font-weight: 700;
-			font-size: 14px;
-			color: #fff;
-			margin-top: 20px;
-			cursor: pointer;
+			margin-top: 10px;
+
+			.renewal-status {
+				padding: 5px 9px;
+				border-radius: 999px;
+				font-size: 11px;
+				font-weight: 600;
+				background-color: #f0f0f0;
+				color: #8e8e93;
+
+				&.active {
+					background-color: rgba(118, 125, 255, 0.12);
+					color: #767dff;
+				}
+			}
+
+			.renewal-button {
+				padding: 6px 12px;
+				background-color: #767dff;
+				color: #fff;
+				border-radius: 10px;
+				text-align: center;
+				font-size: 12px;
+				font-weight: 600;
+				cursor: pointer;
+			}
 		}
 	}
 }

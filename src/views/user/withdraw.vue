@@ -1,51 +1,81 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="record" @click="$router.push('/withdraw/record')">
-				<img src="../img/user/record_b.png">
-			</div>
-		</div>
-		<div class="desc_warp">
-			<img src="../img/user/withdraw.png" />
-			<div class="flex_center userBalance">
-				<p>{{$t('withdraw.fundBalance')}}</p>
-				<van-icon v-show="frozenAmount!=0" name="question-o" size="16" color="#999" style="margin-left: 5px;"
-					@click="showMsg()" />
-			</div>
-			<p>{{common.currency_symbol_basic()}}{{common.precision_basic(userBalance)}}</p>
-		</div>
-		<div class="withdraw_wrap">
-			<div class="block_div item choose_wallet">
-				<div class="flex_center">
-					<p>{{$t('withdraw.account')}}</p>
-					<div @click="show=true">
-						<span>{{withdraw_name}}</span>
-						<van-icon name="arrow" color="#999" />
-					</div>
-				</div>
-			</div>
-			<van-action-sheet v-model="show" :actions="wallets" cancel-text=""
-				:description="$t('withdraw.accountPlaceholder')" close-on-click-action @select="onSelect" />
-			<div class="block_div item">
-				<div class="">
-					<p class="withdraw_money_tips">{{$t('withdraw.amount')}}</p>
-					<div class="flex_center">
-						<van-field v-model="wallet.money" type="number"
-							:placeholder="$t('withdraw.amountPlaceholder')" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<p class="withdraw_time_tips">
-			{{$t('withdraw.withdrawNum')}}{{withdraw_num}}{{$t('utils.times'+times)}}<br>
-			{{$t('withdraw.withdrawAmount')}}{{common.currency_symbol_basic()}}{{common.precision_basic(withdraw_min)}}<br>
-			{{$t('withdraw.withdrawTips')}}
-		</p>
-		<div class="basic_btn btn" :class="wallet.money>0?'':'no_touch'" @click="submit()">
-			{{$t('withdraw.withdrawNow')}}
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div
+        class="record"
+        @click="$router.push('/withdraw/record')"
+      >
+        <img src="../img/user/record_b.png">
+      </div>
+    </div>
+    <div class="desc_warp">
+      <img src="../img/user/withdraw.png">
+      <div class="flex_center userBalance">
+        <p>{{ $t('withdraw.fundBalance') }}</p>
+        <van-icon
+          v-show="frozenAmount!=0"
+          name="question-o"
+          size="16"
+          color="#999"
+          style="margin-left: 5px;"
+          @click="showMsg()"
+        />
+      </div>
+      <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(userBalance) }}</p>
+    </div>
+    <div class="withdraw_wrap">
+      <div class="block_div item choose_wallet">
+        <div class="flex_center">
+          <p>{{ $t('withdraw.account') }}</p>
+          <div @click="show=true">
+            <span>{{ withdraw_name }}</span>
+            <van-icon
+              name="arrow"
+              color="#999"
+            />
+          </div>
+        </div>
+      </div>
+      <van-action-sheet
+        v-model="show"
+        :actions="wallets"
+        cancel-text=""
+        :description="$t('withdraw.accountPlaceholder')"
+        close-on-click-action
+        @select="onSelect"
+      />
+      <div class="block_div item">
+        <div class="">
+          <p class="withdraw_money_tips">
+            {{ $t('withdraw.amount') }}
+          </p>
+          <div class="flex_center">
+            <van-field
+              v-model="wallet.money"
+              type="number"
+              :placeholder="$t('withdraw.amountPlaceholder')"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="withdraw_time_tips">
+      {{ $t('withdraw.withdrawNum') }}{{ withdraw_num }}{{ $t('utils.times'+times) }}<br>
+      {{ $t('withdraw.withdrawAmount') }}{{ common.currency_symbol_basic() }}{{ common.precision_basic(withdraw_min) }}<br>
+      {{ $t('withdraw.withdrawTips') }}
+    </p>
+    <div
+      class="basic_btn btn"
+      :class="wallet.money>0?'':'no_touch'"
+      @click="submit()"
+    >
+      {{ $t('withdraw.withdrawNow') }}
+    </div>
+  </div>
 </template>
 
 <script>

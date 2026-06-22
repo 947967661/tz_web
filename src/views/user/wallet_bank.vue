@@ -1,36 +1,64 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader title="" @backurl="$router.back()"></bsHeader>
-		<div class="bind_wrap">
-			<div class="bind_item">
-				<p class="item_name">{{$t('wallet.bank')}}</p>
-				<div class="block_div item_input">
-					<van-dropdown-menu>
-						<van-dropdown-item v-model="value1" :options="option1" />
-					</van-dropdown-menu>
-				</div>
-			</div>
-			<div class="bind_item">
-				<p class="item_name">{{$t('wallet.name')}}</p>
-				<div class="block_div item_input">
-					<van-field v-model="account.name" type="text" :placeholder="$t('wallet.namePlaceholder')" />
-				</div>
-			</div>
-			<div class="bind_item">
-				<p class="item_name">{{$t('wallet.account')}}</p>
-				<div class="block_div item_input">
-					<van-field v-model="account.account" type="digit" :placeholder="$t('wallet.accountPlaceholder')" />
-				</div>
-			</div>
-			<div class="tips">
-				<p class="tips1"><span>*</span>{{$t('wallet.walletTips1')}}</p>
-				<p class="tips2"><span>*</span>{{$t('wallet.walletTips2')}}</p>
-			</div>
-			<div class="basic_btn btn" :class="account.name==''||account.account==''?'no_touch':''" @click="submit()">
-				{{$t('wallet.bindNow')}}
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      title=""
+      @backurl="$router.back()"
+    />
+    <div class="bind_wrap">
+      <div class="bind_item">
+        <p class="item_name">
+          {{ $t('wallet.bank') }}
+        </p>
+        <div class="block_div item_input">
+          <van-dropdown-menu>
+            <van-dropdown-item
+              v-model="value1"
+              :options="option1"
+            />
+          </van-dropdown-menu>
+        </div>
+      </div>
+      <div class="bind_item">
+        <p class="item_name">
+          {{ $t('wallet.name') }}
+        </p>
+        <div class="block_div item_input">
+          <van-field
+            v-model="account.name"
+            type="text"
+            :placeholder="$t('wallet.namePlaceholder')"
+          />
+        </div>
+      </div>
+      <div class="bind_item">
+        <p class="item_name">
+          {{ $t('wallet.account') }}
+        </p>
+        <div class="block_div item_input">
+          <van-field
+            v-model="account.account"
+            type="digit"
+            :placeholder="$t('wallet.accountPlaceholder')"
+          />
+        </div>
+      </div>
+      <div class="tips">
+        <p class="tips1">
+          <span>*</span>{{ $t('wallet.walletTips1') }}
+        </p>
+        <p class="tips2">
+          <span>*</span>{{ $t('wallet.walletTips2') }}
+        </p>
+      </div>
+      <div
+        class="basic_btn btn"
+        :class="account.name==''||account.account==''?'no_touch':''"
+        @click="submit()"
+      >
+        {{ $t('wallet.bindNow') }}
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -46,7 +74,7 @@
 
 	Vue.use(Field).use(CellGroup).use(DropdownMenu).use(DropdownItem);
 	export default {
-		name: "wallet_bank",
+		name: "WalletBank",
 		components: {
 			bsHeader
 		},

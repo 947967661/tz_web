@@ -1,38 +1,60 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="big_tit">{{$t('home.invest')}}</div>
-		</div>
-		<div class="item_wrap">
-			<div class="tabs" v-show="show_tabs">
-				<van-tabs type="card" v-model="active" @click="sort">
-					<van-tab v-for="(tab,index) in tabs" :title="tab.title" :key="index"></van-tab>
-				</van-tabs>
-			</div>
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished"
-					:finished-text="$t('utils.noData')" @load="onLoad">
-					<div v-for="(item,index) in list" class="block_div item"
-						@click="$router.push('/invest/detail/'+item.id)">
-						<div class="logo">
-							<img v-lazy="item.img" />
-							<div>{{item.title}}</div>
-						</div>
-						<div class="flex_center detail">
-							<div>
-								<div><span class="detail_name">{{$t('index.amount')}}</span><span class="detail_num">{{common.currency_symbol_basic()}}{{common.precision_basic(item.min)}}</span></div>
-								<div><span class="detail_name">{{$t('index.cycle')}}</span><span class="detail_num">{{item.day}}{{item.type==3?$t('index.hour'):$t('index.day')}}</span></div>
-							</div>
-							<div>
-								<div><span class="detail_name">{{item.type==1?$t('index.dailyRate'):$t('index.rate')}}</span><span class="detail_num">{{item.rate}}%</span></div>
-								<div><span class="detail_name">{{$t('invest.income')}}</span><span class="detail_num">{{common.currency_symbol_basic()}}{{change(item)}}</span></div>
-							</div>
-						</div>
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div class="big_tit">
+        {{ $t('home.invest') }}
+      </div>
+    </div>
+    <div class="item_wrap">
+      <div
+        v-show="show_tabs"
+        class="tabs"
+      >
+        <van-tabs
+          v-model="active"
+          type="card"
+          @click="sort"
+        >
+          <van-tab
+            v-for="(tab,index) in tabs"
+            :key="index"
+            :title="tab.title"
+          />
+        </van-tabs>
+      </div>
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          :finished-text="$t('utils.noData')"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="block_div item"
+            @click="$router.push('/invest/detail/'+item.id)"
+          >
+            <div class="logo">
+              <img v-lazy="item.img">
+              <div>{{ item.title }}</div>
+            </div>
+            <div class="flex_center detail">
+              <div>
+                <div><span class="detail_name">{{ $t('index.amount') }}</span><span class="detail_num">{{ common.currency_symbol_basic() }}{{ common.precision_basic(item.min) }}</span></div>
+                <div><span class="detail_name">{{ $t('index.cycle') }}</span><span class="detail_num">{{ item.day }}{{ item.type==3?$t('index.hour'):$t('index.day') }}</span></div>
+              </div>
+              <div>
+                <div><span class="detail_name">{{ item.type==1?$t('index.dailyRate'):$t('index.rate') }}</span><span class="detail_num">{{ item.rate }}%</span></div>
+                <div><span class="detail_name">{{ $t('invest.income') }}</span><span class="detail_num">{{ common.currency_symbol_basic() }}{{ change(item) }}</span></div>
+              </div>
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

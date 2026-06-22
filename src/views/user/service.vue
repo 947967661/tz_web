@@ -1,19 +1,29 @@
 <template>
-	<div class="kefu_wrap">
-		<bsHeader :title="$t('user.onlineService')" @backurl="$router.back()"></bsHeader>
-		<div class="list">
-			<div class="block_div item" v-for="(item,index) in data.list">
-				<van-cell is-link @click="$router.push('/service/'+item.id)">
-					<template #title>
-						<img :src="item.logo" alt="" />
-						<span class="custom-title">{{item.title}}</span>
-					</template>
-				</van-cell>
-			</div>
-
-		</div>
-	</div>
-
+  <div class="kefu_wrap">
+    <bsHeader
+      :title="$t('user.onlineService')"
+      @backurl="$router.back()"
+    />
+    <div class="list">
+      <div
+        v-for="(item,index) in data.list"
+        class="block_div item"
+      >
+        <van-cell
+          is-link
+          @click="$router.push('/service/'+item.id)"
+        >
+          <template #title>
+            <img
+              :src="item.logo"
+              alt=""
+            >
+            <span class="custom-title">{{ item.title }}</span>
+          </template>
+        </van-cell>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -27,7 +37,7 @@
 
 	Vue.use(Cell).use(CellGroup);
 	export default {
-		name: "service",
+		name: "Service",
 		components: {
 			bsHeader
 		},

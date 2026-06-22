@@ -1,15 +1,23 @@
 <template>
-	<div class="red_top_bg">
-		<div class="back_left" @click.stop="handleBack"></div>
-		<div class="big_tit">{{title}}</div>
-		<p class="top_right" @click="right_router">
-			<slot></slot>
-		</p>
-	</div>
+  <div class="red_top_bg">
+    <div
+      class="back_left"
+      @click.stop="handleBack"
+    />
+    <div class="big_tit">
+      {{ title }}
+    </div>
+    <p
+      class="top_right"
+      @click="right_router"
+    >
+      <slot />
+    </p>
+  </div>
 </template>
 <script>
 	export default {
-		name: "bsHeader",
+		name: "BsHeader",
 		props: {
 			backurl: {
 				type: [String, Number],

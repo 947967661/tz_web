@@ -1,29 +1,46 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('goods.exchangeRecord')" @backurl="$router.back()"></bsHeader>
-		<div class="item_wrap">
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished"
-					:finished-text="$t('utils.noData')" @load="onLoad">
-					<div class="block_div item" v-for="(item,index) in list">
-						<div class="time">
-							<p>{{item.act_time}}</p>
-						</div>
-						<div class="flex_center detail">
-							<img class="logo" :src="item.img">
-							<div class="goods_detail">
-								<div class="title">{{item.title}}</div>
-								<div class="price">
-									<span class="point">{{item.point}}</span>
-									<span class="point_tips">{{$t('goods.point')}}</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('goods.exchangeRecord')"
+      @backurl="$router.back()"
+    />
+    <div class="item_wrap">
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          :finished-text="$t('utils.noData')"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="block_div item"
+          >
+            <div class="time">
+              <p>{{ item.act_time }}</p>
+            </div>
+            <div class="flex_center detail">
+              <img
+                class="logo"
+                :src="item.img"
+              >
+              <div class="goods_detail">
+                <div class="title">
+                  {{ item.title }}
+                </div>
+                <div class="price">
+                  <span class="point">{{ item.point }}</span>
+                  <span class="point_tips">{{ $t('goods.point') }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -35,7 +52,7 @@
 	} from 'vant';
 	Vue.use(List);
 	export default {
-		name: "recharge",
+		name: "Recharge",
 		components: {
 			bsHeader
 		},

@@ -1,16 +1,27 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('user.languagePreference')" @backurl="$router.back()"></bsHeader>
-		<div class="wrap_box">
-			<div v-for="(item,index) in languages" class="block_div flex_center item" @click="changeLang(item.country,$event)">
-				<div class="left flex_center">
-					<div><img :src="item.logo"></div>
-					<div class="info">{{item.country_loc}}</div>
-				</div>
-				<div v-if="lang==item.country">✓</div>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('user.languagePreference')"
+      @backurl="$router.back()"
+    />
+    <div class="wrap_box">
+      <div
+        v-for="(item,index) in languages"
+        class="block_div flex_center item"
+        @click="changeLang(item.country,$event)"
+      >
+        <div class="left flex_center">
+          <div><img :src="item.logo"></div>
+          <div class="info">
+            {{ item.country_loc }}
+          </div>
+        </div>
+        <div v-if="lang==item.country">
+          ✓
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -20,7 +31,7 @@
 		Toast
 	} from 'vant'
 	export default {
-		name: "language",
+		name: "Language",
 		components: {
 			bsHeader
 		},

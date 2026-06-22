@@ -1,7 +1,10 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader title="" @backurl="$router.back()"></bsHeader>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      title=""
+      @backurl="$router.back()"
+    />
+  </div>
 </template>
 
 <script>

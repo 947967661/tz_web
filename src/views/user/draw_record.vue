@@ -1,24 +1,35 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('draw.drawRecord')" @backurl="$router.back()"></bsHeader>
-		<div class="item_wrap">
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished"
-					:finished-text="$t('utils.noData')" @load="onLoad">
-					<div class="block_div flex_center item" v-for="(item,index) in list">
-						<div class="flex_center">
-							<img :src="item.img">
-							<p>{{item.title}}</p>
-						</div>
-						<div>
-							<p>{{item.act_time}}</p>
-						</div>
-
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('draw.drawRecord')"
+      @backurl="$router.back()"
+    />
+    <div class="item_wrap">
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          :finished-text="$t('utils.noData')"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="block_div flex_center item"
+          >
+            <div class="flex_center">
+              <img :src="item.img">
+              <p>{{ item.title }}</p>
+            </div>
+            <div>
+              <p>{{ item.act_time }}</p>
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -30,7 +41,7 @@
 	} from 'vant';
 	Vue.use(List);
 	export default {
-		name: "recharge",
+		name: "Recharge",
 		components: {
 			bsHeader
 		},

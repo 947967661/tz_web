@@ -1,17 +1,26 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('user.faq')" @backurl="$router.back()"></bsHeader>
-		<div class="block_div wrap_box">
-			<div class="item">
-				<van-cell is-link v-for="(item,index) in data.list" :key="index"
-					@click="$router.push('article/'+item.id)">
-					<template #title>
-						<div class="custom-title">{{item.title}}</div>
-					</template>
-				</van-cell>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('user.faq')"
+      @backurl="$router.back()"
+    />
+    <div class="block_div wrap_box">
+      <div class="item">
+        <van-cell
+          v-for="(item,index) in data.list"
+          :key="index"
+          is-link
+          @click="$router.push('article/'+item.id)"
+        >
+          <template #title>
+            <div class="custom-title">
+              {{ item.title }}
+            </div>
+          </template>
+        </van-cell>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

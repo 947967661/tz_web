@@ -1,27 +1,38 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('goods.myPoint')+user.point" @backurl="$router.back()"></bsHeader>
-		<div class="goods_wrap">
-			<div class="img">
-				<img :src="goods.img" alt="" srcset="">
-			</div>
-			<div class="block_div detail">
-				<div class="price">
-					<span class="point">{{goods.point}}</span>
-					<span class="point_tips">{{$t('goods.point')}}</span>
-				</div>
-				<div class="title">
-					{{goods.title}}
-				</div>
-			</div>
-			<div class="block_div content" v-html="goods.content">
-
-			</div>
-		</div>
-		<div class="basic_btn sbtn" @click="submit">
-			{{$t('goods.exchange')}}
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('goods.myPoint')+user.point"
+      @backurl="$router.back()"
+    />
+    <div class="goods_wrap">
+      <div class="img">
+        <img
+          :src="goods.img"
+          alt=""
+          srcset=""
+        >
+      </div>
+      <div class="block_div detail">
+        <div class="price">
+          <span class="point">{{ goods.point }}</span>
+          <span class="point_tips">{{ $t('goods.point') }}</span>
+        </div>
+        <div class="title">
+          {{ goods.title }}
+        </div>
+      </div>
+      <div
+        class="block_div content"
+        v-html="goods.content"
+      />
+    </div>
+    <div
+      class="basic_btn sbtn"
+      @click="submit"
+    >
+      {{ $t('goods.exchange') }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -29,7 +40,7 @@
 	import bsHeader from '../../components/bsHeader.vue'
 	import Fetch from '../../utils/fetch'
 	export default {
-		name: "goodsDetail",
+		name: "GoodsDetail",
 		components: {
 			bsHeader
 		},

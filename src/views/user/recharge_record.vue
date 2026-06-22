@@ -1,34 +1,70 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('recharge.rechargeRecord')" @backurl="$router.back()"></bsHeader>
-		<div class="item_wrap">
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished"
-					:finished-text="$t('utils.noData')" @load="onLoad">
-					<div class="block_div item" v-for="(item,index) in list">
-						<div class="flex_center">
-							<p>{{item.act_time}}</p>
-							<p class="color_blue" v-if="item.status==0">{{$t('tabs.pending')}}</p>
-							<p class="color_green" v-if="item.status==1">{{$t('tabs.done')}}</p>
-							<p class="color_red" v-if="item.status==2">{{$t('tabs.fail')}}</p>
-						</div>
-						<div class="flex_center">
-							<p>{{item.name}}
-								<span v-if="item.status==2">
-									<br><br><span class="color_red">{{$t('recharge.rechargeFailTips')}}</span>
-								</span>
-							</p>
-							<p class="color_green">{{common.currency_symbol_basic()}}{{common.precision_basic(item.money)}}<span
-									class="currency"></span><br>
-								<span class="money_usd" v-if="item.type!=1&&item.type!=5&&item.type!=6">≈ {{common.precision(item.money2)}} {{item.currency}}</span>
-								<span class="money_usd" v-if="item.type==1||item.type==5||item.type==6">≈ {{common.precision_basic(item.money)}} USDT</span>
-							</p>
-						</div>
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('recharge.rechargeRecord')"
+      @backurl="$router.back()"
+    />
+    <div class="item_wrap">
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          :finished-text="$t('utils.noData')"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="block_div item"
+          >
+            <div class="flex_center">
+              <p>{{ item.act_time }}</p>
+              <p
+                v-if="item.status==0"
+                class="color_blue"
+              >
+                {{ $t('tabs.pending') }}
+              </p>
+              <p
+                v-if="item.status==1"
+                class="color_green"
+              >
+                {{ $t('tabs.done') }}
+              </p>
+              <p
+                v-if="item.status==2"
+                class="color_red"
+              >
+                {{ $t('tabs.fail') }}
+              </p>
+            </div>
+            <div class="flex_center">
+              <p>
+                {{ item.name }}
+                <span v-if="item.status==2">
+                  <br><br><span class="color_red">{{ $t('recharge.rechargeFailTips') }}</span>
+                </span>
+              </p>
+              <p class="color_green">
+                {{ common.currency_symbol_basic() }}{{ common.precision_basic(item.money) }}<span
+                  class="currency"
+                /><br>
+                <span
+                  v-if="item.type!=1&&item.type!=5&&item.type!=6"
+                  class="money_usd"
+                >≈ {{ common.precision(item.money2) }} {{ item.currency }}</span>
+                <span
+                  v-if="item.type==1||item.type==5||item.type==6"
+                  class="money_usd"
+                >≈ {{ common.precision_basic(item.money) }} USDT</span>
+              </p>
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -40,7 +76,7 @@
 	} from 'vant';
 	Vue.use(List);
 	export default {
-		name: "recharge",
+		name: "Recharge",
 		components: {
 			bsHeader
 		},

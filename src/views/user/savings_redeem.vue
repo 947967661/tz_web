@@ -1,49 +1,77 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="record" @click="$router.push('/savings/redeem_record')">
-				<img src="../img/user/record_b.png">
-			</div>
-		</div>
-		<div class="savings_wrap">
-			<div class="block_div savings_money_wrap">
-				<p class="tips">{{$t('savings.redeemMoney')}}</p>
-				<div class="flex_center">
-					<van-field v-model="money" type="number" :placeholder="$t('savings.redeemMoneyPlaceholder')" />
-				</div>
-				<p class="userBalance" @click="showMsg()">{{$t('savings.redeemMoneyAva')}}<span>{{common.currency_symbol_basic()}}{{common.precision_basic(balance)}}</span> <van-icon name="question-o" size="14" style="left: 2px;top:1px;" /></p>
-			</div>
-			<div class="block_div savings_rules_wrap">
-				<p class="tips">{{$t('savings.redeemRules')}}</p>
-				<van-steps active="3">
-					<van-step>T0</van-step>
-					<van-step>T0</van-step>
-				</van-steps>
-				<div class="flex_center savings_rules_name">
-					<p>{{$t('savings.redeemRulesTips1')}}</p>
-					<p>{{$t('savings.redeemRulesTips2')}}</p>
-				</div>
-			</div>
-			<div class="block_div savings_time_wrap">
-				<p class="tips">{{$t('savings.redeemTime')}}</p>
-				<div class="flex_center time">
-					<p>{{$t('savings.redeemTimeTips1')}}</p>
-					<p>{{time}}</p>
-				</div>
-				<div class="flex_center time">
-					<p>{{$t('savings.redeemTimeTips2')}}</p>
-					<p>{{time}}</p>
-				</div>
-			</div>
-			<div class="block_div savings_detail_wrap">
-				<div class="basic_btn " :class="money>0?'':'no_touch'" @click="submit">
-					{{$t('savings.redeem')}}
-				</div>
-			</div>
-
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div
+        class="record"
+        @click="$router.push('/savings/redeem_record')"
+      >
+        <img src="../img/user/record_b.png">
+      </div>
+    </div>
+    <div class="savings_wrap">
+      <div class="block_div savings_money_wrap">
+        <p class="tips">
+          {{ $t('savings.redeemMoney') }}
+        </p>
+        <div class="flex_center">
+          <van-field
+            v-model="money"
+            type="number"
+            :placeholder="$t('savings.redeemMoneyPlaceholder')"
+          />
+        </div>
+        <p
+          class="userBalance"
+          @click="showMsg()"
+        >
+          {{ $t('savings.redeemMoneyAva') }}<span>{{ common.currency_symbol_basic() }}{{ common.precision_basic(balance) }}</span> <van-icon
+            name="question-o"
+            size="14"
+            style="left: 2px;top:1px;"
+          />
+        </p>
+      </div>
+      <div class="block_div savings_rules_wrap">
+        <p class="tips">
+          {{ $t('savings.redeemRules') }}
+        </p>
+        <van-steps active="3">
+          <van-step>T0</van-step>
+          <van-step>T0</van-step>
+        </van-steps>
+        <div class="flex_center savings_rules_name">
+          <p>{{ $t('savings.redeemRulesTips1') }}</p>
+          <p>{{ $t('savings.redeemRulesTips2') }}</p>
+        </div>
+      </div>
+      <div class="block_div savings_time_wrap">
+        <p class="tips">
+          {{ $t('savings.redeemTime') }}
+        </p>
+        <div class="flex_center time">
+          <p>{{ $t('savings.redeemTimeTips1') }}</p>
+          <p>{{ time }}</p>
+        </div>
+        <div class="flex_center time">
+          <p>{{ $t('savings.redeemTimeTips2') }}</p>
+          <p>{{ time }}</p>
+        </div>
+      </div>
+      <div class="block_div savings_detail_wrap">
+        <div
+          class="basic_btn "
+          :class="money>0?'':'no_touch'"
+          @click="submit"
+        >
+          {{ $t('savings.redeem') }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

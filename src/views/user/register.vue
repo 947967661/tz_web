@@ -1,108 +1,215 @@
 <template>
-	<div class="basic_wrap">
-		<div class="back_left" @click="$router.back()">
-			<img src="../img/common/back_b.png">
-		</div>
-		<div class="language" @click="$router.push('/language')">
-			<img :src="language_logo">
-		</div>
-		<div class="logo">
-			<img :src="config.logo" />
-		</div>
-		<!-- 非手机注册 start -->
-		<div class="form_div" v-if="!config.register_phone">
-			<form class="form">
-				<div class="item">
-					<input v-model.trim="data.username" type="text" class="inp" :placeholder="$t('login.username')">
-				</div>
-				<div class="item">
-					<input v-model.trim="data.password" :type="password" class="inp"
-						:placeholder="$t('login.password')">
-					<div class="eye_bi" :class="password == 'text' ? 'eye' : ''" @click="showPwd" />
-				</div>
-				<div class="item">
-					<input v-if="config.invite_code" v-model.trim="data.invite_code" type="text" class="inp"
-						:placeholder="$t('register.inviteCode')">
-					<input v-if="!config.invite_code" v-model.trim="data.invite_code" type="text" class="inp"
-						:placeholder="$t('register.inviteCodeOptional')">
-				</div>
-				<div class="item">
-					<input v-model.trim="data.code" type="text" class="inp" :placeholder="$t('login.code')">
-					<img style="height: 32px;margin-bottom: 8px;" :src="verify_img" @click="getVerifyCode()">
-				</div>
-				<div class="register_btn"
-					:class="data.username == '' || data.password == '' || data.code == ''? 'no_touch' : ''"
-					@click="submit">
-					→
-				</div>
-			</form>
-		</div>
-		<!-- 非手机注册 end -->
-		<!-- 手机注册 start -->
-		<div class="form_div" v-if="config.register_phone">
-			<form class="form">
-				<div class="item">
-					<van-dropdown-menu :overlay="false">
-						<van-dropdown-item v-model="value" :options="country_code" />
-					</van-dropdown-menu>
-					<input v-model.trim="data.phone" type="number" class="inp" :placeholder="$t('login.phone')">
-				</div>
-				<div class="item">
-					<input v-model.trim="data.smsCode" type="text" class="inp" :placeholder="$t('login.code')">
-					<van-count-down :time="time" class="btn get_captcha" @finish="timeCall">
-						<template v-slot="timeData">
-							<span @click="sendCode">{{
-					  timeData.seconds > 0
-						? timeData.seconds
-						: $t('auth.sendPhoneCode')
-					}}</span>
-						</template>
-					</van-count-down>
-				</div>
-				<div class="item">
-					<input v-model.trim="data.password" :type="password" class="inp"
-						:placeholder="$t('login.password')">
-					<div class="eye_bi" :class="password == 'text' ? 'eye' : ''" @click="showPwd" />
-				</div>
-				<div class="item">
-					<input v-if="config.invite_code" v-model.trim="data.invite_code" type="text" class="inp"
-						:placeholder="$t('register.inviteCode')">
-					<input v-if="!config.invite_code" v-model.trim="data.invite_code" type="text" class="inp"
-						:placeholder="$t('register.inviteCodeOptional')">
-				</div>
-				<div class="register_btn"
-					:class="data.phone == '' || data.smsCode == ''|| data.password == ''? 'no_touch' : ''"
-					@click="submit">
-					→
-				</div>
-			</form>
-		</div>
-		<!-- 获取验证码需先验证 -->
-		<van-popup v-model:show="show_sms_verify" :round="true" :style="{ width: '90%' }">
-			<div class="sms_verify">
-				<div>
-					<img style="height: 40px;" :src="verify_img" @click="getVerifyCode()">
-					<br><input v-model.trim="verify_code" type="text" class="inp" :placeholder="$t('auth.charEmpty')">
-				</div>
-				<div class="btn flex_center">
-					<div @click="show_sms_verify=false;">{{$t('utils.cancel')}}</div>
-					<div @click="getSmsCode()">{{$t('utils.confirm')}}</div>
-				</div>
-			</div>
-		</van-popup>
-		<!-- 手机注册 end -->
-		<div class="login_register">
-			<router-link to="/login">
-				<div>
-					{{$t('login.loginNow')}}
-				</div>
-			</router-link>
-		</div>
+  <div class="basic_wrap">
+    <div
+      class="back_left"
+      @click="$router.back()"
+    >
+      <img src="../img/common/back_b.png">
+    </div>
+    <div
+      class="language"
+      @click="$router.push('/language')"
+    >
+      <img :src="language_logo">
+    </div>
+    <div class="logo">
+      <img :src="config.logo">
+    </div>
+    <!-- 非手机注册 start -->
+    <div
+      v-if="!config.register_phone"
+      class="form_div"
+    >
+      <form class="form">
+        <div class="item">
+          <input
+            v-model.trim="data.username"
+            type="text"
+            class="inp"
+            :placeholder="$t('login.username')"
+          >
+        </div>
+        <div class="item">
+          <input
+            v-model.trim="data.password"
+            :type="password"
+            class="inp"
+            :placeholder="$t('login.password')"
+          >
+          <div
+            class="eye_bi"
+            :class="password == 'text' ? 'eye' : ''"
+            @click="showPwd"
+          />
+        </div>
+        <div class="item">
+          <input
+            v-if="config.invite_code"
+            v-model.trim="data.invite_code"
+            type="text"
+            class="inp"
+            :placeholder="$t('register.inviteCode')"
+          >
+          <input
+            v-if="!config.invite_code"
+            v-model.trim="data.invite_code"
+            type="text"
+            class="inp"
+            :placeholder="$t('register.inviteCodeOptional')"
+          >
+        </div>
+        <div class="item">
+          <input
+            v-model.trim="data.code"
+            type="text"
+            class="inp"
+            :placeholder="$t('login.code')"
+          >
+          <img
+            style="height: 32px;margin-bottom: 8px;"
+            :src="verify_img"
+            @click="getVerifyCode()"
+          >
+        </div>
+        <div
+          class="register_btn"
+          :class="data.username == '' || data.password == '' || data.code == ''? 'no_touch' : ''"
+          @click="submit"
+        >
+          →
+        </div>
+      </form>
+    </div>
+    <!-- 非手机注册 end -->
+    <!-- 手机注册 start -->
+    <div
+      v-if="config.register_phone"
+      class="form_div"
+    >
+      <form class="form">
+        <div class="item">
+          <van-dropdown-menu :overlay="false">
+            <van-dropdown-item
+              v-model="value"
+              :options="country_code"
+            />
+          </van-dropdown-menu>
+          <input
+            v-model.trim="data.phone"
+            type="number"
+            class="inp"
+            :placeholder="$t('login.phone')"
+          >
+        </div>
+        <div class="item">
+          <input
+            v-model.trim="data.smsCode"
+            type="text"
+            class="inp"
+            :placeholder="$t('login.code')"
+          >
+          <van-count-down
+            :time="time"
+            class="btn get_captcha"
+            @finish="timeCall"
+          >
+            <template v-slot="timeData">
+              <span @click="sendCode">{{
+                timeData.seconds > 0
+                  ? timeData.seconds
+                  : $t('auth.sendPhoneCode')
+              }}</span>
+            </template>
+          </van-count-down>
+        </div>
+        <div class="item">
+          <input
+            v-model.trim="data.password"
+            :type="password"
+            class="inp"
+            :placeholder="$t('login.password')"
+          >
+          <div
+            class="eye_bi"
+            :class="password == 'text' ? 'eye' : ''"
+            @click="showPwd"
+          />
+        </div>
+        <div class="item">
+          <input
+            v-if="config.invite_code"
+            v-model.trim="data.invite_code"
+            type="text"
+            class="inp"
+            :placeholder="$t('register.inviteCode')"
+          >
+          <input
+            v-if="!config.invite_code"
+            v-model.trim="data.invite_code"
+            type="text"
+            class="inp"
+            :placeholder="$t('register.inviteCodeOptional')"
+          >
+        </div>
+        <div
+          class="register_btn"
+          :class="data.phone == '' || data.smsCode == ''|| data.password == ''? 'no_touch' : ''"
+          @click="submit"
+        >
+          →
+        </div>
+      </form>
+    </div>
+    <!-- 获取验证码需先验证 -->
+    <van-popup
+      v-model:show="show_sms_verify"
+      :round="true"
+      :style="{ width: '90%' }"
+    >
+      <div class="sms_verify">
+        <div>
+          <img
+            style="height: 40px;"
+            :src="verify_img"
+            @click="getVerifyCode()"
+          >
+          <br><input
+            v-model.trim="verify_code"
+            type="text"
+            class="inp"
+            :placeholder="$t('auth.charEmpty')"
+          >
+        </div>
+        <div class="btn flex_center">
+          <div @click="show_sms_verify=false;">
+            {{ $t('utils.cancel') }}
+          </div>
+          <div @click="getSmsCode()">
+            {{ $t('utils.confirm') }}
+          </div>
+        </div>
+      </div>
+    </van-popup>
+    <!-- 手机注册 end -->
+    <div class="login_register">
+      <router-link to="/login">
+        <div>
+          {{ $t('login.loginNow') }}
+        </div>
+      </router-link>
+    </div>
 
-		<div class="kefu" :class="show_kefu ? '' : 'kefu_hide'" @click="kefu_to">
-			<img class="kefu_img" src="../img/index/kefu.png">
-		</div>
-	</div>
+    <div
+      class="kefu"
+      :class="show_kefu ? '' : 'kefu_hide'"
+      @click="kefu_to"
+    >
+      <img
+        class="kefu_img"
+        src="../img/index/kefu.png"
+      >
+    </div>
+  </div>
 </template>
 
 <script>
@@ -120,7 +227,7 @@
 	Vue.use(CountDown).use(Checkbox).use(Dialog).use(DropdownMenu).use(DropdownItem).use(Popup);
 
 	export default {
-		name: "register",
+		name: "Register",
 		components: {
 			bsHeader
 		},
@@ -346,7 +453,7 @@
 						localStorage.setItem('token', res.data.token);
 					}
 					this.$toast(this.$t('register.registerSuccess'));
-					this.$router.replace("/");
+					this.$router.replace("/index");
 				}).catch((res) => {
 					this.getVerifyCode();
 					this.loading = false;

@@ -1,14 +1,14 @@
 <template>
-	<div class="kefu_v">
-		<iframe :src="url"></iframe>
-	</div>
+  <div class="kefu_v">
+    <iframe :src="url" />
+  </div>
 </template>
 
 <script>
 	import Fetch from '../../utils/fetch'
 
 	export default {
-		name: "index",
+		name: "Index",
 		components: {},
 		data() {
 			return {

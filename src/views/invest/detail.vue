@@ -1,71 +1,128 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="big_tit">{{item.title}}</div>
-		</div>
-		<div class="item_info_bg"></div>
-		<div class="block_div item_info info1">
-			<div class="title">
-				{{item.title}}
-			</div>
-			<div class="detail">
-				<van-cell-group :border="false">
-					<van-cell :title="item.type==1?$t('index.dailyRate'):$t('index.rate')" value-class="value_class"
-						:border="false" :value="item.rate+'%'" />
-					<van-cell :title="$t('invest.cycle')" value-class="value_class" :border="false"
-						:value="item.day+(item.type==3?$t('index.hour'):$t('index.day'))" />
-					<van-cell :title="$t('invest.amount')" value-class="value_class" :border="false"
-						:value="common.currency_symbol_basic()+common.precision_basic(item.min)" />
-					<van-cell :title="$t('invest.type')" value-class="value_class" :border="false"
-						:value="$t('index.method'+item.type)" />
-				</van-cell-group>
-			</div>
-		</div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div class="big_tit">
+        {{ item.title }}
+      </div>
+    </div>
+    <div class="item_info_bg" />
+    <div class="block_div item_info info1">
+      <div class="title">
+        {{ item.title }}
+      </div>
+      <div class="detail">
+        <van-cell-group :border="false">
+          <van-cell
+            :title="item.type==1?$t('index.dailyRate'):$t('index.rate')"
+            value-class="value_class"
+            :border="false"
+            :value="item.rate+'%'"
+          />
+          <van-cell
+            :title="$t('invest.cycle')"
+            value-class="value_class"
+            :border="false"
+            :value="item.day+(item.type==3?$t('index.hour'):$t('index.day'))"
+          />
+          <van-cell
+            :title="$t('invest.amount')"
+            value-class="value_class"
+            :border="false"
+            :value="common.currency_symbol_basic()+common.precision_basic(item.min)"
+          />
+          <van-cell
+            :title="$t('invest.type')"
+            value-class="value_class"
+            :border="false"
+            :value="$t('index.method'+item.type)"
+          />
+        </van-cell-group>
+      </div>
+    </div>
 		
-		<div class="block_div proCharts" ref='charts'>
-		</div>
+    <div
+      ref="charts"
+      class="block_div proCharts"
+    />
 		
-		<div class="block_div item_detail">
-			<div class="title">
-				{{$t('invest.detail')}}
-			</div>
-			<div class="content" v-html="item.content"></div>
-		</div>
-		<div class="basic_btn btn" @click="showPopup=true">
-			{{$t('invest.investNow')}}
-		</div>
-		<van-popup v-model:show="showPopup" position="bottom" closeable close-icon-position="top-left">
-			<div class="item_info popup_info">
-				<div class="title">
-					{{$t('invest.orderInfo')}}
-				</div>
-				<div class="detail">
-					<van-cell-group :border="false">
-						<van-cell :title="item.type==1?$t('index.dailyRate'):$t('index.rate')" value-class="value_class"
-							:border="false" :value="item.rate+'%'" />
-						<van-cell :title="$t('invest.cycle')" value-class="value_class" :border="false"
-							:value="item.day+(item.type==3?$t('index.hour'):$t('index.day'))" />
-						<van-cell :title="$t('invest.amount')" value-class="value_class" :border="false"
-							:value="common.currency_symbol_basic()+common.precision_basic(item.min)" />
-						<van-cell :title="$t('invest.type')" value-class="value_class" :border="false"
-							:value="$t('index.method'+item.type)" />
-						<van-cell v-show="user.login" :title="$t('invest.paymentType')" value-class="value_class"
-							:border="false"
-							:value="$t('user.fundingAccount')+' ('+common.currency_symbol_basic()+common.precision_basic(user.balance)+')'" />
-					</van-cell-group>
-				</div>
-				<div class=" flex_center invest_detail_wrap">
-					<div>
-						{{$t('invest.income')}} <span class="detail_money">{{common.currency_symbol_basic()}}{{income}} </span>
-					</div>
-					<div class="basic_btn sbtn" @click="submit">
-						{{$t('invest.submit')}}
-					</div>
-				</div>
-			</div>
-		</van-popup>
-	</div>
+    <div class="block_div item_detail">
+      <div class="title">
+        {{ $t('invest.detail') }}
+      </div>
+      <div
+        class="content"
+        v-html="item.content"
+      />
+    </div>
+    <div
+      class="basic_btn btn"
+      @click="showPopup=true"
+    >
+      {{ $t('invest.investNow') }}
+    </div>
+    <van-popup
+      v-model:show="showPopup"
+      position="bottom"
+      closeable
+      close-icon-position="top-left"
+    >
+      <div class="item_info popup_info">
+        <div class="title">
+          {{ $t('invest.orderInfo') }}
+        </div>
+        <div class="detail">
+          <van-cell-group :border="false">
+            <van-cell
+              :title="item.type==1?$t('index.dailyRate'):$t('index.rate')"
+              value-class="value_class"
+              :border="false"
+              :value="item.rate+'%'"
+            />
+            <van-cell
+              :title="$t('invest.cycle')"
+              value-class="value_class"
+              :border="false"
+              :value="item.day+(item.type==3?$t('index.hour'):$t('index.day'))"
+            />
+            <van-cell
+              :title="$t('invest.amount')"
+              value-class="value_class"
+              :border="false"
+              :value="common.currency_symbol_basic()+common.precision_basic(item.min)"
+            />
+            <van-cell
+              :title="$t('invest.type')"
+              value-class="value_class"
+              :border="false"
+              :value="$t('index.method'+item.type)"
+            />
+            <van-cell
+              v-show="user.login"
+              :title="$t('invest.paymentType')"
+              value-class="value_class"
+              :border="false"
+              :value="$t('user.fundingAccount')+' ('+common.currency_symbol_basic()+common.precision_basic(user.balance)+')'"
+            />
+          </van-cell-group>
+        </div>
+        <div class=" flex_center invest_detail_wrap">
+          <div>
+            {{ $t('invest.income') }} <span class="detail_money">{{ common.currency_symbol_basic() }}{{ income }} </span>
+          </div>
+          <div
+            class="basic_btn sbtn"
+            @click="submit"
+          >
+            {{ $t('invest.submit') }}
+          </div>
+        </div>
+      </div>
+    </van-popup>
+  </div>
 </template>
 
 <script>

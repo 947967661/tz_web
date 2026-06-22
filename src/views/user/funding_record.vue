@@ -1,33 +1,62 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('user.fundingDetails')" @backurl="$router.back()"></bsHeader>
-		<div class="item_wrap">
-			<div class="tabs">
-				<van-tabs v-model="active" @click="sort">
-					<van-tab v-for="index in tabs" :title="index" :key="index"></van-tab>
-				</van-tabs>
-			</div>
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished"
-					:finished-text="$t('utils.noData')" @load="onLoad">
-					<div class="block_div item" v-for="(item,index) in list">
-						<div class="flex_center">
-							<p>{{item.act_time}}</p>
-							<p v-if="item.type==1" class="color_red">{{$t('tabs.income')}}</p>
-							<p v-if="item.type==2" class="color_green">{{$t('tabs.expenditure')}}</p>
-						</div>
-						<div class="flex_center">
-							<p>{{$t('fundType.type'+item.fund_type)}}</p>
-							<p v-bind:class="{color_red: item.type==1,color_green: item.type==2}">
-								{{currency_symbol_basic}}{{precision_basic(item.money)}}<span class="currency"></span>
-							<br><span class="money_usd">≈ {{precision(item.money2)}} {{item.currency}}</span>
-							</p>
-						</div>
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('user.fundingDetails')"
+      @backurl="$router.back()"
+    />
+    <div class="item_wrap">
+      <div class="tabs">
+        <van-tabs
+          v-model="active"
+          @click="sort"
+        >
+          <van-tab
+            v-for="index in tabs"
+            :key="index"
+            :title="index"
+          />
+        </van-tabs>
+      </div>
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          :finished-text="$t('utils.noData')"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="block_div item"
+          >
+            <div class="flex_center">
+              <p>{{ item.act_time }}</p>
+              <p
+                v-if="item.type==1"
+                class="color_red"
+              >
+                {{ $t('tabs.income') }}
+              </p>
+              <p
+                v-if="item.type==2"
+                class="color_green"
+              >
+                {{ $t('tabs.expenditure') }}
+              </p>
+            </div>
+            <div class="flex_center">
+              <p>{{ $t('fundType.type'+item.fund_type) }}</p>
+              <p :class="{color_red: item.type==1,color_green: item.type==2}">
+                {{ currency_symbol_basic }}{{ precision_basic(item.money) }}<span class="currency" />
+                <br><span class="money_usd">≈ {{ precision(item.money2) }} {{ item.currency }}</span>
+              </p>
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

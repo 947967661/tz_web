@@ -1,39 +1,70 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('wallet.walletCenter')" @backurl="$router.back()"></bsHeader>
-		<div class="wallet_wrap">
-			<div class="wallet_item">
-				<div class="block_div item" v-for="(item,index) in withdrawMethod" :key="index">
-					<van-cell>
-						<template #title>
-							<div class="flex_center detail">
-								<div class="flex_center">
-									<div>
-										<img :src="item.logo" alt="">
-									</div>
-									<div>
-										<p>{{item.name}}</p>
-										<p class="bind_tips">{{item.tips}}</p>
-									</div>
-								</div>
-								<div v-if="item.type==4" @click="$router.push('/wallet/bank/'+item.id)">
-									<p class="bind" v-if="!item.status">{{$t('wallet.toBind')}}</p>
-								</div>
-								<div v-if="item.type!=4" @click="$router.push('/wallet/qrcode/'+item.id)">
-									<p class="bind" v-if="!item.status">{{$t('wallet.toBind')}}</p>
-								</div>
-							</div>
-						</template>
-					</van-cell>
-				</div>
-				<div class="tips">
-					<p class="tips1"><span>*</span>{{$t('wallet.walletTips1')}}</p>
-					<p class="tips2"><span>*</span>{{$t('wallet.walletTips2')}}</p>
-				</div>
-
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('wallet.walletCenter')"
+      @backurl="$router.back()"
+    />
+    <div class="wallet_wrap">
+      <div class="wallet_item">
+        <div
+          v-for="(item,index) in withdrawMethod"
+          :key="index"
+          class="block_div item"
+        >
+          <van-cell>
+            <template #title>
+              <div class="flex_center detail">
+                <div class="flex_center">
+                  <div>
+                    <img
+                      :src="item.logo"
+                      alt=""
+                    >
+                  </div>
+                  <div>
+                    <p>{{ item.name }}</p>
+                    <p class="bind_tips">
+                      {{ item.tips }}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  v-if="item.type==4"
+                  @click="$router.push('/wallet/bank/'+item.id)"
+                >
+                  <p
+                    v-if="!item.status"
+                    class="bind"
+                  >
+                    {{ $t('wallet.toBind') }}
+                  </p>
+                </div>
+                <div
+                  v-if="item.type!=4"
+                  @click="$router.push('/wallet/qrcode/'+item.id)"
+                >
+                  <p
+                    v-if="!item.status"
+                    class="bind"
+                  >
+                    {{ $t('wallet.toBind') }}
+                  </p>
+                </div>
+              </div>
+            </template>
+          </van-cell>
+        </div>
+        <div class="tips">
+          <p class="tips1">
+            <span>*</span>{{ $t('wallet.walletTips1') }}
+          </p>
+          <p class="tips2">
+            <span>*</span>{{ $t('wallet.walletTips2') }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -47,7 +78,7 @@
 
 	Vue.use(Cell).use(Tag);
 	export default {
-		name: "wallet",
+		name: "Wallet",
 		components: {
 			bsHeader
 		},

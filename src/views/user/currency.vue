@@ -1,25 +1,34 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('index.exchangeRate')" @backurl="$router.back()"></bsHeader>
-		<div class="currency_wrap">
-			<div v-for="(currency,index) in currencies" class="block_div item">
-				<div class="currency_detail">
-					<div class="flex_center currency">
-						<div class="flex_center logo">
-							<img :src="currency.logo" alt="">
-							<p>{{currency.symbol}}</p>
-						</div>
-						<div class="price">
-							<div>
-								<span>1 USD</span>
-								<span> ≈ {{currency.price}} {{currency.symbol}}</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('index.exchangeRate')"
+      @backurl="$router.back()"
+    />
+    <div class="currency_wrap">
+      <div
+        v-for="(currency,index) in currencies"
+        class="block_div item"
+      >
+        <div class="currency_detail">
+          <div class="flex_center currency">
+            <div class="flex_center logo">
+              <img
+                :src="currency.logo"
+                alt=""
+              >
+              <p>{{ currency.symbol }}</p>
+            </div>
+            <div class="price">
+              <div>
+                <span>1 USD</span>
+                <span> ≈ {{ currency.price }} {{ currency.symbol }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -32,7 +41,7 @@
 	} from 'vant';
 	Vue.use(Cell).use(CellGroup);
 	export default {
-		name: "currency",
+		name: "Currency",
 		components: {
 			bsHeader
 		},

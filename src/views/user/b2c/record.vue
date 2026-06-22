@@ -1,24 +1,38 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader title="订单列表" @backurl="$router.back()"></bsHeader>
-		<div class="item_wrap">
-			<div class="item_list">
-				<van-list v-model="loading" offset="0" :finished="finished" finished-text="没有更多了" @load="onLoad">
-					<div class="item" v-for="(item,index) in list">
-						<div class="flex_center">
-							<p>2022-02-01 18:01:02</p>
-							<p>已完成{{index}}</p>
-						</div>
-						<div class="flex_center">
-							<p>单价：6.32 CNY</p>
-						</div>
-						<div class="flex_center">
-							<p>数量：1000 TRX</p>
-							<p class="blue">30000.00 CNY</p>
-						</div>
-					</div>
-				</van-list>
-				<!-- 
+  <div class="basic_wrap">
+    <bsHeader
+      title="订单列表"
+      @backurl="$router.back()"
+    />
+    <div class="item_wrap">
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          offset="0"
+          :finished="finished"
+          finished-text="没有更多了"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="item"
+          >
+            <div class="flex_center">
+              <p>2022-02-01 18:01:02</p>
+              <p>已完成{{ index }}</p>
+            </div>
+            <div class="flex_center">
+              <p>单价：6.32 CNY</p>
+            </div>
+            <div class="flex_center">
+              <p>数量：1000 TRX</p>
+              <p class="blue">
+                30000.00 CNY
+              </p>
+            </div>
+          </div>
+        </van-list>
+        <!-- 
 				<div class="item">
 					<div class="flex_center">
 						<p>2022-02-01 18:01:02</p>
@@ -58,10 +72,13 @@
 						<p class="green">30000.00 CNY</p>
 					</div>
 				</div> -->
-				<van-empty description="暂无记录" v-if="empty" />
-			</div>
-		</div>
-	</div>
+        <van-empty
+          v-if="empty"
+          description="暂无记录"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -74,7 +91,7 @@
 	} from 'vant';
 	Vue.use(List).use(Empty);
 	export default {
-		name: "b2cRecord",
+		name: "B2cRecord",
 		components: {
 			bsHeader
 		},

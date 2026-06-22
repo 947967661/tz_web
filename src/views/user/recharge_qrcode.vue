@@ -1,64 +1,103 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('recharge.recharge')" @backurl="$router.back()"></bsHeader>
-		<div class="recharge_wrap">
-			<div class="block_div flex_center recharge_method_wrap">
-				<img :src="recharge.logo">
-				<p>{{recharge.name}}</p>
-			</div>
-			<div class="block_div recharge_detail_wrap">
-				<img :src="recharge.img">
-				<!-- <div class="save_img">保存二维码</div> -->
-				<div class="address" v-if="recharge.type==1||recharge.type==5||recharge.type==6">
-					<p>{{$t('recharge.address')}}</p>
-					<div class="flex_center copy" v-clipboard="()=>recharge.account" v-clipboard:success="copy">
-						<p>{{recharge.account}}</p>
-						<img class="copy_img" src="../img/user/copy.png">
-					</div>
-				</div>
-			</div>
-			<div class="block_div recharge_voucher_wrap">
-				<div class="recharge_money">
-					<p>{{$t('recharge.money')}}</p>
-					<div>
-						<span class="money">{{common.currency_symbol_basic()}}{{common.precision_basic(money)}}</span>
-						<span v-if="recharge.type==1||recharge.type==5">
-							( ≈ <span class="money">{{(money*1).toFixed(4)}}<span class="currency">USDT</span></span>
-							)
-						</span>
-						<span v-if="recharge.type!=1&&recharge.type!=5">
-							( ≈ <span class="money">{{common.precision(money*rate)}}<span class="currency">{{currency}}</span></span>
-							)
-						</span>
-					</div>
-				</div>
-				<div class="" v-if="recharge.type==5">
-					<p>Hash</p>
-					<div class="">
-						<van-field v-model="hash" type="text" :placeholder="$t('recharge.hashEmpty')" />
-					</div>
-				</div>
-				<div class="" v-if="recharge.type==1||recharge.type==2||recharge.type==3||recharge.type==4">
-					<p>{{$t('recharge.voucher')}}</p>
-					<div class="qrcode">
-						<van-uploader v-model="fileList" multiple :max-count="1" class="upload"
-							:max-size="2 * 1024 * 1024" @oversize="onOversize" :after-read="afterRead"
-							:before-read="beforeRead">
-						</van-uploader>
-					</div>
-				</div>
-			</div>
-			<div class="tips" v-if="recharge.type!=6">
-				<p class="tips1"><span>*</span>{{$t('recharge.tips1')}}</p>
-			</div>
-			<div class="recharge_btn_wrap" v-if="recharge.type!=6">
-				<div class="basic_btn btn" @click="submit">
-					{{$t('recharge.submit')}}
-				</div>
-			</div>
-		</div>
-	</div>
-
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('recharge.recharge')"
+      @backurl="$router.back()"
+    />
+    <div class="recharge_wrap">
+      <div class="block_div flex_center recharge_method_wrap">
+        <img :src="recharge.logo">
+        <p>{{ recharge.name }}</p>
+      </div>
+      <div class="block_div recharge_detail_wrap">
+        <img :src="recharge.img">
+        <!-- <div class="save_img">保存二维码</div> -->
+        <div
+          v-if="recharge.type==1||recharge.type==5||recharge.type==6"
+          class="address"
+        >
+          <p>{{ $t('recharge.address') }}</p>
+          <div
+            v-clipboard="()=>recharge.account"
+            v-clipboard:success="copy"
+            class="flex_center copy"
+          >
+            <p>{{ recharge.account }}</p>
+            <img
+              class="copy_img"
+              src="../img/user/copy.png"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="block_div recharge_voucher_wrap">
+        <div class="recharge_money">
+          <p>{{ $t('recharge.money') }}</p>
+          <div>
+            <span class="money">{{ common.currency_symbol_basic() }}{{ common.precision_basic(money) }}</span>
+            <span v-if="recharge.type==1||recharge.type==5">
+              ( ≈ <span class="money">{{ (money*1).toFixed(4) }}<span class="currency">USDT</span></span>
+              )
+            </span>
+            <span v-if="recharge.type!=1&&recharge.type!=5">
+              ( ≈ <span class="money">{{ common.precision(money*rate) }}<span class="currency">{{ currency }}</span></span>
+              )
+            </span>
+          </div>
+        </div>
+        <div
+          v-if="recharge.type==5"
+          class=""
+        >
+          <p>Hash</p>
+          <div class="">
+            <van-field
+              v-model="hash"
+              type="text"
+              :placeholder="$t('recharge.hashEmpty')"
+            />
+          </div>
+        </div>
+        <div
+          v-if="recharge.type==1||recharge.type==2||recharge.type==3||recharge.type==4"
+          class=""
+        >
+          <p>{{ $t('recharge.voucher') }}</p>
+          <div class="qrcode">
+            <van-uploader
+              v-model="fileList"
+              multiple
+              :max-count="1"
+              class="upload"
+              :max-size="2 * 1024 * 1024"
+              :after-read="afterRead"
+              :before-read="beforeRead"
+              @oversize="onOversize"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        v-if="recharge.type!=6"
+        class="tips"
+      >
+        <p class="tips1">
+          <span>*</span>{{ $t('recharge.tips1') }}
+        </p>
+      </div>
+      <div
+        v-if="recharge.type!=6"
+        class="recharge_btn_wrap"
+      >
+        <div
+          class="basic_btn btn"
+          @click="submit"
+        >
+          {{ $t('recharge.submit') }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -76,7 +115,7 @@
 
 	Vue.use(Uploader).use(Toast).use(Field).use(Clipboard);
 	export default {
-		name: "recharge_qrcode",
+		name: "RechargeQrcode",
 		components: {
 			bsHeader
 		},

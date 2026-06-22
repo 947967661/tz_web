@@ -1,85 +1,129 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('user.rewards')" @backurl="$router.back()"></bsHeader>
-		<div class="rewards_wrap">
-			<div class="block_div balance">
-				<div class="user_balance">
-					<p>{{$t('rewards.balance')}}</p>
-					<p>{{common.currency_symbol_basic()}}{{common.precision_basic(user.balance)}}</p>
-				</div>
-				<div class="flex_center user_rewards">
-					<div>
-						<p>{{common.currency_symbol_basic()}}{{common.precision_basic(user.today)}}</p>
-						<p>{{$t('rewards.today')}}</p>
-					</div>
-					<!-- <div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('user.rewards')"
+      @backurl="$router.back()"
+    />
+    <div class="rewards_wrap">
+      <div class="block_div balance">
+        <div class="user_balance">
+          <p>{{ $t('rewards.balance') }}</p>
+          <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(user.balance) }}</p>
+        </div>
+        <div class="flex_center user_rewards">
+          <div>
+            <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(user.today) }}</p>
+            <p>{{ $t('rewards.today') }}</p>
+          </div>
+          <!-- <div>
 						<p>{{common.precision_basic(user.yesterday)}}</p>
 						<p>昨日奖励</p>
 					</div> -->
-					<div>
-						<p>{{common.currency_symbol_basic()}}{{common.precision_basic(user.total)}}</p>
-						<p>{{$t('rewards.total')}}</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="block_div rewards_list">
-			<van-cell v-show="rewards.register>0" :value="$t('tabs.done')">
-				<template #title>
-					<span class="custom-title">{{$t('rewards.register')}}</span>
-				</template>
-			</van-cell>
-			<van-cell v-show="rewards.invite>0" is-link :value="common.currency_symbol_basic()+common.precision_basic(rewards.invite)" value-class="go"
-				@click="$router.push('team')">
-				<template #title>
-					<span class="custom-title">{{$t('rewards.invite')}}</span>
-				</template>
-			</van-cell>
-			<van-cell v-show="rewards.authentication>0" v-if="user.auth_status!=0" is-link :value="user.auth_status"
-				value-class="go" @click="$router.push('auth')">
-				<template #title>
-					<span class="custom-title">{{$t('rewards.auth')}}</span>
-				</template>
-			</van-cell>
-			<van-cell v-show="rewards.authentication>0" v-if="user.auth_status==0" is-link
-				:value="common.currency_symbol_basic()+common.precision_basic(rewards.authentication)" value-class="go" @click="$router.push('auth')">
-				<template #title>
-					<span class="custom-title">{{$t('rewards.auth')}}</span>
-				</template>
-			</van-cell>
-			<van-cell v-show="rewards.invest>0" v-if="user.invest_status==0" is-link
-				:value="common.currency_symbol_basic()+common.precision_basic(rewards.invest)" value-class="go" @click="$router.push('invest')">
-				<template #title>
-					<span class="custom-title">{{$t('rewards.invest')}}</span>
-				</template>
-			</van-cell>
-			<van-cell v-show="rewards.invest>0" v-if="user.invest_status!=0" :value="$t('tabs.done')">
-				<template #title>
-					<span class="custom-title">{{$t('rewards.invest')}}</span>
-				</template>
-			</van-cell>
-			<van-cell v-show="rewards.login>0" :value="$t('tabs.done')">
-				<template #title>
-					<span class="custom-title">{{$t('rewards.login')}}</span>
-				</template>
-			</van-cell>
-		</div>
-		<div class="block_div rewards_record">
-			<van-list v-model="loading" offset="0" :finished="finished" :finished-text="$t('utils.noData')"
-				@load="onLoad">
-				<div class="item" v-for="(item,index) in list">
-					<div class="flex_center">
-						<p>{{item.act_time}}</p>
-						<p></p>
-					</div>
-					<div class="flex_center">
-						<p>{{$t('fundType.type'+item.fund_type)}}</p>
-						<p>{{common.currency_symbol_basic()}}{{common.precision_basic(item.money)}}</p>
-					</div>
-				</div>
-			</van-list>
-		</div>
-	</div>
+          <div>
+            <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(user.total) }}</p>
+            <p>{{ $t('rewards.total') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block_div rewards_list">
+      <van-cell
+        v-show="rewards.register>0"
+        :value="$t('tabs.done')"
+      >
+        <template #title>
+          <span class="custom-title">{{ $t('rewards.register') }}</span>
+        </template>
+      </van-cell>
+      <van-cell
+        v-show="rewards.invite>0"
+        is-link
+        :value="common.currency_symbol_basic()+common.precision_basic(rewards.invite)"
+        value-class="go"
+        @click="$router.push('team')"
+      >
+        <template #title>
+          <span class="custom-title">{{ $t('rewards.invite') }}</span>
+        </template>
+      </van-cell>
+      <van-cell
+        v-show="rewards.authentication>0"
+        v-if="user.auth_status!=0"
+        is-link
+        :value="user.auth_status"
+        value-class="go"
+        @click="$router.push('auth')"
+      >
+        <template #title>
+          <span class="custom-title">{{ $t('rewards.auth') }}</span>
+        </template>
+      </van-cell>
+      <van-cell
+        v-show="rewards.authentication>0"
+        v-if="user.auth_status==0"
+        is-link
+        :value="common.currency_symbol_basic()+common.precision_basic(rewards.authentication)"
+        value-class="go"
+        @click="$router.push('auth')"
+      >
+        <template #title>
+          <span class="custom-title">{{ $t('rewards.auth') }}</span>
+        </template>
+      </van-cell>
+      <van-cell
+        v-show="rewards.invest>0"
+        v-if="user.invest_status==0"
+        is-link
+        :value="common.currency_symbol_basic()+common.precision_basic(rewards.invest)"
+        value-class="go"
+        @click="$router.push('invest')"
+      >
+        <template #title>
+          <span class="custom-title">{{ $t('rewards.invest') }}</span>
+        </template>
+      </van-cell>
+      <van-cell
+        v-show="rewards.invest>0"
+        v-if="user.invest_status!=0"
+        :value="$t('tabs.done')"
+      >
+        <template #title>
+          <span class="custom-title">{{ $t('rewards.invest') }}</span>
+        </template>
+      </van-cell>
+      <van-cell
+        v-show="rewards.login>0"
+        :value="$t('tabs.done')"
+      >
+        <template #title>
+          <span class="custom-title">{{ $t('rewards.login') }}</span>
+        </template>
+      </van-cell>
+    </div>
+    <div class="block_div rewards_record">
+      <van-list
+        v-model="loading"
+        offset="0"
+        :finished="finished"
+        :finished-text="$t('utils.noData')"
+        @load="onLoad"
+      >
+        <div
+          v-for="(item,index) in list"
+          class="item"
+        >
+          <div class="flex_center">
+            <p>{{ item.act_time }}</p>
+            <p />
+          </div>
+          <div class="flex_center">
+            <p>{{ $t('fundType.type'+item.fund_type) }}</p>
+            <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(item.money) }}</p>
+          </div>
+        </div>
+      </van-list>
+    </div>
+  </div>
 </template>
 
 <script>

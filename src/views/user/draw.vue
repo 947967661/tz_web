@@ -1,53 +1,74 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="record" @click="$router.push('/draw/record')">
-				<img src="../img/user/record_w.png">
-			</div>
-		</div>
-		<div class="zp-bg1">
-			<div class="top_bg">
-			</div>
-			<div class="overall flex_center">
-				<div class="zp-top">
-					<div class="zp-box">
-						<div class="panzi">
-							<div class="bck-box" :style="` transform: rotate(${-90+180/list.length}deg)`">
-								<div class="bck" v-for="(i,index) in list" :key="index"
-									:style="`transform: rotate(${-index*360/list.length}deg) skew(${-90 + 360/list.length}deg);`">
-								</div>
-							</div>
-							<div class="jiang"
-								:style="`transform: rotate(${-index*360/list.length}deg) translateY(-85px);`"
-								v-for="(i,index) in list" :key="index">
-								<span class="title">{{i.title}}</span>
-								<div class="img">
-									<img :src="i.img" alt />
-								</div>
-							</div>
-						</div>
-						<div class="start-btn" @click="draw()"></div>
-					</div>
-				</div>
-			</div>
-			<div class="zp-num">
-				<span>{{$t('draw.myPoints')}}</span>
-				<span>{{point_total}}</span>
-			</div>
-		</div>
-		<div class="zp-bg2">
-			<div class="block_div item">
-				<div class="title">
-					{{$t('draw.rule')}}
-				</div>
-				<div class="title_bg">
-
-				</div>
-				<div class="content" v-html="rule_content"></div>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div
+        class="record"
+        @click="$router.push('/draw/record')"
+      >
+        <img src="../img/user/record_w.png">
+      </div>
+    </div>
+    <div class="zp-bg1">
+      <div class="top_bg" />
+      <div class="overall flex_center">
+        <div class="zp-top">
+          <div class="zp-box">
+            <div class="panzi">
+              <div
+                class="bck-box"
+                :style="` transform: rotate(${-90+180/list.length}deg)`"
+              >
+                <div
+                  v-for="(i,index) in list"
+                  :key="index"
+                  class="bck"
+                  :style="`transform: rotate(${-index*360/list.length}deg) skew(${-90 + 360/list.length}deg);`"
+                />
+              </div>
+              <div
+                v-for="(i,index) in list"
+                :key="index"
+                class="jiang"
+                :style="`transform: rotate(${-index*360/list.length}deg) translateY(-85px);`"
+              >
+                <span class="title">{{ i.title }}</span>
+                <div class="img">
+                  <img
+                    :src="i.img"
+                    alt
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="start-btn"
+              @click="draw()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="zp-num">
+        <span>{{ $t('draw.myPoints') }}</span>
+        <span>{{ point_total }}</span>
+      </div>
+    </div>
+    <div class="zp-bg2">
+      <div class="block_div item">
+        <div class="title">
+          {{ $t('draw.rule') }}
+        </div>
+        <div class="title_bg" />
+        <div
+          class="content"
+          v-html="rule_content"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -61,6 +82,21 @@
 	} from 'vant';
 	Vue.use(Icon).use(Empty).use(Dialog);
 	export default {
+		data() {
+			return {
+				winner: 2, //指定获奖下标 specified为true时生效
+				specified: true, //是否指定获奖结果，false时为随机
+				loading: false, //抽奖执行状态，防止用户多次点击
+				panziElement: null,
+				listLength: 0,
+				list: [],
+				rule_content: '',
+				draw_num: 0,
+				times: 0,
+				point_total:0,
+				point:9999999
+			}
+		},
 		computed: {
 			animationClass() {
 				//对应css样式中定义的class属性值,如果有更多的话可以继续添加  case 8:   return 'wr8'
@@ -82,21 +118,6 @@
 					case 7:
 						return 'wr7'
 				}
-			}
-		},
-		data() {
-			return {
-				winner: 2, //指定获奖下标 specified为true时生效
-				specified: true, //是否指定获奖结果，false时为随机
-				loading: false, //抽奖执行状态，防止用户多次点击
-				panziElement: null,
-				listLength: 0,
-				list: [],
-				rule_content: '',
-				draw_num: 0,
-				times: 0,
-				point_total:0,
-				point:9999999
 			}
 		},
 		created() {

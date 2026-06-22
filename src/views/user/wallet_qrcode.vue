@@ -1,30 +1,56 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="account.name" @backurl="$router.back()"></bsHeader>
-		<div class="bind_wrap">
-			<div class="bind_item">
-				<p class="item_name">{{accountTips}}</p>
-				<div class="block_div item_input">
-					<van-field v-model="account.account" type="text" :placeholder="accountPlaceholder" />
-				</div>
-			</div>
-			<div class="bind_item">
-				<p class="item_name">{{$t('wallet.qrcode')}}</p>
-				<div class="block_div item_qrcode">
-					<van-uploader v-model="fileList" multiple :max-count="1" class="upload" :max-size="2 * 1024 * 1024"
-						@oversize="onOversize" :after-read="afterRead" :before-read="beforeRead">
-					</van-uploader>
-				</div>
-			</div>
-			<div class="tips">
-				<p class="tips1"><span>*</span>{{$t('wallet.walletTips1')}}</p>
-				<p class="tips2"><span>*</span>{{$t('wallet.walletTips2')}}</p>
-			</div>
-			<div class="basic_btn btn" :class="account.name==''||account.account==''?'no_touch':''" @click="submit()">
-				{{$t('wallet.bindNow')}}
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="account.name"
+      @backurl="$router.back()"
+    />
+    <div class="bind_wrap">
+      <div class="bind_item">
+        <p class="item_name">
+          {{ accountTips }}
+        </p>
+        <div class="block_div item_input">
+          <van-field
+            v-model="account.account"
+            type="text"
+            :placeholder="accountPlaceholder"
+          />
+        </div>
+      </div>
+      <div class="bind_item">
+        <p class="item_name">
+          {{ $t('wallet.qrcode') }}
+        </p>
+        <div class="block_div item_qrcode">
+          <van-uploader
+            v-model="fileList"
+            multiple
+            :max-count="1"
+            class="upload"
+            :max-size="2 * 1024 * 1024"
+            :after-read="afterRead"
+            :before-read="beforeRead"
+            @oversize="onOversize"
+          />
+        </div>
+      </div>
+      <div class="tips">
+        <p class="tips1">
+          <span>*</span>{{ $t('wallet.walletTips1') }}
+        </p>
+        <p class="tips2">
+          <span>*</span>{{ $t('wallet.walletTips2') }}
+        </p>
+      </div>
+      <div
+        class="basic_btn btn"
+        :class="account.name==''||account.account==''?'no_touch':''"
+        @click="submit()"
+      >
+        {{ $t('wallet.bindNow') }}
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -42,7 +68,7 @@
 	import Api from "../../interface/index";
 	import axios from 'axios'
 	export default {
-		name: "withdraw_bank",
+		name: "WithdrawBank",
 		components: {
 			bsHeader
 		},

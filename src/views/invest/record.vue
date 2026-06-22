@@ -1,40 +1,86 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('user.inviteRecord')" @backurl="$router.back()"></bsHeader>
-		<div class="item_wrap">
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished"
-					:finished-text="$t('utils.noData')" @load="onLoad">
-					<div class="block_div item" v-for="(item,index) in list">
-						<div class="flex_center time">
-							<p>{{item.time_actual}}</p>
-							<p class="color_blue" v-if="item.status==0">{{$t('tabs.ongoing')}}</p>
-							<p class="color_green" v-if="item.status==1">{{$t('tabs.done')}}</p>
-						</div>
-						<div class="detail">
-							<div class="title">
-								{{item.title}}
-							</div>
-							<van-cell-group :border="false">
-								<van-cell :title="$t('invest.amount')" value-class="value_class" :border="false"
-									:value="common.currency_symbol_basic()+common.precision_basic(item.money)" />
-								<van-cell :title="$t('invest.cycle')" value-class="value_class" :border="false"
-									:value="item.day+(item.type==3?$t('index.hour'):$t('index.day'))" />
-								<van-cell :title="item.type==1?$t('index.dailyRate'):$t('index.rate')"
-									value-class="value_class" :border="false" :value="item.rate+'%'" />
-								<van-cell :title="$t('invest.income')" value-class="value_class" :border="false"
-									:value="common.currency_symbol_basic()+common.precision_basic(item.total_interest)" />	
-								<van-cell :title="$t('invest.type')" value-class="value_class" :border="false"
-									:value="$t('index.method'+item.type)" />
-								<van-cell :title="$t('invest.endTime')" value-class="value_class" :border="false"
-									:value="item.time2_actual" />
-							</van-cell-group>
-						</div>
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('user.inviteRecord')"
+      @backurl="$router.back()"
+    />
+    <div class="item_wrap">
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          :finished-text="$t('utils.noData')"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="block_div item"
+          >
+            <div class="flex_center time">
+              <p>{{ item.time_actual }}</p>
+              <p
+                v-if="item.status==0"
+                class="color_blue"
+              >
+                {{ $t('tabs.ongoing') }}
+              </p>
+              <p
+                v-if="item.status==1"
+                class="color_green"
+              >
+                {{ $t('tabs.done') }}
+              </p>
+            </div>
+            <div class="detail">
+              <div class="title">
+                {{ item.title }}
+              </div>
+              <van-cell-group :border="false">
+                <van-cell
+                  :title="$t('invest.amount')"
+                  value-class="value_class"
+                  :border="false"
+                  :value="common.currency_symbol_basic()+common.precision_basic(item.money)"
+                />
+                <van-cell
+                  :title="$t('invest.cycle')"
+                  value-class="value_class"
+                  :border="false"
+                  :value="item.day+(item.type==3?$t('index.hour'):$t('index.day'))"
+                />
+                <van-cell
+                  :title="item.type==1?$t('index.dailyRate'):$t('index.rate')"
+                  value-class="value_class"
+                  :border="false"
+                  :value="item.rate+'%'"
+                />
+                <van-cell
+                  :title="$t('invest.income')"
+                  value-class="value_class"
+                  :border="false"
+                  :value="common.currency_symbol_basic()+common.precision_basic(item.total_interest)"
+                />	
+                <van-cell
+                  :title="$t('invest.type')"
+                  value-class="value_class"
+                  :border="false"
+                  :value="$t('index.method'+item.type)"
+                />
+                <van-cell
+                  :title="$t('invest.endTime')"
+                  value-class="value_class"
+                  :border="false"
+                  :value="item.time2_actual"
+                />
+              </van-cell-group>
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -48,7 +94,7 @@
 	} from 'vant';
 	Vue.use(List).use(Cell).use(CellGroup);
 	export default {
-		name: "recharge",
+		name: "Recharge",
 		components: {
 			bsHeader
 		},

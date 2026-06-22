@@ -1,50 +1,82 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="record" @click="$router.push('/recharge/record')">
-				<img src="../img/user/record_b.png">
-			</div>
-		</div>
-		<div class="recharge_wrap">
-			<div class="block_div common_money_wrap">
-				<p class="tips">{{$t('recharge.money')}}</p>
-				<div class="flex_center common_money">
-					<p v-for="(v,i) in commonMoney" @click="money=v;active_money=i;"
-						v-bind:class="{active_money: active_money==i}">{{common.currency_symbol_basic()}}{{v}}</p>
-				</div>
-			</div>
-			<div class="block_div recharge_money_wrap">
-				<p class="tips">{{$t('recharge.anotherMoney')}}</p>
-				<div class="flex_center">
-					<van-field v-model="money" type="number" :placeholder="$t('recharge.moneyMinPlaceholder')+common.currency_symbol_basic()+minMoney" />
-				</div>
-			</div>
-			<div class="block_div recharge_method_wrap">
-				<p class="tips">{{$t('recharge.method')}}</p>
-				<div class="recharge_item">
-					<div class="flex_center item" v-for="(item,index) in rechargeMethod"
-						v-bind:class="{active_item: active==index}" @click="active = index">
-						<div class=" flex_center item_name">
-							<img :src="item.logo">
-							<p>{{item.name}}</p>
-						</div>
-						<div class="gou" v-bind:class="{active_gou: active==index}">
-							<span>√</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="block_div flex_center recharge_detail_wrap">
-				<div>
-					{{$t('recharge.money')}} <span class="detail_money">{{common.currency_symbol_basic()}}{{money}}</span>
-				</div>
-				<div class="basic_btn btn" :class="money>0?'':'no_touch'" @click="submit">
-					{{$t('recharge.rechargeNow')}}
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div
+        class="record"
+        @click="$router.push('/recharge/record')"
+      >
+        <img src="../img/user/record_b.png">
+      </div>
+    </div>
+    <div class="recharge_wrap">
+      <div class="block_div common_money_wrap">
+        <p class="tips">
+          {{ $t('recharge.money') }}
+        </p>
+        <div class="flex_center common_money">
+          <p
+            v-for="(v,i) in commonMoney"
+            :class="{active_money: active_money==i}"
+            @click="money=v;active_money=i;"
+          >
+            {{ common.currency_symbol_basic() }}{{ v }}
+          </p>
+        </div>
+      </div>
+      <div class="block_div recharge_money_wrap">
+        <p class="tips">
+          {{ $t('recharge.anotherMoney') }}
+        </p>
+        <div class="flex_center">
+          <van-field
+            v-model="money"
+            type="number"
+            :placeholder="$t('recharge.moneyMinPlaceholder')+common.currency_symbol_basic()+minMoney"
+          />
+        </div>
+      </div>
+      <div class="block_div recharge_method_wrap">
+        <p class="tips">
+          {{ $t('recharge.method') }}
+        </p>
+        <div class="recharge_item">
+          <div
+            v-for="(item,index) in rechargeMethod"
+            class="flex_center item"
+            :class="{active_item: active==index}"
+            @click="active = index"
+          >
+            <div class=" flex_center item_name">
+              <img :src="item.logo">
+              <p>{{ item.name }}</p>
+            </div>
+            <div
+              class="gou"
+              :class="{active_gou: active==index}"
+            >
+              <span>√</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="block_div flex_center recharge_detail_wrap">
+        <div>
+          {{ $t('recharge.money') }} <span class="detail_money">{{ common.currency_symbol_basic() }}{{ money }}</span>
+        </div>
+        <div
+          class="basic_btn btn"
+          :class="money>0?'':'no_touch'"
+          @click="submit"
+        >
+          {{ $t('recharge.rechargeNow') }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

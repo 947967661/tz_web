@@ -1,68 +1,89 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="big_tit">{{$t('user.vip')}}</div>
-		</div>
-		<div class="user_wrap">
-			<div class="flex_center user_top">
-				<div class="user_detail">
-					<div class="user_header">
-						<img :src="user.user_icon" alt="">
-					</div>
-					<div class="user_name">
-						<div class="user_all">
-							<p class="user_nickname">{{user.username}}</p>
-							<!-- <div class="invite_code">
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div class="big_tit">
+        {{ $t('user.vip') }}
+      </div>
+    </div>
+    <div class="user_wrap">
+      <div class="flex_center user_top">
+        <div class="user_detail">
+          <div class="user_header">
+            <img
+              :src="user.user_icon"
+              alt=""
+            >
+          </div>
+          <div class="user_name">
+            <div class="user_all">
+              <p class="user_nickname">
+                {{ user.username }}
+              </p>
+              <!-- <div class="invite_code">
 								<div class="copy" v-clipboard="()=>user.invite_code" v-clipboard:success="copy">
 									<span>{{user.invite_code}}</span>
 									<img class="copy_img" src="../img/user/copy.png">
 								</div>
 							</div> -->
-						</div>
-					</div>
-				</div>
-				<div class="vip_detail">
-					<img :src="vip.logo">
-				</div>
-			</div>
-
-		</div>
-		<div class="block_div user_balance">
-			<div class="title">
-				{{$t('vip.myMoney')}}
-			</div>
-			<div class="flex_center fundding">
-				<div>
-					<div class="funding_money">{{common.currency_symbol_basic()}}{{common.precision_basic(user.balance)}}</div>
-					<div class="funding_name">{{$t('vip.balance')}}</div>
-				</div>
-				<div>
-					<div class="funding_money">{{common.currency_symbol_basic()}}{{common.precision_basic(user.income)}}</div>
-					<div class="funding_name">{{$t('vip.income')}}</div>
-				</div>
-			</div>
-			<div class="progress">
-				<van-progress :percentage="percentage" color="#ffa325" stroke-width="5" pivot-text="" />
-				<div class="flex_center progress_text">
-					<p>{{vip.this_value}}</p>
-					<p>{{vip.next_value}}</p>
-				</div>
-			</div>
-		</div>
-		<!-- 我的权益 -->
-		<div class="block_div rights">
-			<div class="title">
-				{{$t('vip.myRights')}}
-			</div>
-			<div class="rights_detail">
-				<div><span>{{$t('vip.rights')}}1</span>{{$t('vip.investNum')}}{{vip.invest_num}}{{$t('utils.times'+times)}}</div>
-				<div><span>{{$t('vip.rights')}}2</span>{{$t('vip.direct')}}{{vip.rewards_direct}}%</div>
-				<div><span>{{$t('vip.rights')}}3</span>{{$t('vip.undirect')}}{{vip.rewards_undirect}}%</div>
-			</div>
-
-		</div>
-	</div>
+            </div>
+          </div>
+        </div>
+        <div class="vip_detail">
+          <img :src="vip.logo">
+        </div>
+      </div>
+    </div>
+    <div class="block_div user_balance">
+      <div class="title">
+        {{ $t('vip.myMoney') }}
+      </div>
+      <div class="flex_center fundding">
+        <div>
+          <div class="funding_money">
+            {{ common.currency_symbol_basic() }}{{ common.precision_basic(user.balance) }}
+          </div>
+          <div class="funding_name">
+            {{ $t('vip.balance') }}
+          </div>
+        </div>
+        <div>
+          <div class="funding_money">
+            {{ common.currency_symbol_basic() }}{{ common.precision_basic(user.income) }}
+          </div>
+          <div class="funding_name">
+            {{ $t('vip.income') }}
+          </div>
+        </div>
+      </div>
+      <div class="progress">
+        <van-progress
+          :percentage="percentage"
+          color="#ffa325"
+          stroke-width="5"
+          pivot-text=""
+        />
+        <div class="flex_center progress_text">
+          <p>{{ vip.this_value }}</p>
+          <p>{{ vip.next_value }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- 我的权益 -->
+    <div class="block_div rights">
+      <div class="title">
+        {{ $t('vip.myRights') }}
+      </div>
+      <div class="rights_detail">
+        <div><span>{{ $t('vip.rights') }}1</span>{{ $t('vip.investNum') }}{{ vip.invest_num }}{{ $t('utils.times'+times) }}</div>
+        <div><span>{{ $t('vip.rights') }}2</span>{{ $t('vip.direct') }}{{ vip.rewards_direct }}%</div>
+        <div><span>{{ $t('vip.rights') }}3</span>{{ $t('vip.undirect') }}{{ vip.rewards_undirect }}%</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

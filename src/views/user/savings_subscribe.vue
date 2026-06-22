@@ -1,89 +1,152 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="record" @click="$router.push('/savings/subscribe_record')">
-				<img src="../img/user/record_b.png">
-			</div>
-		</div>
-		<div class="savings_wrap">
-			<div class="block_div savings_days_wrap">
-				<div v-if="type==1" class="flex_center savings_type">
-					<p class="tips margin0">{{$t('savings.cycle')}}</p>
-					<p class="flexible">{{$t('savings.flexible')}}</p>
-				</div>
-				<p v-if="type==2" class="tips">{{$t('savings.cycle')}}</p>
-				<div v-if="type==2" class="flex_center">
-					<van-field v-model="days" @input="change" type="digit" :placeholder="$t('savings.cycleTips1')+minDay+$t('savings.cycleTips2')" />
-					<p><span>{{$t('savings.days')}}</span></p>
-				</div>
-			</div>
-			<div class="block_div savings_money_wrap">
-				<p class="tips">{{$t('savings.subscribeMoney')}}</p>
-				<div class="flex_center">
-					<van-field v-model="money" type="number" :placeholder="$t('savings.subscribeMoneyPlaceholder')+common.currency_symbol_basic()+common.precision_basic(minMoney)" />
-				</div>
-				<p class="userBalance">{{$t('savings.userBalance')}}<span>{{common.currency_symbol_basic()}}{{common.precision_basic(userBalance)}}</span></p>
-			</div>
-			<div class="block_div savings_income_wrap">
-				<p class="tips">{{$t('savings.subscribeIncome')}}</p>
-				<div class="flex_center spacebetween">
-					<p class="margin0">{{$t('savings.subscribeIncomeTips1')}}</p>
-					<p class="rate">{{rate}}%</p>
-				</div>
-			</div>
-			<div class="block_div savings_rules_wrap">
-				<p class="tips">{{$t('savings.subscribeRules1')}}</p>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div
+        class="record"
+        @click="$router.push('/savings/subscribe_record')"
+      >
+        <img src="../img/user/record_b.png">
+      </div>
+    </div>
+    <div class="savings_wrap">
+      <div class="block_div savings_days_wrap">
+        <div
+          v-if="type==1"
+          class="flex_center savings_type"
+        >
+          <p class="tips margin0">
+            {{ $t('savings.cycle') }}
+          </p>
+          <p class="flexible">
+            {{ $t('savings.flexible') }}
+          </p>
+        </div>
+        <p
+          v-if="type==2"
+          class="tips"
+        >
+          {{ $t('savings.cycle') }}
+        </p>
+        <div
+          v-if="type==2"
+          class="flex_center"
+        >
+          <van-field
+            v-model="days"
+            type="digit"
+            :placeholder="$t('savings.cycleTips1')+minDay+$t('savings.cycleTips2')"
+            @input="change"
+          />
+          <p><span>{{ $t('savings.days') }}</span></p>
+        </div>
+      </div>
+      <div class="block_div savings_money_wrap">
+        <p class="tips">
+          {{ $t('savings.subscribeMoney') }}
+        </p>
+        <div class="flex_center">
+          <van-field
+            v-model="money"
+            type="number"
+            :placeholder="$t('savings.subscribeMoneyPlaceholder')+common.currency_symbol_basic()+common.precision_basic(minMoney)"
+          />
+        </div>
+        <p class="userBalance">
+          {{ $t('savings.userBalance') }}<span>{{ common.currency_symbol_basic() }}{{ common.precision_basic(userBalance) }}</span>
+        </p>
+      </div>
+      <div class="block_div savings_income_wrap">
+        <p class="tips">
+          {{ $t('savings.subscribeIncome') }}
+        </p>
+        <div class="flex_center spacebetween">
+          <p class="margin0">
+            {{ $t('savings.subscribeIncomeTips1') }}
+          </p>
+          <p class="rate">
+            {{ rate }}%
+          </p>
+        </div>
+      </div>
+      <div class="block_div savings_rules_wrap">
+        <p class="tips">
+          {{ $t('savings.subscribeRules1') }}
+        </p>
 
-				<van-steps active="3">
-					<van-step>T0</van-step>
-					<van-step>T0</van-step>
-					<van-step>T+1</van-step>
-				</van-steps>
-				<div class="flex_center savings_rules_name">
-					<p>{{$t('savings.subscribeRules1Tips1')}}</p>
-					<p>{{$t('savings.subscribeRules1Tips2')}}</p>
-					<p>{{$t('savings.subscribeRules1Tips3')}}</p>
-				</div>
-			</div>
-			<div class="block_div savings_rules_wrap">
-				<p class="tips">{{$t('savings.subscribeRules2')}}</p>
+        <van-steps active="3">
+          <van-step>T0</van-step>
+          <van-step>T0</van-step>
+          <van-step>T+1</van-step>
+        </van-steps>
+        <div class="flex_center savings_rules_name">
+          <p>{{ $t('savings.subscribeRules1Tips1') }}</p>
+          <p>{{ $t('savings.subscribeRules1Tips2') }}</p>
+          <p>{{ $t('savings.subscribeRules1Tips3') }}</p>
+        </div>
+      </div>
+      <div class="block_div savings_rules_wrap">
+        <p class="tips">
+          {{ $t('savings.subscribeRules2') }}
+        </p>
 
-				<van-steps active="3">
-					<van-step>T0</van-step>
-					<van-step>T0</van-step>
-					<van-step>T+{{minDay}}</van-step>
-				</van-steps>
-				<div class="flex_center savings_rules_name">
-					<p>{{$t('savings.subscribeRules2Tips1')}}</p>
-					<p>{{$t('savings.subscribeRules2Tips2')}}</p>
-					<p v-if="type==1">{{$t('savings.subscribeRules2Tips3')}}</p>
-					<p v-if="type==2">{{$t('savings.subscribeRules2Tips4')}}</p>
-				</div>
-			</div>
-			<div class="block_div savings_time_wrap">
-				<p class="tips">{{$t('savings.subscribeTime')}}</p>
-				<div class="flex_center time">
-					<p>{{$t('savings.subscribeTimeTips1')}}</p>
-					<p>{{time1}}</p>
-				</div>
-				<div class="flex_center time">
-					<p>{{$t('savings.subscribeTimeTips2')}}</p>
-					<p v-if="type==1">{{time2}}</p>
-					<p v-if="type==2">{{$t('savings.subscribeTimeTips3')}}</p>
-				</div>
-			</div>
-			<div class="block_div savings_detail_wrap">
-				<div v-if="type==1" class="basic_btn " :class="money>0?'':'no_touch'" @click="submit">
-					{{$t('savings.subscribe')}}
-				</div>
-				<div v-if="type==2" class="basic_btn " :class="money>0&&days>0?'':'no_touch'" @click="submit">
-					{{$t('savings.subscribe')}}
-				</div>
-			</div>
-
-		</div>
-	</div>
+        <van-steps active="3">
+          <van-step>T0</van-step>
+          <van-step>T0</van-step>
+          <van-step>T+{{ minDay }}</van-step>
+        </van-steps>
+        <div class="flex_center savings_rules_name">
+          <p>{{ $t('savings.subscribeRules2Tips1') }}</p>
+          <p>{{ $t('savings.subscribeRules2Tips2') }}</p>
+          <p v-if="type==1">
+            {{ $t('savings.subscribeRules2Tips3') }}
+          </p>
+          <p v-if="type==2">
+            {{ $t('savings.subscribeRules2Tips4') }}
+          </p>
+        </div>
+      </div>
+      <div class="block_div savings_time_wrap">
+        <p class="tips">
+          {{ $t('savings.subscribeTime') }}
+        </p>
+        <div class="flex_center time">
+          <p>{{ $t('savings.subscribeTimeTips1') }}</p>
+          <p>{{ time1 }}</p>
+        </div>
+        <div class="flex_center time">
+          <p>{{ $t('savings.subscribeTimeTips2') }}</p>
+          <p v-if="type==1">
+            {{ time2 }}
+          </p>
+          <p v-if="type==2">
+            {{ $t('savings.subscribeTimeTips3') }}
+          </p>
+        </div>
+      </div>
+      <div class="block_div savings_detail_wrap">
+        <div
+          v-if="type==1"
+          class="basic_btn "
+          :class="money>0?'':'no_touch'"
+          @click="submit"
+        >
+          {{ $t('savings.subscribe') }}
+        </div>
+        <div
+          v-if="type==2"
+          class="basic_btn "
+          :class="money>0&&days>0?'':'no_touch'"
+          @click="submit"
+        >
+          {{ $t('savings.subscribe') }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

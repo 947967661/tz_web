@@ -1,65 +1,104 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('recharge.recharge')" @backurl="$router.back()"></bsHeader>
-		<div class="recharge_wrap">
-			<div class="block_div flex_center recharge_method_wrap">
-				<img :src="recharge.logo">
-				<p>{{recharge.name}}</p>
-			</div>
-			<div class="block_div recharge_detail_wrap">
-				<div class="item">
-					<p class="tips">{{$t('recharge.bankName')}}</p>
-					<div class="flex_center copy" v-clipboard="()=>recharge.bank_name" v-clipboard:success="copy">
-						<p>{{recharge.name}}</p>
-						<img class="copy_img" src="../img/user/copy.png">
-					</div>
-				</div>
-				<div class="item">
-					<p class="tips">{{$t('recharge.bankUserName')}}</p>
-					<div class="flex_center copy" v-clipboard="()=>recharge.bank_name" v-clipboard:success="copy">
-						<p>{{recharge.bank_name}}</p>
-						<img class="copy_img" src="../img/user/copy.png">
-					</div>
-				</div>
-				<div class="item">
-					<p class="tips">{{$t('recharge.bankAccount')}}</p>
-					<div class="flex_center copy" v-clipboard="()=>recharge.account" v-clipboard:success="copy">
-						<p>{{recharge.account}}</p>
-						<img class="copy_img" src="../img/user/copy.png">
-					</div>
-				</div>
-			</div>
-			<div class="block_div recharge_voucher_wrap">
-				<div class="recharge_money">
-					<p>{{$t('recharge.money')}}</p>
-					<div>
-						<span class="money">{{common.currency_symbol_basic()}}{{common.precision_basic(money)}}</span>
-						<span>
-							( ≈ <span class="money">{{common.precision(money*rate)}}<span
-									class="currency">{{currency}}</span></span>
-							)
-						</span>
-					</div>
-				</div>
-				<div class="">
-					<p>{{$t('recharge.voucher')}}</p>
-					<div class="qrcode">
-						<van-uploader v-model="fileList" multiple :max-count="1" class="upload"
-							:max-size="2 * 1024 * 1024" @oversize="onOversize" :after-read="afterRead"
-							:before-read="beforeRead">
-						</van-uploader>
-					</div>
-				</div>
-
-			</div>
-			<div class="recharge_btn_wrap">
-				<div class="basic_btn btn" :class="voucher!=''?'':'no_touch'" @click="submit">
-					{{$t('recharge.submit')}}
-				</div>
-			</div>
-		</div>
-	</div>
-
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('recharge.recharge')"
+      @backurl="$router.back()"
+    />
+    <div class="recharge_wrap">
+      <div class="block_div flex_center recharge_method_wrap">
+        <img :src="recharge.logo">
+        <p>{{ recharge.name }}</p>
+      </div>
+      <div class="block_div recharge_detail_wrap">
+        <div class="item">
+          <p class="tips">
+            {{ $t('recharge.bankName') }}
+          </p>
+          <div
+            v-clipboard="()=>recharge.bank_name"
+            v-clipboard:success="copy"
+            class="flex_center copy"
+          >
+            <p>{{ recharge.name }}</p>
+            <img
+              class="copy_img"
+              src="../img/user/copy.png"
+            >
+          </div>
+        </div>
+        <div class="item">
+          <p class="tips">
+            {{ $t('recharge.bankUserName') }}
+          </p>
+          <div
+            v-clipboard="()=>recharge.bank_name"
+            v-clipboard:success="copy"
+            class="flex_center copy"
+          >
+            <p>{{ recharge.bank_name }}</p>
+            <img
+              class="copy_img"
+              src="../img/user/copy.png"
+            >
+          </div>
+        </div>
+        <div class="item">
+          <p class="tips">
+            {{ $t('recharge.bankAccount') }}
+          </p>
+          <div
+            v-clipboard="()=>recharge.account"
+            v-clipboard:success="copy"
+            class="flex_center copy"
+          >
+            <p>{{ recharge.account }}</p>
+            <img
+              class="copy_img"
+              src="../img/user/copy.png"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="block_div recharge_voucher_wrap">
+        <div class="recharge_money">
+          <p>{{ $t('recharge.money') }}</p>
+          <div>
+            <span class="money">{{ common.currency_symbol_basic() }}{{ common.precision_basic(money) }}</span>
+            <span>
+              ( ≈ <span class="money">{{ common.precision(money*rate) }}<span
+                class="currency"
+              >{{ currency }}</span></span>
+              )
+            </span>
+          </div>
+        </div>
+        <div class="">
+          <p>{{ $t('recharge.voucher') }}</p>
+          <div class="qrcode">
+            <van-uploader
+              v-model="fileList"
+              multiple
+              :max-count="1"
+              class="upload"
+              :max-size="2 * 1024 * 1024"
+              :after-read="afterRead"
+              :before-read="beforeRead"
+              @oversize="onOversize"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="recharge_btn_wrap">
+        <div
+          class="basic_btn btn"
+          :class="voucher!=''?'':'no_touch'"
+          @click="submit"
+        >
+          {{ $t('recharge.submit') }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -76,7 +115,7 @@
 
 	Vue.use(Uploader).use(Toast).use(Clipboard);
 	export default {
-		name: "recharge_qrcode",
+		name: "RechargeQrcode",
 		components: {
 			bsHeader
 		},

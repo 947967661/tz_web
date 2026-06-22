@@ -1,43 +1,73 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="big_tit" v-if="user.login">{{$t('goods.myPoint')}}{{user.point}}</div>
-			<div class="record" @click="$router.push('/goods/record')">
-				<img src="../img/user/record_b.png">
-			</div>
-		</div>
-		<!-- 轮播图 -->
-		<div class="swiper_container">
-			<van-swipe v-show="loading" :autoplay="2500" class="swiper-container">
-				<van-swipe-item v-for="(item, index) in list" :key="index" @click="$router.push('/goods/detail/'+item.id)" v-if="index<3">
-					<img :src="item.img">
-				</van-swipe-item>
-			</van-swipe>
-		</div>
-		<div class="item_wrap">
-			<div class="item_tips">
-				{{$t('goods.hotGoods')}}
-			</div>
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished" finished-text=""
-					@load="onLoad">
-					<div class="item" v-for="(item,index) in list" @click="$router.push('/goods/detail/'+item.id)">
-						<div class="img">
-							<img :src="item.img">
-						</div>
-						<div class="title">
-							{{item.title}}
-						</div>
-						<div class="point_wrap">
-							<span class="point">{{item.point}}</span>
-							<span class="point_tips">{{$t('goods.point')}}</span>
-						</div>
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div
+        v-if="user.login"
+        class="big_tit"
+      >
+        {{ $t('goods.myPoint') }}{{ user.point }}
+      </div>
+      <div
+        class="record"
+        @click="$router.push('/goods/record')"
+      >
+        <img src="../img/user/record_b.png">
+      </div>
+    </div>
+    <!-- 轮播图 -->
+    <div class="swiper_container">
+      <van-swipe
+        v-show="loading"
+        :autoplay="2500"
+        class="swiper-container"
+      >
+        <van-swipe-item
+          v-for="(item, index) in list"
+          v-if="index<3"
+          :key="index"
+          @click="$router.push('/goods/detail/'+item.id)"
+        >
+          <img :src="item.img">
+        </van-swipe-item>
+      </van-swipe>
+    </div>
+    <div class="item_wrap">
+      <div class="item_tips">
+        {{ $t('goods.hotGoods') }}
+      </div>
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          finished-text=""
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="item"
+            @click="$router.push('/goods/detail/'+item.id)"
+          >
+            <div class="img">
+              <img :src="item.img">
+            </div>
+            <div class="title">
+              {{ item.title }}
+            </div>
+            <div class="point_wrap">
+              <span class="point">{{ item.point }}</span>
+              <span class="point_tips">{{ $t('goods.point') }}</span>
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -51,7 +81,7 @@
 	} from 'vant';
 	Vue.use(Swipe).use(SwipeItem).use(List);
 	export default {
-		name: "goods",
+		name: "Goods",
 		components: {
 			bsHeader
 		},

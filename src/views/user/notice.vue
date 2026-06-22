@@ -1,25 +1,42 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('index.notice')" @backurl="$router.back()"></bsHeader>
-		<div class="item_wrap">
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished"
-					:finished-text="$t('utils.noData')" @load="onLoad">
-					<div class="block_div item">
-						<van-collapse v-model="activeNames">
-							<van-collapse-item v-for="(item,index) in list" :key="index" :name="index">
-								<template #title>
-									<div class="notice_title">{{item.title}}</div>
-									<div class="notice_time">{{item.time}}</div>
-								</template>
-								<div v-html="item.content"></div>
-							</van-collapse-item>
-						</van-collapse>
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('index.notice')"
+      @backurl="$router.back()"
+    />
+    <div class="item_wrap">
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          :finished-text="$t('utils.noData')"
+          @load="onLoad"
+        >
+          <div class="block_div item">
+            <van-collapse v-model="activeNames">
+              <van-collapse-item
+                v-for="(item,index) in list"
+                :key="index"
+                :name="index"
+              >
+                <template #title>
+                  <div class="notice_title">
+                    {{ item.title }}
+                  </div>
+                  <div class="notice_time">
+                    {{ item.time }}
+                  </div>
+                </template>
+                <div v-html="item.content" />
+              </van-collapse-item>
+            </van-collapse>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -33,7 +50,7 @@
 	} from 'vant';
 	Vue.use(List).use(Collapse).use(CollapseItem);
 	export default {
-		name: "notice",
+		name: "Notice",
 		components: {
 			bsHeader
 		},

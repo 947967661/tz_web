@@ -1,16 +1,23 @@
 <template>
-    <div class="basic_wrap">
-		<div class="red_top_bg">
-		    <div class="big_tit">{{$t('home.activity')}}</div>
-		</div>
-		<div class="item_wrap">
-			<div v-for="i in data.list" :key="i.id" class="item" @click="jump(i)">
-				<img :src="i['img_'+lang]">
-				<p>{{i['title_'+lang]}}</p>
-				<p>{{i.time}}</p>
-			</div>
-		</div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div class="big_tit">
+        {{ $t('home.activity') }}
+      </div>
     </div>
+    <div class="item_wrap">
+      <div
+        v-for="i in data.list"
+        :key="i.id"
+        class="item"
+        @click="jump(i)"
+      >
+        <img :src="i['img_'+lang]">
+        <p>{{ i['title_'+lang] }}</p>
+        <p>{{ i.time }}</p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -18,7 +25,7 @@
 	import Api from "../../interface/index";
 	
     export default {
-        name: "activity",
+        name: "Activity",
         data() {
             return {
 				lang:this.$i18n.locale||"zh_cn",

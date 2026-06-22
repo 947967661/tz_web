@@ -1,13 +1,19 @@
 <template>
-	<div class="newdetail_wrap">
-		<bsHeader title="" @backurl="$router.back()"></bsHeader>
-		<div class="ctn">
-			<div class="title">
-				{{data.title}}
-			</div>
-			<div class="contract_box" v-html="data.content"></div>
-		</div>
-	</div>
+  <div class="newdetail_wrap">
+    <bsHeader
+      title=""
+      @backurl="$router.back()"
+    />
+    <div class="ctn">
+      <div class="title">
+        {{ data.title }}
+      </div>
+      <div
+        class="contract_box"
+        v-html="data.content"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -15,7 +21,7 @@
 	import bsHeader from '../../components/bsHeader.vue'
 
 	export default {
-		name: "aritcle",
+		name: "Aritcle",
 		components: {
 			bsHeader
 		},

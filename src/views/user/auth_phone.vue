@@ -1,51 +1,95 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('auth.authPhone')" @backurl="$router.back()"></bsHeader>
-		<div class="block_div auth_wrap">
-			<form class="form" @submit.prevent="submit">
-				<div class="tittle_verified">
-					{{$t('auth.authPhone')}}
-				</div>
-				<div class="tittle_verified_tips">
-					{{$t('auth.authPhoneTip')}}
-				</div>
-				<div class="item">
-					<van-dropdown-menu :overlay="false">
-						<van-dropdown-item v-model="value" :options="country_code" />
-					</van-dropdown-menu>
-					<input v-model.trim="phone" type="text" class="inp" :placeholder="$t('auth.phoneEmpty')">
-				</div>
-				<div class="item">
-					<input v-model.trim="code" type="text" class="inp" :placeholder="$t('auth.phoneCode')">
-					<van-count-down :time="time" class="btn get_captcha" @finish="timeCall">
-						<template v-slot="timeData">
-							<span @click="sendCode">{{
-			        timeData.seconds > 0
-			          ? timeData.seconds
-			          : $t('auth.sendPhoneCode')
-			      }}</span>
-						</template>
-					</van-count-down>
-				</div>
-				<button type="submit" class="basic_btn sbtn"
-					:class="phone==''||code==''?'no_touch':''">{{$t('auth.submit')}}</button>
-			</form>
-			<!-- 获取验证码需先验证 -->
-			<van-popup v-model:show="show_sms_verify" :round="true" :style="{ width: '90%' }">
-				<div class="sms_verify">
-					<div>
-						<img style="height: 40px;" :src="verify_img" @click="getVerifyCode()">
-						<br><input v-model.trim="verify_code" type="text" class="inp"
-							:placeholder="$t('auth.charEmpty')">
-					</div>
-					<div class="btn flex_center">
-						<div @click="show_sms_verify=false;">{{$t('utils.cancel')}}</div>
-						<div @click="getSmsCode()">{{$t('utils.confirm')}}</div>
-					</div>
-				</div>
-			</van-popup>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('auth.authPhone')"
+      @backurl="$router.back()"
+    />
+    <div class="block_div auth_wrap">
+      <form
+        class="form"
+        @submit.prevent="submit"
+      >
+        <div class="tittle_verified">
+          {{ $t('auth.authPhone') }}
+        </div>
+        <div class="tittle_verified_tips">
+          {{ $t('auth.authPhoneTip') }}
+        </div>
+        <div class="item">
+          <van-dropdown-menu :overlay="false">
+            <van-dropdown-item
+              v-model="value"
+              :options="country_code"
+            />
+          </van-dropdown-menu>
+          <input
+            v-model.trim="phone"
+            type="text"
+            class="inp"
+            :placeholder="$t('auth.phoneEmpty')"
+          >
+        </div>
+        <div class="item">
+          <input
+            v-model.trim="code"
+            type="text"
+            class="inp"
+            :placeholder="$t('auth.phoneCode')"
+          >
+          <van-count-down
+            :time="time"
+            class="btn get_captcha"
+            @finish="timeCall"
+          >
+            <template v-slot="timeData">
+              <span @click="sendCode">{{
+                timeData.seconds > 0
+                  ? timeData.seconds
+                  : $t('auth.sendPhoneCode')
+              }}</span>
+            </template>
+          </van-count-down>
+        </div>
+        <button
+          type="submit"
+          class="basic_btn sbtn"
+          :class="phone==''||code==''?'no_touch':''"
+        >
+          {{ $t('auth.submit') }}
+        </button>
+      </form>
+      <!-- 获取验证码需先验证 -->
+      <van-popup
+        v-model:show="show_sms_verify"
+        :round="true"
+        :style="{ width: '90%' }"
+      >
+        <div class="sms_verify">
+          <div>
+            <img
+              style="height: 40px;"
+              :src="verify_img"
+              @click="getVerifyCode()"
+            >
+            <br><input
+              v-model.trim="verify_code"
+              type="text"
+              class="inp"
+              :placeholder="$t('auth.charEmpty')"
+            >
+          </div>
+          <div class="btn flex_center">
+            <div @click="show_sms_verify=false;">
+              {{ $t('utils.cancel') }}
+            </div>
+            <div @click="getSmsCode()">
+              {{ $t('utils.confirm') }}
+            </div>
+          </div>
+        </div>
+      </van-popup>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -62,7 +106,7 @@
 	} from "vant";
 	Vue.use(CountDown).use(Checkbox).use(DropdownMenu).use(DropdownItem).use(Popup);
 	export default {
-		name: "setpwd",
+		name: "Setpwd",
 		components: {
 			bsHeader
 		},

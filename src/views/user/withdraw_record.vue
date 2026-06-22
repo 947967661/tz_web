@@ -1,36 +1,69 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('withdraw.withdrawRecord')" @backurl="$router.back()"></bsHeader>
-		<div class="item_wrap">
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished"
-					:finished-text="$t('utils.noData')" @load="onLoad">
-					<div class="block_div item" v-for="(item,index) in list">
-						<div class="flex_center">
-							<p>{{item.act_time}}</p>
-							<p class="color_blue" v-if="item.status==0||item.status==3||item.status==4">
-								{{$t('tabs.pending')}}
-							</p>
-							<p class="color_green" v-if="item.status==1">{{$t('tabs.done')}}</p>
-							<p class="color_red" v-if="item.status==2">{{$t('tabs.fail')}}</p>
-						</div>
-						<div class="flex_center">
-							<p>{{item.wname}}
-								<span v-if="item.status==2">
-									<br><br><span class="color_red">{{$t('withdraw.withdrawFailTips')}}</span>
-								</span>
-							</p>
-							<p class="color_green">{{currency_symbol_basic}}{{precision_basic(item.money)}}
-								<br>
-								<span class="money_usd" v-if="item.wtype!=1">≈ {{common.precision(item.money2)}} {{item.currency}}</span>
-								<span class="money_usd" v-if="item.wtype==1">≈ {{common.precision_basic(item.money)}} USDT</span>
-							</p>
-						</div>
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('withdraw.withdrawRecord')"
+      @backurl="$router.back()"
+    />
+    <div class="item_wrap">
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          :finished-text="$t('utils.noData')"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="block_div item"
+          >
+            <div class="flex_center">
+              <p>{{ item.act_time }}</p>
+              <p
+                v-if="item.status==0||item.status==3||item.status==4"
+                class="color_blue"
+              >
+                {{ $t('tabs.pending') }}
+              </p>
+              <p
+                v-if="item.status==1"
+                class="color_green"
+              >
+                {{ $t('tabs.done') }}
+              </p>
+              <p
+                v-if="item.status==2"
+                class="color_red"
+              >
+                {{ $t('tabs.fail') }}
+              </p>
+            </div>
+            <div class="flex_center">
+              <p>
+                {{ item.wname }}
+                <span v-if="item.status==2">
+                  <br><br><span class="color_red">{{ $t('withdraw.withdrawFailTips') }}</span>
+                </span>
+              </p>
+              <p class="color_green">
+                {{ currency_symbol_basic }}{{ precision_basic(item.money) }}
+                <br>
+                <span
+                  v-if="item.wtype!=1"
+                  class="money_usd"
+                >≈ {{ common.precision(item.money2) }} {{ item.currency }}</span>
+                <span
+                  v-if="item.wtype==1"
+                  class="money_usd"
+                >≈ {{ common.precision_basic(item.money) }} USDT</span>
+              </p>
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -42,7 +75,7 @@
 	} from 'vant';
 	Vue.use(List);
 	export default {
-		name: "withdraw",
+		name: "Withdraw",
 		components: {
 			bsHeader
 		},

@@ -1,77 +1,143 @@
 <template>
-	<div class="user_wrap">
-		<div class="red_top_bg">
-			<div class="big_tit">{{$t('home.my')}}</div>
-			<div class="msg" @click="signin()">
-				<img v-if="!signinStatue" src="../img/user/signin.png">
-				<img v-if="signinStatue" src="../img/user/signed.png">
-			</div>
-		</div>
-		<div class="top_header_bg"></div>
-		<div class="block_div flex_center top_header">
-			<div class="user_detail">
-				<div class="user_header">
-					<img :src="data.user_icon" alt="">
-				</div>
-				<div class="user_name">
-					<div class="user_all">
-						<p class="user_nickname">{{data.username}}</p>
-					</div>
-				</div>
-			</div>
-			<div class="invite_code">
-				<p class="invite_tips">{{$t('user.invite_code')}}</p>
-				<div class="flex_center copy" v-clipboard="()=>data.invite_code" v-clipboard:success="copy">
-					<p>{{data.invite_code}}</p>
-					<img class="copy_img" src="../img/user/copy.png">
-				</div>
-			</div>
-		</div>
-		<div class="block_div flex_center money1">
-			<div>
-				<p @click="showMsg()">{{$t('user.fundingAccount')}}
-					<van-icon name="question-o" size="14" style="left: 2px;top:1px;" />
-				</p>
-				<p>{{common.currency_symbol_basic()}}{{common.precision_basic(fundBalanceUsd)}}</p>
-				<p class="money_usd">≈ {{common.precision(fundBalance)}} ({{currency}})</p>
-			</div>
-			<div class="recharge">
-				<p @click="$router.push('/recharge')">{{$t('user.recharge')}}</p>
-				<p @click="$router.push('/withdraw')">{{$t('user.withdraw')}}</p>
-			</div>
-		</div>
-		<div class="block_div flex_center user_yw">
-			<div @click="$router.push('/invest/record')">
-				<img src="../img/user/order.png" alt="" />
-				<p>{{$t('user.inviteRecord')}}</p>
-			</div>
-			<div @click="$router.push('/funding/record')">
-				<img src="../img/user/details.png" alt="" />
-				<p>{{$t('user.fundingDetails')}}</p>
-			</div>
-			<div @click="$router.push('/service')">
-				<img src="../img/user/kf.png" alt="" />
-				<p>{{$t('user.onlineService')}}</p>
-			</div>
-		</div>
-		<div class="block_div list">
-			<van-cell is-link v-for="(item,index) in menus1" :key="index" @click="$router.push(item.url)">
-				<template #title>
-					<img :src="require('../img/'+item.logo)" alt="">
-					<span class="custom-title">{{item.title}}</span>
-				</template>
-			</van-cell>
-		</div>
-		<div class="block_div list">
-			<van-cell is-link v-for="(item,index) in menus2" :key="index" @click="$router.push(item.url)">
-				<template #title>
-					<img :src="require('../img/'+item.logo)" alt="">
-					<span class="custom-title">{{item.title}}</span>
-				</template>
-			</van-cell>
-		</div>
-		<button class="basic_btn logout_btn" @click="logout">{{$t('user.signOut')}}</button>
-	</div>
+  <div class="user_wrap">
+    <div class="red_top_bg">
+      <div class="big_tit">
+        {{ $t('home.my') }}
+      </div>
+      <div
+        class="msg"
+        @click="signin()"
+      >
+        <img
+          v-if="!signinStatue"
+          src="../img/user/signin.png"
+        >
+        <img
+          v-if="signinStatue"
+          src="../img/user/signed.png"
+        >
+      </div>
+    </div>
+    <div class="top_header_bg" />
+    <div class="block_div flex_center top_header">
+      <div class="user_detail">
+        <div class="user_header">
+          <img
+            :src="data.user_icon"
+            alt=""
+          >
+        </div>
+        <div class="user_name">
+          <div class="user_all">
+            <p class="user_nickname">
+              {{ data.username }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="invite_code">
+        <p class="invite_tips">
+          {{ $t('user.invite_code') }}
+        </p>
+        <div
+          v-clipboard="()=>data.invite_code"
+          v-clipboard:success="copy"
+          class="flex_center copy"
+        >
+          <p>{{ data.invite_code }}</p>
+          <img
+            class="copy_img"
+            src="../img/user/copy.png"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="block_div flex_center money1">
+      <div>
+        <p @click="showMsg()">
+          {{ $t('user.fundingAccount') }}
+          <van-icon
+            name="question-o"
+            size="14"
+            style="left: 2px;top:1px;"
+          />
+        </p>
+        <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(fundBalanceUsd) }}</p>
+        <p class="money_usd">
+          ≈ {{ common.precision(fundBalance) }} ({{ currency }})
+        </p>
+      </div>
+      <div class="recharge">
+        <p @click="$router.push('/recharge')">
+          {{ $t('user.recharge') }}
+        </p>
+        <p @click="$router.push('/withdraw')">
+          {{ $t('user.withdraw') }}
+        </p>
+      </div>
+    </div>
+    <div class="block_div flex_center user_yw">
+      <div @click="$router.push('/invest/record')">
+        <img
+          src="../img/user/order.png"
+          alt=""
+        >
+        <p>{{ $t('user.inviteRecord') }}</p>
+      </div>
+      <div @click="$router.push('/funding/record')">
+        <img
+          src="../img/user/details.png"
+          alt=""
+        >
+        <p>{{ $t('user.fundingDetails') }}</p>
+      </div>
+      <div @click="$router.push('/service')">
+        <img
+          src="../img/user/kf.png"
+          alt=""
+        >
+        <p>{{ $t('user.onlineService') }}</p>
+      </div>
+    </div>
+    <div class="block_div list">
+      <van-cell
+        v-for="(item,index) in menus1"
+        :key="index"
+        is-link
+        @click="$router.push(item.url)"
+      >
+        <template #title>
+          <img
+            :src="require('../img/'+item.logo)"
+            alt=""
+          >
+          <span class="custom-title">{{ item.title }}</span>
+        </template>
+      </van-cell>
+    </div>
+    <div class="block_div list">
+      <van-cell
+        v-for="(item,index) in menus2"
+        :key="index"
+        is-link
+        @click="$router.push(item.url)"
+      >
+        <template #title>
+          <img
+            :src="require('../img/'+item.logo)"
+            alt=""
+          >
+          <span class="custom-title">{{ item.title }}</span>
+        </template>
+      </van-cell>
+    </div>
+    <button
+      class="basic_btn logout_btn"
+      @click="logout"
+    >
+      {{ $t('user.signOut') }}
+    </button>
+  </div>
 </template>
 
 <script>
@@ -89,7 +155,7 @@
 	Vue.use(Cell).use(CellGroup).use(Icon).use(Clipboard);
 
 	export default {
-		name: "user",
+		name: "User",
 		components: {},
 		data() {
 			return {

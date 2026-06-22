@@ -1,119 +1,176 @@
 <template>
-	<div class="basic_wrap">
-		<div class="block_div top_header">
-			<div class="flex_center user_detail_wrap">
-				<div class="user_detail">
-					<div class="user_header">
-						<img :src="user_info.user_icon" alt="">
-					</div>
-					<div class="user_name">
-						<div class="user_all">
-							<p class="user_nickname">{{user_info.username}}</p>
-						</div>
-					</div>
-				</div>
-				<div class="invite_code">
-					<p class="invite_tips">{{$t('user.invite_code')}}</p>
-					<div class="flex_center copy" v-clipboard="()=>user_info.invite_code" v-clipboard:success="copy">
-						<p>{{user_info.invite_code}}</p>
-						<img class="copy_img" src="../img/user/copy.png">
-					</div>
-				</div>
-			</div>
-			<!-- <div class="flex_center invite_link_wrap"  v-clipboard="()=>user_info.share_link" v-clipboard:success="copy">
+  <div class="basic_wrap">
+    <div class="block_div top_header">
+      <div class="flex_center user_detail_wrap">
+        <div class="user_detail">
+          <div class="user_header">
+            <img
+              :src="user_info.user_icon"
+              alt=""
+            >
+          </div>
+          <div class="user_name">
+            <div class="user_all">
+              <p class="user_nickname">
+                {{ user_info.username }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="invite_code">
+          <p class="invite_tips">
+            {{ $t('user.invite_code') }}
+          </p>
+          <div
+            v-clipboard="()=>user_info.invite_code"
+            v-clipboard:success="copy"
+            class="flex_center copy"
+          >
+            <p>{{ user_info.invite_code }}</p>
+            <img
+              class="copy_img"
+              src="../img/user/copy.png"
+            >
+          </div>
+        </div>
+      </div>
+      <!-- <div class="flex_center invite_link_wrap"  v-clipboard="()=>user_info.share_link" v-clipboard:success="copy">
 				<div class="invite_link" >
 					<span>{{$t('team.inviteLink')}}</span>
 					<span class="link">{{user_info.share_link}}</span>
 				</div>
 				<img class="copy_img" src="../img/user/copy.png">
 			</div> -->
-			<div class="user_earing">
-				<div class="flex_center today_earing">
-					<div class="total_earing">
-						<p>{{common.currency_symbol_basic()}}{{common.precision_basic(report.income)}}</p>
-						<p>{{$t('team.totalRevenue')}}</p>
-					</div>
-					<div class="today">
-						<p>{{common.currency_symbol_basic()}}{{common.precision_basic(report.income_to)}}</p>
-						<p>{{$t('team.today')}}</p>
-					</div>
-					<div class="yesterday">
-						<p>{{common.currency_symbol_basic()}}{{common.precision_basic(report.income_ye)}}</p>
-						<p>{{$t('team.yesterday')}}</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="block_div my_team_wrap">
-			<div class="flex_center team_detail">
-				<div>
-					<p>{{report.add_count}}</p>
-					<p>{{$t('team.total')}}({{$t('team.people')}})</p>
-				</div>
-				<div>
-					<p>{{report.add_count_to}}</p>
-					<p>{{$t('team.today')}}({{$t('team.people')}})</p>
-				</div>
-			</div>
-		</div>
-		<div class="block_div team_list_wrap">
-			<div class="team_list_title">
-				{{$t('team.teamList')}}
-			</div>
-			<div class="list_item">
-				<van-list v-model="loading" offset="0" :finished="finished"  @load="onLoad">
-					<div class="item" v-for="(item,index) in list">
-						<div class="flex_center">
-							<p>{{item.act_time}}</p>
-							<p v-if="item.level==1" class="color_red">{{$t('team.direct')}}</p>
-							<p v-if="item.level!=1">{{$t('team.indirect')}}</p>
-						</div>
-						<div class="flex_center">
-							<p>{{item.username}}</p>
-							<p>{{common.currency_symbol_basic()+common.precision_basic(item.recharge_sum)}}</p>
-						</div>
-						<div class="flex_center">
-							<p>{{$t('team.username')}}</p>
-							<p>{{$t('team.totalRecharge')}}</p>
-						</div>
-					</div>
-				</van-list>
-				<van-empty v-if="empty" :description="$t('utils.noData')" />
-			</div>
-		</div>
-		<van-popup v-model:show="show_share" position="bottom" closeable close-icon-position="top-left">
-			<div class="share_wrap">
-				<div class="share">
-					<div class="invite_friend">
-						<p></p>
-					</div>
-					<div class="share_code">
-						<img :src="user_info.share_code">
-					</div>
-					<div class="invite_code flex_center">
-						<p>{{$t('user.invite_code')}}:</p>
-						<p class="code_link" v-clipboard="()=>user_info.invite_code" v-clipboard:success="copy">
-							{{user_info.invite_code}}
-							<img class="copy_img" src="../img/user/copy.png">
-						</p>
-					</div>
-					<div class="invite_code flex_center">
-						<p>{{$t('team.inviteLink')}}</p>
-						<div class="flex_center invite_link">
-							<p class="code_link" v-clipboard="()=>user_info.share_link" v-clipboard:success="copy">
-								{{user_info.share_link}}
-							</p>
-							<img class="copy_img" src="../img/user/copy.png">
-						</div>
-					</div>
-				</div>
-			</div>
-		</van-popup>
-		<!-- 客服图标 -->
-		<div class="kefu share_btn" @click="show_share = true;">
-			<img class="kefu_img" src="../img/user/share.png">
-		</div>
-	</div>
+      <div class="user_earing">
+        <div class="flex_center today_earing">
+          <div class="total_earing">
+            <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(report.income) }}</p>
+            <p>{{ $t('team.totalRevenue') }}</p>
+          </div>
+          <div class="today">
+            <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(report.income_to) }}</p>
+            <p>{{ $t('team.today') }}</p>
+          </div>
+          <div class="yesterday">
+            <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(report.income_ye) }}</p>
+            <p>{{ $t('team.yesterday') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block_div my_team_wrap">
+      <div class="flex_center team_detail">
+        <div>
+          <p>{{ report.add_count }}</p>
+          <p>{{ $t('team.total') }}({{ $t('team.people') }})</p>
+        </div>
+        <div>
+          <p>{{ report.add_count_to }}</p>
+          <p>{{ $t('team.today') }}({{ $t('team.people') }})</p>
+        </div>
+      </div>
+    </div>
+    <div class="block_div team_list_wrap">
+      <div class="team_list_title">
+        {{ $t('team.teamList') }}
+      </div>
+      <div class="list_item">
+        <van-list
+          v-model="loading"
+          offset="0"
+          :finished="finished"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="item"
+          >
+            <div class="flex_center">
+              <p>{{ item.act_time }}</p>
+              <p
+                v-if="item.level==1"
+                class="color_red"
+              >
+                {{ $t('team.direct') }}
+              </p>
+              <p v-if="item.level!=1">
+                {{ $t('team.indirect') }}
+              </p>
+            </div>
+            <div class="flex_center">
+              <p>{{ item.username }}</p>
+              <p>{{ common.currency_symbol_basic()+common.precision_basic(item.recharge_sum) }}</p>
+            </div>
+            <div class="flex_center">
+              <p>{{ $t('team.username') }}</p>
+              <p>{{ $t('team.totalRecharge') }}</p>
+            </div>
+          </div>
+        </van-list>
+        <van-empty
+          v-if="empty"
+          :description="$t('utils.noData')"
+        />
+      </div>
+    </div>
+    <van-popup
+      v-model:show="show_share"
+      position="bottom"
+      closeable
+      close-icon-position="top-left"
+    >
+      <div class="share_wrap">
+        <div class="share">
+          <div class="invite_friend">
+            <p />
+          </div>
+          <div class="share_code">
+            <img :src="user_info.share_code">
+          </div>
+          <div class="invite_code flex_center">
+            <p>{{ $t('user.invite_code') }}:</p>
+            <p
+              v-clipboard="()=>user_info.invite_code"
+              v-clipboard:success="copy"
+              class="code_link"
+            >
+              {{ user_info.invite_code }}
+              <img
+                class="copy_img"
+                src="../img/user/copy.png"
+              >
+            </p>
+          </div>
+          <div class="invite_code flex_center">
+            <p>{{ $t('team.inviteLink') }}</p>
+            <div class="flex_center invite_link">
+              <p
+                v-clipboard="()=>user_info.share_link"
+                v-clipboard:success="copy"
+                class="code_link"
+              >
+                {{ user_info.share_link }}
+              </p>
+              <img
+                class="copy_img"
+                src="../img/user/copy.png"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </van-popup>
+    <!-- 客服图标 -->
+    <div
+      class="kefu share_btn"
+      @click="show_share = true;"
+    >
+      <img
+        class="kefu_img"
+        src="../img/user/share.png"
+      >
+    </div>
+  </div>
 </template>
 
 <script>
@@ -129,7 +186,7 @@
 
 	Vue.use(Icon).use(Clipboard).use(List).use(Empty).use(Popup);
 	export default {
-		name: "team",
+		name: "Team",
 		data() {
 			return {
 				user_info: [],

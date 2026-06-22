@@ -1,64 +1,95 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="big_tit">{{$t('home.b2c')}}</div>
-			<div class="country">
-				<van-dropdown-menu>
-					<van-dropdown-item v-model="lang" :options="currencies" @change="change" />
-				</van-dropdown-menu>
-			</div>
-		</div>
-		<div class="tip">我要卖
-			<div class="record" @click="$router.push('/b2c/record')">
-				<img src="../img/user/record.png">
-			</div>
-		</div>
-		<div class="flex_center user_balance">
-			<div>出售数量</div>
-			<div>{{balance}} TRX</div>
-		</div>
-		<div class="item flex_center">
-			<input v-model.trim="amount" type="number" class="inp" placeholder="0">
-			<div class="all"><span>TRX</span><span @click="amount=balance">全部</span></div>
-		</div>
-		<div class="price">
-			<span>参考单价：{{currency.price}} {{currency.text}}</span>
-		</div>
-		<button class="basic_btn sbtn" :class="amount==''||amount<=0?'no_touch':''" @click="sellPop()">出售</button>
-		<van-popup v-model:show="show" closeable close-icon-position="top-left" position="bottom"
-			:style="{ height: '370px' }">
-			<div class="popup_title">确认出售</div>
-			<div class="detail">
-				<div class="money">
-					<div>
-						<span>{{amount}}</span><span>TRX</span>
-					</div>
-					<div>
-						<span>我将收到 </span><span>{{(amount*(currency.price)).toFixed(4)}} {{currency.text}}</span>
-					</div>
-				</div>
-				<div class="payment">
-					<div class="choose_tip">
-						请选择收款方式
-					</div>
-					<div class="payment_detail">
-						<div class="name">
-							<span>银行卡</span>
-						</div>
-						<div class="account">
-							612********123
-							<span>✔</span>
-						</div>
-					</div>
-				</div>
-				<div class="add_payment">
-					+添加收款方式
-				</div>
-			</div>
-			<button class="basic_btn sbtn1">确认出售</button>
-		</van-popup>
-
-	</div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div class="big_tit">
+        {{ $t('home.b2c') }}
+      </div>
+      <div class="country">
+        <van-dropdown-menu>
+          <van-dropdown-item
+            v-model="lang"
+            :options="currencies"
+            @change="change"
+          />
+        </van-dropdown-menu>
+      </div>
+    </div>
+    <div class="tip">
+      我要卖
+      <div
+        class="record"
+        @click="$router.push('/b2c/record')"
+      >
+        <img src="../img/user/record.png">
+      </div>
+    </div>
+    <div class="flex_center user_balance">
+      <div>出售数量</div>
+      <div>{{ balance }} TRX</div>
+    </div>
+    <div class="item flex_center">
+      <input
+        v-model.trim="amount"
+        type="number"
+        class="inp"
+        placeholder="0"
+      >
+      <div class="all">
+        <span>TRX</span><span @click="amount=balance">全部</span>
+      </div>
+    </div>
+    <div class="price">
+      <span>参考单价：{{ currency.price }} {{ currency.text }}</span>
+    </div>
+    <button
+      class="basic_btn sbtn"
+      :class="amount==''||amount<=0?'no_touch':''"
+      @click="sellPop()"
+    >
+      出售
+    </button>
+    <van-popup
+      v-model:show="show"
+      closeable
+      close-icon-position="top-left"
+      position="bottom"
+      :style="{ height: '370px' }"
+    >
+      <div class="popup_title">
+        确认出售
+      </div>
+      <div class="detail">
+        <div class="money">
+          <div>
+            <span>{{ amount }}</span><span>TRX</span>
+          </div>
+          <div>
+            <span>我将收到 </span><span>{{ (amount*(currency.price)).toFixed(4) }} {{ currency.text }}</span>
+          </div>
+        </div>
+        <div class="payment">
+          <div class="choose_tip">
+            请选择收款方式
+          </div>
+          <div class="payment_detail">
+            <div class="name">
+              <span>银行卡</span>
+            </div>
+            <div class="account">
+              612********123
+              <span>✔</span>
+            </div>
+          </div>
+        </div>
+        <div class="add_payment">
+          +添加收款方式
+        </div>
+      </div>
+      <button class="basic_btn sbtn1">
+        确认出售
+      </button>
+    </van-popup>
+  </div>
 </template>
 
 <script>

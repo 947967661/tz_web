@@ -1,25 +1,50 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('auth.authAuthenticator')" @backurl="$router.back()"></bsHeader>
-		<div class="block_div auth_wrap">
-			<p class="step1"><span>1</span>{{$t('auth.step1Tips1')}}</p>
-			<p class="step1_tips">{{$t('auth.step1Tips2')}}</p>
-			<div class="auth_info">
-				<img :src="qr_code">
-				<div class="flex_center copy" v-clipboard="()=>key" v-clipboard:success="copy">
-					<p>{{$t('auth.key')}} {{key}}</p>
-					<img class="copy_img" src="../img/user/copy.png">
-				</div>
-
-			</div>
-			<p class="step2"><span>2</span>{{$t('auth.step2Tips1')}}</p>
-			<div class="code_wrap">
-				<input v-model.trim="code" type="text" class="inp" :placeholder="$t('auth.codePlaceholde')">
-			</div>
-			<button class="basic_btn sbtn" :class="code==''?'no_touch':''"
-				@click="submit()">{{$t('utils.submit')}}</button>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('auth.authAuthenticator')"
+      @backurl="$router.back()"
+    />
+    <div class="block_div auth_wrap">
+      <p class="step1">
+        <span>1</span>{{ $t('auth.step1Tips1') }}
+      </p>
+      <p class="step1_tips">
+        {{ $t('auth.step1Tips2') }}
+      </p>
+      <div class="auth_info">
+        <img :src="qr_code">
+        <div
+          v-clipboard="()=>key"
+          v-clipboard:success="copy"
+          class="flex_center copy"
+        >
+          <p>{{ $t('auth.key') }} {{ key }}</p>
+          <img
+            class="copy_img"
+            src="../img/user/copy.png"
+          >
+        </div>
+      </div>
+      <p class="step2">
+        <span>2</span>{{ $t('auth.step2Tips1') }}
+      </p>
+      <div class="code_wrap">
+        <input
+          v-model.trim="code"
+          type="text"
+          class="inp"
+          :placeholder="$t('auth.codePlaceholde')"
+        >
+      </div>
+      <button
+        class="basic_btn sbtn"
+        :class="code==''?'no_touch':''"
+        @click="submit()"
+      >
+        {{ $t('utils.submit') }}
+      </button>
+    </div>
+  </div>
 </template>
 
 <script>

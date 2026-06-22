@@ -1,19 +1,32 @@
 <template>
-    <div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="big_tit">{{data.title}}</div>
-		</div>
-        <div class="ctn">
-			<div class="msg_box">
-				<div class="tit">
-					<p class="tips">{{data.title}}</p>
-					<p class="time">{{data.time}}</p>
-				</div>
-				<div class="contract_box" style="width: 100%" v-html="data.content"></div>
-			</div>
-        </div>
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div class="big_tit">
+        {{ data.title }}
+      </div>
     </div>
+    <div class="ctn">
+      <div class="msg_box">
+        <div class="tit">
+          <p class="tips">
+            {{ data.title }}
+          </p>
+          <p class="time">
+            {{ data.time }}
+          </p>
+        </div>
+        <div
+          class="contract_box"
+          style="width: 100%"
+          v-html="data.content"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -22,7 +35,7 @@
     // import {VueEditor} from 'vue2-editor'
 
     export default {
-        name: "activityDetail",
+        name: "ActivityDetail",
         data() {
             return {
                 data: {}

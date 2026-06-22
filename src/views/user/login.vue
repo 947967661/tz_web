@@ -1,87 +1,171 @@
 <template>
-	<div class="page-inner">
+  <div class="page-inner">
     <div class="topbar">
-      <div class="topbar-action" @click="$router.back()">
-        <img class="topbar-icon-image" src="../img/common/back_b.png">
+      <div
+        class="topbar-action"
+        @click="$router.back()"
+      >
+        <img
+          class="topbar-icon-image"
+          src="../img/common/back_b.png"
+        >
       </div>
-      <div class="topbar-action topbar-action-lang" @click="$router.push('/language')">
-        <img class="topbar-icon-image-lang" :src="language_logo">
+      <div
+        class="topbar-action topbar-action-lang"
+        @click="$router.push('/language')"
+      >
+        <img
+          class="topbar-icon-image-lang"
+          :src="language_logo"
+        >
       </div>
     </div>
     <div class="hero">
       <div class="hero-logo-shell">
-          <img class="hero-logo" :src="config.logo" />
+        <img
+          class="hero-logo"
+          :src="config.logo"
+        >
       </div>
       <div class="hero-title">
           &nbsp;
       </div>
     </div>
 
-		<div class="auth-shell">
+    <div class="auth-shell">
       <div class="auth-tabs">
-        <div class="auth-tab auth-tab-active">{{$t('login.loginNow')}}</div>
-        <div class="auth-tab"><router-link to="/register">{{$t('login.registerNow')}}</router-link></div>
+        <div class="auth-tab auth-tab-active">
+          {{ $t('login.loginNow') }}
+        </div>
+        <div class="auth-tab">
+          <router-link to="/register">
+            {{ $t('login.registerNow') }}
+          </router-link>
+        </div>
       </div>
-			<form class="auth-form">
-				<div v-if="!config.register_phone" class="field-group">
-          <div class="field-label">{{$t('login.username')}}</div>
-          <div class="field-control">
-            <div class="field-icon">
-              <div class="field-icon-text iconfont icon-login_icon_phone_number"><span>
-                <van-dropdown-menu :overlay="false">
-                  <van-dropdown-item v-model="value" :options="country_code" />
-                </van-dropdown-menu>
-              </span></div>
-            </div>
-            <input v-model.trim="data.username" type="text" class="uni-input-input" :placeholder="$t('login.username')">
+      <form class="auth-form">
+        <div
+          v-if="!config.register_phone"
+          class="field-group"
+        >
+          <div class="field-label">
+            {{ $t('login.username') }}
           </div>
-				</div>
-				<div v-if="config.register_phone" class="field-group">
-          <div class="field-label">{{$t('login.phone')}}</div>
           <div class="field-control">
             <div class="field-icon">
-              <div class="field-icon-text iconfont icon-login_icon_phone_number"><span></span></div>
+              <div class="field-icon-text iconfont icon-login_icon_phone_number">
+                <span>
+                  <van-dropdown-menu :overlay="false">
+                    <van-dropdown-item
+                      v-model="value"
+                      :options="country_code"
+                    />
+                  </van-dropdown-menu>
+                </span>
+              </div>
+            </div>
+            <input
+              v-model.trim="data.username"
+              type="text"
+              class="uni-input-input"
+              :placeholder="$t('login.username')"
+            >
+          </div>
+        </div>
+        <div
+          v-if="config.register_phone"
+          class="field-group"
+        >
+          <div class="field-label">
+            {{ $t('login.phone') }}
+          </div>
+          <div class="field-control">
+            <div class="field-icon">
+              <div class="field-icon-text iconfont icon-login_icon_phone_number">
+                <span />
+              </div>
             </div>
             <div class="field-prefix">
-              <div class="field-prefix-text"></div>
+              <div class="field-prefix-text" />
             </div>
-            <input v-model.trim="data.username" type="number" class="uni-input-input" :placeholder="$t('login.phone')">
+            <input
+              v-model.trim="data.username"
+              type="number"
+              class="uni-input-input"
+              :placeholder="$t('login.phone')"
+            >
           </div>
-				</div>
-				<div class="field-group">
-          <div class="field-label">{{$t('login.password')}}</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">
+            {{ $t('login.password') }}
+          </div>
           <div class="field-control">
             <div class="field-icon">
-              <div class="field-icon-text iconfont icon-login_icon_password"><span></span></div>
+              <div class="field-icon-text iconfont icon-login_icon_password">
+                <span />
+              </div>
             </div>
-            <input v-model.trim="data.password" :type="password" class="field-input field-input-with-action" :placeholder="$t('login.password')">
+            <input
+              v-model.trim="data.password"
+              :type="password"
+              class="field-input field-input-with-action"
+              :placeholder="$t('login.password')"
+            >
             <div class="field-action">
-              <div class="field-action-text wlIcon wlIcon-chakan field-action-icon-muted" :class="password == 'text' ? 'eye' : ''" @click="showPwd" />
+              <div
+                class="field-action-text wlIcon wlIcon-chakan field-action-icon-muted"
+                :class="password == 'text' ? 'eye' : ''"
+                @click="showPwd"
+              />
             </div>
           </div>
-				</div>
-				<div class="field-group">
-          <div class="field-label">{{$t('login.code')}}</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">
+            {{ $t('login.code') }}
+          </div>
           <div class="field-control">
             <div class="field-icon">
-              <div class="field-icon-text iconfont icon-login_icon_password"><span></span></div>
+              <div class="field-icon-text iconfont icon-login_icon_password">
+                <span />
+              </div>
             </div>
-            <input v-model.trim="data.code" type="text" class="inp" :placeholder="$t('login.code')">
-            <img style="height: 32px;margin-bottom: 8px;" :src="verify_img" @click="getVerifyCode()">
+            <input
+              v-model.trim="data.code"
+              type="text"
+              class="inp"
+              :placeholder="$t('login.code')"
+            >
+            <img
+              style="height: 32px;margin-bottom: 8px;"
+              :src="verify_img"
+              @click="getVerifyCode()"
+            >
           </div>
-				</div>
-				<div class="submit-button"
-					 :class="data.username == '' || data.password == '' || data.code == ''? 'no_touch' : ''" @click="submit">
-          {{$t('login.loginNow')}}
-				</div>
-			</form>
-		</div>
+        </div>
+        <div
+          class="submit-button"
+          :class="data.username == '' || data.password == '' || data.code == ''? 'no_touch' : ''"
+          @click="submit"
+        >
+          {{ $t('login.loginNow') }}
+        </div>
+      </form>
+    </div>
 		
 
-		<div class="kefu" :class="show_kefu ? '' : 'kefu_hide'" @click="kefu_to">
-			<img class="kefu_img" src="../img/index/kefu.png">
-		</div>
-	</div>
+    <div
+      class="kefu"
+      :class="show_kefu ? '' : 'kefu_hide'"
+      @click="kefu_to"
+    >
+      <img
+        class="kefu_img"
+        src="../img/index/kefu.png"
+      >
+    </div>
+  </div>
 </template>
 
 <script>
@@ -103,11 +187,18 @@
 		.use(Dialog);
 
 	export default {
-		name: "login",
+		name: "Login",
 		components: {
 			bsHeader
 		},
 		data() {
+			const devLoginDefaults = process.env.NODE_ENV === "production" ? {
+				username: "",
+				password: ""
+			} : {
+				username: "111111",
+				password: "111111"
+			};
 			return {
 				language_logo: localStorage.getItem('language_logo'),
 				show_kefu: false,
@@ -115,8 +206,8 @@
 				loading: false,
 				data: {
           country_code: '',
-					username: "",
-					password: "",
+					username: devLoginDefaults.username,
+					password: devLoginDefaults.password,
 					code: "",
 				},
 				config: {
@@ -261,7 +352,7 @@
 						localStorage.setItem('token', res.data.token);
 					}
 					this.$toast(this.$t('login.loginSuccess'));
-					this.$router.replace("/");
+					this.$router.replace("/index");
 				}).catch((res) => {
 					this.getVerifyCode();
 					this.loading = false;

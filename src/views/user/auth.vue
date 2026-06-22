@@ -1,65 +1,119 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('auth.authCenter')" @backurl="$router.back()"></bsHeader>
-		<div class=" desc_warp">
-			<img src="../img/user/certification.png" />
-			<p>{{$t('auth.authSafe')}}</p>
-			<p>{{$t('auth.authTips1')}}</p>
-		</div>
-		<div class="item_warp">
-			<div v-show="data.auth_phone_status" class="block_div flex_center item">
-				<div class="flex_center item_info">
-					<div>
-						<img src="../img/user/phone.png">
-					</div>
-					<div>
-						<p>{{$t('auth.authPhone')}}</p>
-						<p v-if="!bind_phone">{{$t('auth.bindPhone')}}</p>
-						<p v-if="bind_phone">{{phone}}</p>
-					</div>
-				</div>
-				<div>
-					<p v-if="bind_phone" class="btn_0">{{$t('auth.authed')}}</p>
-					<p v-if="!bind_phone" class="btn_1 basic_btn" @click="$router.replace('/authPhone')">
-						{{$t('auth.toAuth')}}</p>
-				</div>
-			</div>
-			<div v-show="data.auth_email_status" class="block_div flex_center item">
-				<div class="flex_center item_info">
-					<div>
-						<img src="../img/user/email.png">
-					</div>
-					<div>
-						<p>{{$t('auth.authEmail')}}</p>
-						<p v-if="!bind_email">{{$t('auth.bindEmail')}}</p>
-						<p v-if="bind_email">{{email}}</p>
-					</div>
-				</div>
-				<div>
-					<p v-if="bind_email" class="btn_0">{{$t('auth.authed')}}</p>
-					<p v-if="!bind_email" class="btn_1 basic_btn" @click="$router.replace('/authEmail')">
-						{{$t('auth.toAuth')}}</p>
-				</div>
-			</div>
-			<div v-show="data.auth_authenticator_status" class="block_div flex_center item">
-				<div class="flex_center item_info">
-					<div>
-						<img src="../img/user/authenticator.png">
-					</div>
-					<div>
-						<p>{{$t('auth.authAuthenticator')}}</p>
-						<p v-if="!bind_authenticator">{{$t('auth.bindAuthenticator')}}</p>
-						<p v-if="bind_authenticator">{{authenticator}}</p>
-					</div>
-				</div>
-				<div>
-					<p v-if="bind_authenticator" class="btn_0">{{$t('auth.authed')}}</p>
-					<p v-if="!bind_authenticator" class="btn_1 basic_btn" @click="$router.replace('/authGoogle')">
-						{{$t('auth.toAuth')}}</p>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('auth.authCenter')"
+      @backurl="$router.back()"
+    />
+    <div class=" desc_warp">
+      <img src="../img/user/certification.png">
+      <p>{{ $t('auth.authSafe') }}</p>
+      <p>{{ $t('auth.authTips1') }}</p>
+    </div>
+    <div class="item_warp">
+      <div
+        v-show="data.auth_phone_status"
+        class="block_div flex_center item"
+      >
+        <div class="flex_center item_info">
+          <div>
+            <img src="../img/user/phone.png">
+          </div>
+          <div>
+            <p>{{ $t('auth.authPhone') }}</p>
+            <p v-if="!bind_phone">
+              {{ $t('auth.bindPhone') }}
+            </p>
+            <p v-if="bind_phone">
+              {{ phone }}
+            </p>
+          </div>
+        </div>
+        <div>
+          <p
+            v-if="bind_phone"
+            class="btn_0"
+          >
+            {{ $t('auth.authed') }}
+          </p>
+          <p
+            v-if="!bind_phone"
+            class="btn_1 basic_btn"
+            @click="$router.replace('/authPhone')"
+          >
+            {{ $t('auth.toAuth') }}
+          </p>
+        </div>
+      </div>
+      <div
+        v-show="data.auth_email_status"
+        class="block_div flex_center item"
+      >
+        <div class="flex_center item_info">
+          <div>
+            <img src="../img/user/email.png">
+          </div>
+          <div>
+            <p>{{ $t('auth.authEmail') }}</p>
+            <p v-if="!bind_email">
+              {{ $t('auth.bindEmail') }}
+            </p>
+            <p v-if="bind_email">
+              {{ email }}
+            </p>
+          </div>
+        </div>
+        <div>
+          <p
+            v-if="bind_email"
+            class="btn_0"
+          >
+            {{ $t('auth.authed') }}
+          </p>
+          <p
+            v-if="!bind_email"
+            class="btn_1 basic_btn"
+            @click="$router.replace('/authEmail')"
+          >
+            {{ $t('auth.toAuth') }}
+          </p>
+        </div>
+      </div>
+      <div
+        v-show="data.auth_authenticator_status"
+        class="block_div flex_center item"
+      >
+        <div class="flex_center item_info">
+          <div>
+            <img src="../img/user/authenticator.png">
+          </div>
+          <div>
+            <p>{{ $t('auth.authAuthenticator') }}</p>
+            <p v-if="!bind_authenticator">
+              {{ $t('auth.bindAuthenticator') }}
+            </p>
+            <p v-if="bind_authenticator">
+              {{ authenticator }}
+            </p>
+          </div>
+        </div>
+        <div>
+          <p
+            v-if="bind_authenticator"
+            class="btn_0"
+          >
+            {{ $t('auth.authed') }}
+          </p>
+          <p
+            v-if="!bind_authenticator"
+            class="btn_1 basic_btn"
+            @click="$router.replace('/authGoogle')"
+          >
+            {{ $t('auth.toAuth') }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -73,7 +127,7 @@
 	Vue.use(CountDown)
 		.use(Checkbox);
 	export default {
-		name: "auth",
+		name: "Auth",
 		components: {
 			bsHeader
 		},

@@ -1,34 +1,59 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('auth.authEmail')" @backurl="$router.back()"></bsHeader>
-		<div class="block_div auth_wrap">
-			<form class="form" @submit.prevent="submit">
-				<div class="tittle_verified">
-					{{$t('auth.authEmail')}}
-				</div>
-				<div class="tittle_verified_tips">
-					{{$t('auth.authEmailTip')}}
-				</div>
-				<div class="item">
-					<input v-model.trim="email" type="text" class="inp" :placeholder="$t('auth.emailEmpty')">
-				</div>
-				<div class="item">
-					<input v-model.trim="code" type="text" class="inp" :placeholder="$t('auth.emailCode')">
-					<van-count-down :time="time" class="btn get_captcha" @finish="timeCall">
-						<template v-slot="timeData">
-							<span @click="sendcode">{{
-			        timeData.seconds > 0
-			          ? timeData.seconds
-			          : $t('auth.sendEmailCode')
-			      }}</span>
-						</template>
-					</van-count-down>
-				</div>
-				<button type="submit" class="basic_btn sbtn"
-					:class="email==''||code==''?'no_touch':''">{{$t('auth.submit')}}</button>
-			</form>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('auth.authEmail')"
+      @backurl="$router.back()"
+    />
+    <div class="block_div auth_wrap">
+      <form
+        class="form"
+        @submit.prevent="submit"
+      >
+        <div class="tittle_verified">
+          {{ $t('auth.authEmail') }}
+        </div>
+        <div class="tittle_verified_tips">
+          {{ $t('auth.authEmailTip') }}
+        </div>
+        <div class="item">
+          <input
+            v-model.trim="email"
+            type="text"
+            class="inp"
+            :placeholder="$t('auth.emailEmpty')"
+          >
+        </div>
+        <div class="item">
+          <input
+            v-model.trim="code"
+            type="text"
+            class="inp"
+            :placeholder="$t('auth.emailCode')"
+          >
+          <van-count-down
+            :time="time"
+            class="btn get_captcha"
+            @finish="timeCall"
+          >
+            <template v-slot="timeData">
+              <span @click="sendcode">{{
+                timeData.seconds > 0
+                  ? timeData.seconds
+                  : $t('auth.sendEmailCode')
+              }}</span>
+            </template>
+          </van-count-down>
+        </div>
+        <button
+          type="submit"
+          class="basic_btn sbtn"
+          :class="email==''||code==''?'no_touch':''"
+        >
+          {{ $t('auth.submit') }}
+        </button>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -42,7 +67,7 @@
 	Vue.use(CountDown)
 		.use(Checkbox);
 	export default {
-		name: "setpwd",
+		name: "Setpwd",
 		components: {
 			bsHeader
 		},

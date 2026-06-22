@@ -1,37 +1,62 @@
 <template>
-	<div id="app">
-    <router-view></router-view>
-    <div v-show="is_show_footer" id="footer" class="footer">
-			<router-link to="/" class="footer_item" :class="show_icon_type === 'index' ? 'footer_item_active' : ''">
-				<span class="footer_icon footer_icon_home" />
-				<p class="footer_info">
-					{{$t('home.index')}}
-				</p>
-			</router-link>
-			<router-link to="/invest" class="footer_item"
-				:class="show_icon_type === 'invest' ? 'footer_item_active' : ''">
-				<span class="footer_icon footer_icon_invest" />
-				<p class="footer_info">
-					{{$t('home.invest')}}
-				</p>
-			</router-link>
-			<router-link to="/team" class="footer_item" :class="show_icon_type === 'team' ? 'footer_item_active' : ''">
-				<span class="footer_icon footer_icon_team" />
-				<p class="footer_info">
-					{{$t('home.team')}}
-				</p>
-			</router-link>
-			<router-link to="/user" class="footer_item" :class="show_icon_type === 'user' ? 'footer_item_active' : ''">
-				<span class="footer_icon footer_icon_user" />
-				<p class="footer_info">
-					{{$t('home.my')}}
-				</p>
-			</router-link>
-		</div>
-		<div v-if="show_loading_wrap" class="loading_wrap">
-			<img :src="require('./views/img/index/loading.gif'+'')" alt="">
-		</div>
-	</div>
+  <div id="app">
+    <router-view />
+    <div
+      v-show="is_show_footer"
+      id="footer"
+      class="footer"
+    >
+      <router-link
+        to="/index"
+        class="footer_item"
+        :class="show_icon_type === 'index' ? 'footer_item_active' : ''"
+      >
+        <span class="footer_icon footer_icon_home" />
+        <p class="footer_info">
+          {{ $t('home.index') }}
+        </p>
+      </router-link>
+      <router-link
+        to="/invest"
+        class="footer_item"
+        :class="show_icon_type === 'invest' ? 'footer_item_active' : ''"
+      >
+        <span class="footer_icon footer_icon_invest" />
+        <p class="footer_info">
+          {{ $t('home.invest') }}
+        </p>
+      </router-link>
+      <router-link
+        to="/team"
+        class="footer_item"
+        :class="show_icon_type === 'team' ? 'footer_item_active' : ''"
+      >
+        <span class="footer_icon footer_icon_team" />
+        <p class="footer_info">
+          {{ $t('home.team') }}
+        </p>
+      </router-link>
+      <router-link
+        to="/user"
+        class="footer_item"
+        :class="show_icon_type === 'user' ? 'footer_item_active' : ''"
+      >
+        <span class="footer_icon footer_icon_user" />
+        <p class="footer_info">
+          {{ $t('home.my') }}
+        </p>
+      </router-link>
+    </div>
+    <div
+      v-if="show_loading_wrap"
+      class="loading_wrap"
+    >
+      <img
+        :src="require('./views/img/index/loading.gif'+'')"
+        alt=""
+      >
+    </div>
+  </div>
 </template>
 
 <script>

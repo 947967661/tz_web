@@ -1,32 +1,47 @@
 <template>
-	<div class="basic_wrap">
-		<div class="red_top_bg">
-			<div class="back_left" @click="$router.back()"></div>
-			<div class="big_tit">{{$t('savings.savings')}}</div>
-		</div>
-		<div class="savings_wrap">
-			<div class="flex_center savings_top">
-				<div class="savings_top_left">
-					<p>{{$t('savings.savings')}}</p>
-					<p>{{$t('savings.savingsTips1')}} | {{$t('savings.savingsTips2')}}</p>
-				</div>
-				<div class="savings_top_right">
-					<img src="../img/user/savings_usd.png">
-				</div>
-			</div>
-			<div class="block_div flex_center money1">
-				<div>
-					<p>{{$t('savings.flexible')}} 
-					</p>
-					<p>{{common.currency_symbol_basic()}}{{common.precision_basic(flexible_usd)}}</p>
-					<p class="money_usd">{{$t('invest.income')}}{{common.currency_symbol_basic()}}{{common.precision_basic(income)}}</p>
-				</div>
-				<div class="subscribe">
-					<p @click="$router.push('/savings/subscribe/1')">{{$t('savings.subscribe')}}</p>
-					<p v-if="flexible_usd>0" @click="$router.push('/savings/redeem')">{{$t('savings.redeem')}}</p>
-				</div>
-			</div>
-			<!-- <div class="block_div flex_center money1">
+  <div class="basic_wrap">
+    <div class="red_top_bg">
+      <div
+        class="back_left"
+        @click="$router.back()"
+      />
+      <div class="big_tit">
+        {{ $t('savings.savings') }}
+      </div>
+    </div>
+    <div class="savings_wrap">
+      <div class="flex_center savings_top">
+        <div class="savings_top_left">
+          <p>{{ $t('savings.savings') }}</p>
+          <p>{{ $t('savings.savingsTips1') }} | {{ $t('savings.savingsTips2') }}</p>
+        </div>
+        <div class="savings_top_right">
+          <img src="../img/user/savings_usd.png">
+        </div>
+      </div>
+      <div class="block_div flex_center money1">
+        <div>
+          <p>
+            {{ $t('savings.flexible') }} 
+          </p>
+          <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(flexible_usd) }}</p>
+          <p class="money_usd">
+            {{ $t('invest.income') }}{{ common.currency_symbol_basic() }}{{ common.precision_basic(income) }}
+          </p>
+        </div>
+        <div class="subscribe">
+          <p @click="$router.push('/savings/subscribe/1')">
+            {{ $t('savings.subscribe') }}
+          </p>
+          <p
+            v-if="flexible_usd>0"
+            @click="$router.push('/savings/redeem')"
+          >
+            {{ $t('savings.redeem') }}
+          </p>
+        </div>
+      </div>
+      <!-- <div class="block_div flex_center money1">
 				<div>
 					<p>{{$t('savings.fixed')}} 
 					</p>
@@ -36,14 +51,17 @@
 					<p @click="$router.push('/savings/subscribe/2')">{{$t('savings.subscribe')}}</p>
 				</div>
 			</div> -->
-			<div class="block_div savings_detail">
-				<div class="title">
-					{{$t('savings.introduce')}}
-				</div>
-				<div class="content" v-html="savings.content"></div>
-			</div>
-		</div>
-	</div>
+      <div class="block_div savings_detail">
+        <div class="title">
+          {{ $t('savings.introduce') }}
+        </div>
+        <div
+          class="content"
+          v-html="savings.content"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

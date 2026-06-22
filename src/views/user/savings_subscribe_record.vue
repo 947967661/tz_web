@@ -1,31 +1,65 @@
 <template>
-	<div class="basic_wrap">
-		<bsHeader :title="$t('savings.subscribeRecord')" @backurl="$router.back()"></bsHeader>
-		<div class="item_wrap">
-			<div class="item_list">
-				<van-list v-model="loading" loading-text=" " offset="0" :finished="finished"
-					:finished-text="$t('utils.noData')" @load="onLoad">
-					<div class="block_div item" v-for="(item,index) in list">
-						<div class="flex_center time">
-							<p>{{item.act_time}}</p>
-							<p class="color_blue" v-if="item.type==2">{{$t('savings.fixed')}}</p>
-							<p class="color_green" v-if="item.type==1">{{$t('savings.flexible')}}</p>
-						</div>
-						<div class="detail">
-							<van-cell-group :border="false">
-								<van-cell :title="$t('savings.subscribeRecordMoney')" value-class="value_class" :border="false"
-									:value="common.currency_symbol_basic()+common.precision_basic(item.money2)" />
-								<van-cell :title="$t('savings.subscribeRecordRate')"
-									value-class="value_class" :border="false" :value="item.rate+'%'" />
-								<van-cell :title="$t('savings.cycle')" value-class="value_class" :border="false"
-									:value="item.type==1?$t('savings.flexible'):item.day+$t('savings.subscribeRecordCycle')" />
-							</van-cell-group>
-						</div>
-					</div>
-				</van-list>
-			</div>
-		</div>
-	</div>
+  <div class="basic_wrap">
+    <bsHeader
+      :title="$t('savings.subscribeRecord')"
+      @backurl="$router.back()"
+    />
+    <div class="item_wrap">
+      <div class="item_list">
+        <van-list
+          v-model="loading"
+          loading-text=" "
+          offset="0"
+          :finished="finished"
+          :finished-text="$t('utils.noData')"
+          @load="onLoad"
+        >
+          <div
+            v-for="(item,index) in list"
+            class="block_div item"
+          >
+            <div class="flex_center time">
+              <p>{{ item.act_time }}</p>
+              <p
+                v-if="item.type==2"
+                class="color_blue"
+              >
+                {{ $t('savings.fixed') }}
+              </p>
+              <p
+                v-if="item.type==1"
+                class="color_green"
+              >
+                {{ $t('savings.flexible') }}
+              </p>
+            </div>
+            <div class="detail">
+              <van-cell-group :border="false">
+                <van-cell
+                  :title="$t('savings.subscribeRecordMoney')"
+                  value-class="value_class"
+                  :border="false"
+                  :value="common.currency_symbol_basic()+common.precision_basic(item.money2)"
+                />
+                <van-cell
+                  :title="$t('savings.subscribeRecordRate')"
+                  value-class="value_class"
+                  :border="false"
+                  :value="item.rate+'%'"
+                />
+                <van-cell
+                  :title="$t('savings.cycle')"
+                  value-class="value_class"
+                  :border="false"
+                  :value="item.type==1?$t('savings.flexible'):item.day+$t('savings.subscribeRecordCycle')"
+                />
+              </van-cell-group>
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -39,7 +73,7 @@
 	} from 'vant';
 	Vue.use(List).use(Cell).use(CellGroup);
 	export default {
-		name: "recharge",
+		name: "Recharge",
 		components: {
 			bsHeader
 		},

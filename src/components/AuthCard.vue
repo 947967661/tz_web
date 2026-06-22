@@ -187,89 +187,106 @@
         <!-- 注册表单 Slide -->
         <div class="auth-slide-item">
           <!-- 非手机注册 start -->
-          <div
-            v-if="!config.register_phone"
-            class="form_div"
-          >
+          <div v-if="!config.register_phone">
             <form
-              class="form"
+              class="auth-form"
               @submit.prevent
             >
-              <div
-                class="item"
-                style="z-index: 10;"
-              >
-                <div class="phone-prefix-wrap">
-                  <div
-                    class="phone-prefix-trigger"
-                    @click.stop="toggleRegisterPrefix"
-                  >
-                    <span class="phone-prefix-text">{{ selectedRegisterCountryCode || '+' }}</span>
-                    <span class="phone-prefix-arrow">▾</span>
-                  </div>
-                  <div
-                    v-show="showRegisterPrefixList"
-                    class="phone-prefix-list"
-                  >
+              <div class="field-group">
+                <div class="field-label">
+                  {{ $t('login.username') }}
+                </div>
+                <div
+                  class="field-control"
+                  style="z-index: 10;"
+                >
+                  <div class="phone-prefix-wrap">
                     <div
-                      v-for="item in countryCodeList"
-                      :key="item.value"
-                      class="phone-prefix-item"
-                      @click.stop="selectRegisterPrefix(item)"
+                      class="phone-prefix-trigger"
+                      @click.stop="toggleRegisterPrefix"
                     >
-                      {{ item.text }}
+                      <span class="phone-prefix-text">{{ selectedRegisterCountryCode || '+' }}</span>
+                      <span class="phone-prefix-arrow">▾</span>
+                    </div>
+                    <div
+                      v-show="showRegisterPrefixList"
+                      class="phone-prefix-list"
+                    >
+                      <div
+                        v-for="item in countryCodeList"
+                        :key="item.value"
+                        class="phone-prefix-item"
+                        @click.stop="selectRegisterPrefix(item)"
+                      >
+                        {{ item.text }}
+                      </div>
                     </div>
                   </div>
+                  <input
+                    v-model.trim="registerData.username"
+                    type="text"
+                    class="uni-input-input"
+                    :placeholder="$t('login.username')"
+                  >
                 </div>
-                <input
-                  v-model.trim="registerData.username"
-                  type="text"
-                  class="inp"
-                  :placeholder="$t('login.username')"
-                >
               </div>
-              <div class="item">
-                <input
-                  v-model.trim="registerData.password"
-                  :type="registerPwdType"
-                  class="inp"
-                  :placeholder="$t('login.password')"
-                >
-                <div
-                  class="eye_bi"
-                  :class="registerPwdType == 'text' ? 'eye' : ''"
-                  @click="showRegisterPwd"
-                />
+
+              <div class="field-group">
+                <div class="field-label">
+                  {{ $t('login.password') }}
+                </div>
+                <div class="field-control">
+                  <input
+                    v-model.trim="registerData.password"
+                    :type="registerPwdType"
+                    class="field-input field-input-with-action"
+                    :placeholder="$t('login.password')"
+                  >
+                  <div class="field-action">
+                    <div
+                      class="field-action-text wlIcon wlIcon-chakan field-action-icon-muted"
+                      :class="registerPwdType == 'text' ? 'eye' : ''"
+                      @click="showRegisterPwd"
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="item">
-                <input
-                  v-if="config.invite_code"
-                  v-model.trim="registerData.invite_code"
-                  type="text"
-                  class="inp"
-                  :placeholder="$t('register.inviteCode')"
-                >
-                <input
-                  v-if="!config.invite_code"
-                  v-model.trim="registerData.invite_code"
-                  type="text"
-                  class="inp"
-                  :placeholder="$t('register.inviteCodeOptional')"
-                >
+
+              <div class="field-group">
+                <div class="field-label">
+                  {{ config.invite_code ? $t('register.inviteCode') : $t('register.inviteCodeOptional') }}
+                </div>
+                <div class="field-control">
+                  <input
+                    v-model.trim="registerData.invite_code"
+                    type="text"
+                    class="uni-input-input"
+                    :placeholder="config.invite_code ? $t('register.inviteCode') : $t('register.inviteCodeOptional')"
+                  >
+                </div>
               </div>
-              <div class="item">
-                <input
-                  v-model.trim="registerData.code"
-                  type="text"
-                  class="inp"
-                  :placeholder="$t('login.code')"
-                >
-                <img
-                  style="height: 32px;margin-bottom: 8px;"
-                  :src="verify_img"
-                  @click="getVerifyCode"
-                >
+
+              <div class="field-group">
+                <div class="field-label">
+                  {{ $t('login.code') }}
+                </div>
+                <div class="field-control">
+                  <input
+                    v-model.trim="registerData.code"
+                    type="text"
+                    class="uni-input-input"
+                    :placeholder="$t('login.code')"
+                  >
+                  <div class="verify-img-wrap">
+                    <img
+                      style="height: 32px;margin-bottom: 8px;"
+                      :src="verify_img"
+                      @click="getVerifyCode"
+                    >
+                  </div>
+                </div>
               </div>
+
               <div
                 class="submit-button"
                 :class="registerData.username == '' || registerData.password == '' || registerData.code == '' ? 'no_touch' : ''"
@@ -282,97 +299,117 @@
           <!-- 非手机注册 end -->
 
           <!-- 手机注册 start -->
-          <div
-            v-if="config.register_phone"
-            class="form_div"
-          >
+          <div v-if="config.register_phone">
             <form
-              class="form"
+              class="auth-form"
               @submit.prevent
             >
-              <div
-                class="item"
-                style="z-index: 10;"
-              >
-                <div class="phone-prefix-wrap">
-                  <div
-                    class="phone-prefix-trigger"
-                    @click.stop="toggleRegisterPrefix"
-                  >
-                    <span class="phone-prefix-text">{{ selectedRegisterCountryCode || '+' }}</span>
-                    <span class="phone-prefix-arrow">▾</span>
-                  </div>
-                  <div
-                    v-show="showRegisterPrefixList"
-                    class="phone-prefix-list"
-                  >
+              <div class="field-group">
+                <div class="field-label">
+                  {{ $t('login.phone') }}
+                </div>
+                <div
+                  class="field-control"
+                  style="z-index: 10;"
+                >
+                  <div class="phone-prefix-wrap">
                     <div
-                      v-for="item in countryCodeList"
-                      :key="item.value"
-                      class="phone-prefix-item"
-                      @click.stop="selectRegisterPrefix(item)"
+                      class="phone-prefix-trigger"
+                      @click.stop="toggleRegisterPrefix"
                     >
-                      {{ item.text }}
+                      <span class="phone-prefix-text">{{ selectedRegisterCountryCode || '+' }}</span>
+                      <span class="phone-prefix-arrow">▾</span>
+                    </div>
+                    <div
+                      v-show="showRegisterPrefixList"
+                      class="phone-prefix-list"
+                    >
+                      <div
+                        v-for="item in countryCodeList"
+                        :key="item.value"
+                        class="phone-prefix-item"
+                        @click.stop="selectRegisterPrefix(item)"
+                      >
+                        {{ item.text }}
+                      </div>
                     </div>
                   </div>
+                  <input
+                    v-model.trim="registerData.phone"
+                    type="number"
+                    class="uni-input-input"
+                    :placeholder="$t('login.phone')"
+                  >
                 </div>
-                <input
-                  v-model.trim="registerData.phone"
-                  type="number"
-                  class="inp"
-                  :placeholder="$t('login.phone')"
-                >
               </div>
-              <div class="item">
-                <input
-                  v-model.trim="registerData.smsCode"
-                  type="text"
-                  class="inp"
-                  :placeholder="$t('login.code')"
-                >
-                <van-count-down
-                  :time="smsCountdownTime"
-                  class="btn get_captcha"
-                  @finish="timeCall"
-                >
-                  <template v-slot="timeData">
-                    <span @click="sendCode">{{
-                      timeData.seconds > 0
-                        ? timeData.seconds
-                        : $t('auth.sendPhoneCode')
-                    }}</span>
-                  </template>
-                </van-count-down>
+
+              <div class="field-group">
+                <div class="field-label">
+                  {{ $t('login.code') }}
+                </div>
+                <div class="field-control">
+                  <input
+                    v-model.trim="registerData.smsCode"
+                    type="text"
+                    class="uni-input-input"
+                    :placeholder="$t('login.code')"
+                  >
+                  <div class="verify-img-wrap">
+                    <van-count-down
+                      :time="smsCountdownTime"
+                      class="btn get_captcha"
+                      @finish="timeCall"
+                    >
+                      <template v-slot="timeData">
+                        <span
+                          style="color:#747cfd;font-weight:600;cursor:pointer;font-size:15px;"
+                          @click="sendCode"
+                        >{{
+                          timeData.seconds > 0
+                            ? timeData.seconds
+                            : $t('auth.sendPhoneCode')
+                        }}</span>
+                      </template>
+                    </van-count-down>
+                  </div>
+                </div>
               </div>
-              <div class="item">
-                <input
-                  v-model.trim="registerData.password"
-                  :type="registerPwdType"
-                  class="inp"
-                  :placeholder="$t('login.password')"
-                >
-                <div
-                  class="eye_bi"
-                  :class="registerPwdType == 'text' ? 'eye' : ''"
-                  @click="showRegisterPwd"
-                />
+
+              <div class="field-group">
+                <div class="field-label">
+                  {{ $t('login.password') }}
+                </div>
+                <div class="field-control">
+                  <input
+                    v-model.trim="registerData.password"
+                    :type="registerPwdType"
+                    class="field-input field-input-with-action"
+                    :placeholder="$t('login.password')"
+                  >
+                  <div class="field-action">
+                    <div
+                      class="field-action-text wlIcon wlIcon-chakan field-action-icon-muted"
+                      :class="registerPwdType == 'text' ? 'eye' : ''"
+                      @click="showRegisterPwd"
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="item">
-                <input
-                  v-if="config.invite_code"
-                  v-model.trim="registerData.invite_code"
-                  type="text"
-                  class="inp"
-                  :placeholder="$t('register.inviteCode')"
-                >
-                <input
-                  v-if="!config.invite_code"
-                  v-model.trim="registerData.invite_code"
-                  type="text"
-                  class="inp"
-                  :placeholder="$t('register.inviteCodeOptional')"
-                >
+
+              <div class="field-group">
+                <div class="field-label">
+                  {{ config.invite_code ? $t('register.inviteCode') : $t('register.inviteCodeOptional') }}
+                </div>
+                <div class="field-control">
+                  <input
+                    v-model.trim="registerData.invite_code"
+                    type="text"
+                    class="uni-input-input"
+                    :placeholder="config.invite_code ? $t('register.inviteCode') : $t('register.inviteCodeOptional')"
+                  >
+                </div>
               </div>
+
               <div
                 class="submit-button"
                 :class="registerData.phone == '' || registerData.smsCode == '' || registerData.password == '' ? 'no_touch' : ''"
@@ -884,60 +921,6 @@ export default {
   cursor: pointer;
 }
 
-/* 注册表单样式 */
-.form_div {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 4px;
-}
-.form {
-  width: 100%;
-}
-.register_btn {
-  background: #767dff !important;
-  box-shadow: 0 10px 21px #747cfd3d;
-  color: #ffffff;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  float: right;
-  margin-top: 15px;
-  margin-right: 3%;
-  text-align: center;
-  line-height: 60px;
-  font-size: 36px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.item {
-  height: 64px;
-  font-size: 14px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background: #fffffff5;
-  border: 1px solid #ecebff;
-  margin-bottom: 18px;
-  border-radius: 16px;
-  padding: 0 20px;
-  box-sizing: border-box;
-
-  input {
-    height: 100%;
-    flex: 1;
-    border: none;
-    background: transparent;
-    font-size: 16px;
-  }
-  .get_captcha {
-    line-height: 64px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    color: #747cfd;
-    font-weight: 600;
-  }
-}
 
 .sms_verify {
   padding: 20px 20px 0 20px;
@@ -976,20 +959,23 @@ export default {
   position: relative;
   flex-shrink: 0;
   border-right: 1px solid #ecebff;
-  margin-right: 10px;
+  margin-right: 14px;
 }
 .phone-prefix-trigger {
   display: flex;
   align-items: center;
-  gap: 4px;
-  height: 40px;
-  padding: 0 10px 0 0;
+  justify-content: center;
+  gap: 6px;
+  height: 64px;
+  min-width: 72px;
+  padding: 0 12px;
   cursor: pointer;
   color: #747cfd;
   font-weight: 600;
   font-size: 15px;
   white-space: nowrap;
   user-select: none;
+  box-sizing: border-box;
 }
 .phone-prefix-arrow {
   font-size: 11px;

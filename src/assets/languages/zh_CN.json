@@ -106,7 +106,10 @@
 		"faq": "常见问题",
 		"signOut": "退出当前账户",
 		"signinSuccess": "签到成功",
-		"signined": "今日已签到"
+		"signined": "今日已签到",
+		"teamProfitLabel": "累计投入收益",
+		"fundsTitle": "资金操作",
+		"toolsTitle": "功能"
 	},
 	"login": {
 		"login": "登录",

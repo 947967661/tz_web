@@ -106,7 +106,10 @@
 		"faq": "FAQ",
 		"signOut": "Log out",
 		"signinSuccess": "Successful sign -in",
-		"signined": "Signed in today"
+		"signined": "Signed in today",
+		"teamProfitLabel": "Cumulative Investment Profit",
+		"fundsTitle": "Funds Operation",
+		"toolsTitle": "Features"
 	},
 	"login": {
 		"login": "Login",

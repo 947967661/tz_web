@@ -1,244 +1,225 @@
 <template>
-  <div class="user_wrap">
-    <div class="red_top_bg">
-      <div class="big_tit">
-        {{ $t('home.my') }}
-      </div>
-      <div
-        class="msg"
-        @click="signin()"
+  <div class="page">
+    <!-- User Info Header -->
+    <div class="user_container">
+      <img
+        class="avatar"
+        src="/static/images/web3/icon-avatar.png"
+        alt="avatar"
       >
+      <div class="text uid_row">
+        <span>UID: {{ data.username }}</span>
         <img
-          v-if="!signinStatue"
-          src="../img/user/signin.png"
-        >
-        <img
-          v-if="signinStatue"
-          src="../img/user/signed.png"
+          v-clipboard="() => data.username"
+          v-clipboard:success="copy"
+          class="copy_button"
+          src="/static/images/web3/icon-copy.png"
+          alt="copy"
         >
       </div>
     </div>
-    <div class="top_header_bg" />
-    <div class="block_div flex_center top_header">
-      <div class="user_detail">
-        <div class="user_header">
-          <img
-            :src="data.user_icon"
-            alt=""
-          >
+
+    <!-- Amount / Balance Card -->
+    <div class="amount_card">
+      <div class="item">
+        <div class="title">
+          {{ $t('user.fundingAccount') }}
         </div>
-        <div class="user_name">
-          <div class="user_all">
-            <p class="user_nickname">
-              {{ data.username }}
-            </p>
+        <div class="amount">
+          {{ common.precision_basic(fundBalanceUsd) }}
+        </div>
+        <div class="amount_unit">
+          {{ platformMoneySymbol }}
+        </div>
+        <div class="amount_desc">
+          ≈ {{ currency }}{{ common.precision_basic(fundBalance) }}
+        </div>
+      </div>
+      <div class="item">
+        <div class="title">
+          {{ translate('user.teamProfitLabel', '累计投入收益', 'Cumulative Investment Profit') }}
+        </div>
+        <div class="amount">
+          {{ common.precision_basic(selfInvestmentProfit) }}
+        </div>
+        <div class="amount_unit">
+          {{ platformMoneySymbol }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Funds Operation Card -->
+    <div class="card_container">
+      <div class="card_title">
+        {{ translate('user.fundsTitle', '资金操作', 'Funds Operation') }}
+      </div>
+      <div class="menu_grid primary_actions">
+        <div
+          class="menu_item"
+          @click="$router.push('/recharge')"
+        >
+          <div class="menu_name">
+            {{ $t('user.recharge') }}
+          </div>
+        </div>
+        <div
+          class="menu_item"
+          @click="$router.push('/withdraw')"
+        >
+          <div class="menu_name">
+            {{ $t('user.withdraw') }}
           </div>
         </div>
       </div>
-      <div class="invite_code">
-        <p class="invite_tips">
-          {{ $t('user.invite_code') }}
-        </p>
+    </div>
+
+    <!-- Features / Tools Card -->
+    <div class="card_container">
+      <div class="card_title">
+        {{ translate('user.toolsTitle', '功能', 'Features') }}
+      </div>
+      <div class="menu_grid">
         <div
-          v-clipboard="()=>data.invite_code"
-          v-clipboard:success="copy"
-          class="flex_center copy"
+          class="menu_item"
+          @click="$router.push('/funding/record')"
         >
-          <p>{{ data.invite_code }}</p>
-          <img
-            class="copy_img"
-            src="../img/user/copy.png"
-          >
+          <div class="menu_name">
+            {{ $t('user.fundingDetails') }}
+          </div>
+        </div>
+        <div
+          class="menu_item"
+          @click="$router.push('/savings')"
+        >
+          <div class="menu_name">
+            {{ $t('savings.savings') }}
+          </div>
+        </div>
+        <div
+          class="menu_item"
+          @click="$router.push('/vip')"
+        >
+          <div class="menu_name">
+            {{ $t('user.vip') }}
+          </div>
+        </div>
+        <div
+          class="menu_item"
+          @click="$router.push('/rewards')"
+        >
+          <div class="menu_name">
+            {{ $t('user.rewards') }}
+          </div>
+        </div>
+        <div
+          class="menu_item"
+          @click="$router.push('/recharge/record')"
+        >
+          <div class="menu_name">
+            {{ $t('user.rechargeRecord') }}
+          </div>
+        </div>
+        <div
+          class="menu_item"
+          @click="$router.push('/withdraw/record')"
+        >
+          <div class="menu_name">
+            {{ $t('user.withdrawRecord') }}
+          </div>
+        </div>
+        <div
+          class="menu_item"
+          @click="$router.push('/wallet')"
+        >
+          <div class="menu_name">
+            {{ $t('user.withdrawAccount') }}
+          </div>
+        </div>
+        <div
+          class="menu_item"
+          @click="$router.push('/auth')"
+        >
+          <div class="menu_name">
+            {{ $t('user.certificationCenter') }}
+          </div>
+        </div>
+        <div
+          class="menu_item menu_item_column"
+          @click="$router.push('/language')"
+        >
+          <div class="menu_name">
+            {{ $t('user.languagePreference') }}
+          </div>
+          <div class="menu_desc">
+            {{ currentLanguageName }}
+          </div>
+        </div>
+        <div
+          class="menu_item"
+          @click="$router.push('/questions')"
+        >
+          <div class="menu_name">
+            {{ $t('user.faq') }}
+          </div>
+        </div>
+        <div
+          class="menu_item menu_item_column menu_item_danger"
+          style="grid-column: span 2;"
+          @click="logout"
+        >
+          <div class="menu_name">
+            {{ $t('user.signOut') }}
+          </div>
         </div>
       </div>
     </div>
-    <div class="block_div flex_center money1">
-      <div>
-        <p @click="showMsg()">
-          {{ $t('user.fundingAccount') }}
-          <van-icon
-            name="question-o"
-            size="14"
-            style="left: 2px;top:1px;"
-          />
-        </p>
-        <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(fundBalanceUsd) }}</p>
-        <p class="money_usd">
-          ≈ {{ common.precision(fundBalance) }} ({{ currency }})
-        </p>
-      </div>
-      <div class="recharge">
-        <p @click="$router.push('/recharge')">
-          {{ $t('user.recharge') }}
-        </p>
-        <p @click="$router.push('/withdraw')">
-          {{ $t('user.withdraw') }}
-        </p>
-      </div>
-    </div>
-    <div class="block_div flex_center user_yw">
-      <div @click="$router.push('/invest/record')">
-        <img
-          src="../img/user/order.png"
-          alt=""
-        >
-        <p>{{ $t('user.inviteRecord') }}</p>
-      </div>
-      <div @click="$router.push('/funding/record')">
-        <img
-          src="../img/user/details.png"
-          alt=""
-        >
-        <p>{{ $t('user.fundingDetails') }}</p>
-      </div>
-      <div @click="$router.push('/service')">
-        <img
-          src="../img/user/kf.png"
-          alt=""
-        >
-        <p>{{ $t('user.onlineService') }}</p>
-      </div>
-    </div>
-    <div class="block_div list">
-      <van-cell
-        v-for="(item,index) in menus1"
-        :key="index"
-        is-link
-        @click="$router.push(item.url)"
-      >
-        <template #title>
-          <img
-            :src="require('../img/'+item.logo)"
-            alt=""
-          >
-          <span class="custom-title">{{ item.title }}</span>
-        </template>
-      </van-cell>
-    </div>
-    <div class="block_div list">
-      <van-cell
-        v-for="(item,index) in menus2"
-        :key="index"
-        is-link
-        @click="$router.push(item.url)"
-      >
-        <template #title>
-          <img
-            :src="require('../img/'+item.logo)"
-            alt=""
-          >
-          <span class="custom-title">{{ item.title }}</span>
-        </template>
-      </van-cell>
-    </div>
-    <button
-      class="basic_btn logout_btn"
-      @click="logout"
-    >
-      {{ $t('user.signOut') }}
-    </button>
   </div>
 </template>
 
 <script>
 	import Vue from 'vue';
-	import qs from 'qs';
 	import Fetch from '../../utils/fetch';
-	import Api from "../../interface/index";
 	import Clipboard from "v-clipboard";
 	import {
 		Icon,
-		Cell,
-		CellGroup
+		Empty,
+		Popup
 	} from "vant";
 
-	Vue.use(Cell).use(CellGroup).use(Icon).use(Clipboard);
+	Vue.use(Icon).use(Clipboard).use(Empty).use(Popup);
 
 	export default {
 		name: "User",
-		components: {},
 		data() {
 			return {
 				currency: '',
-				menus1: [{
-						"title": this.$t('savings.savings'),
-						"value": '',
-						"logo": "user/savings.png",
-						"url": "/savings"
-					},{
-						"title": this.$t('user.vip'),
-						"value": '',
-						"logo": "user/vip.png",
-						"url": "/vip"
-					},
-					{
-						"title": this.$t('user.rewards'),
-						"value": '',
-						"logo": "user/rewards.png",
-						"url": "/rewards"
-					},
-					{
-						"title": this.$t('user.rechargeRecord'),
-						"value": '',
-						"logo": "user/recharge.png",
-						"url": "/recharge/record"
-					},
-					{
-						"title": this.$t('user.withdrawRecord'),
-						"value": '',
-						"logo": "user/cash.png",
-						"url": "/withdraw/record"
-					},
-					{
-						"title": this.$t('user.withdrawAccount'),
-						"value": '',
-						"logo": "user/moneybag.png",
-						"url": "/wallet"
-					},
-					{
-						"title": this.$t('user.certificationCenter'),
-						"value": '',
-						"logo": "user/auth1.png",
-						"url": "/auth"
-					}
-				],
-				menus2: [
-					// {
-					// 	"title": this.$t('user.userAgreement'),
-					// 	"logo": "user/agreement.png",
-					// 	"url": "/language"
-					// },
-					// {
-					// 	"title": this.$t('user.privacyPolicy'),
-					// 	"logo": "user/secret.png",
-					// 	"url": "/language"
-					// },
-					{
-						"title": this.$t('user.languagePreference'),
-						"value": '',
-						"logo": "user/language.png",
-						"url": "/language"
-					},
-					{
-						"title": this.$t('user.faq'),
-						"value": '',
-						"logo": "user/question.png",
-						"url": "/questions"
-					}
-				],
 				data: {},
 				fundBalance: 0.00,
 				fundBalanceUsd: 0.00,
-				savings: 0.00,
-				eye: 1,
-				signinStatue:false
+				selfInvestmentProfit: 0.00,
+				signinStatue: false,
+				pageLoading: true
 			};
+		},
+		computed: {
+			currentLanguageName() {
+				const locale = this.$i18n.locale;
+				if (locale === 'zh_CN') return '中文';
+				if (locale === 'zh_HK') return '繁體中文';
+				if (locale === 'en_US') return 'English';
+				if (locale === 'vi_VN') return 'Tiếng Việt';
+				if (locale === 'th_TH') return 'ไทย';
+				return 'English';
+			},
+			platformMoneySymbol() {
+				return this.common.currency_symbol_basic();
+			}
 		},
 		created() {
 			window.document.title = this.$t('home.my');
 			if (window.plus) {
-				plus.navigator.setStatusBarBackground('#051C3F');
-				plus.navigator.setStatusBarStyle('light');
+				window.plus.navigator.setStatusBarBackground('#faf7ff');
+				window.plus.navigator.setStatusBarStyle('dark');
 			}
 			this.$parent.footer('user');
 		},
@@ -246,265 +227,239 @@
 			this.start();
 		},
 		methods: {
+			translate(key, defaultZh, defaultEn) {
+				const lang = this.$i18n.locale;
+				if (lang === 'zh_CN' || lang === 'zh_HK') {
+					return defaultZh;
+				}
+				const val = this.$t(key);
+				if (val && val !== key) {
+					return val;
+				}
+				return defaultEn || defaultZh;
+			},
 			copy() {
 				this.$toast(this.$t('recharge.copySuccess'));
 			},
-			showMsg() {
-				this.$dialog.alert({
-					closeOnClickOverlay: true,
-					showConfirmButton: false,
-					message: "<p style='text-align: left'>" +
-						this.$t('user.fundingTips') +
-						"</p>",
-				}).catch(() => {
-					// on close
-				});
-			},
-			signin(){
-				if(this.signinStatue){
-					this.$toast(this.$t('user.signined'));
-					return false;
-				}
-				this.signinStatue = true;
-				Fetch('/user/signin').then((r) => {
-					this.$toast(this.$t('user.signinSuccess'));
-				});
-			},
-			start() {
-				var isapp = 0;
+			async start() {
+				this.pageLoading = true;
+				let isapp = 0;
 				if (window.plus) {
 					isapp = 1;
 				}
-				Fetch('/user/info', {
-					isapp: isapp
-				}).then((r) => {
-					this.data = r.data;
-					this.fundBalance = r.data.fundBalance;
-					this.fundBalanceUsd = r.data.fundBalanceUsd;
-					this.menus1[0]['value'] = r.data.vip_name;
-					this.currency = r.data.currency;
-					this.signinStatue = r.data.signin;
-				});
+				try {
+					const [rInfo, rTeam] = await Promise.all([
+						Fetch('/user/info', { isapp: isapp }),
+						Fetch('/user/myTeam')
+					]);
+					this.data = rInfo.data || {};
+					this.fundBalance = rInfo.data.fundBalance || 0;
+					this.fundBalanceUsd = rInfo.data.fundBalanceUsd || 0;
+					this.currency = rInfo.data.currency || '';
+					this.signinStatue = rInfo.data.signin || false;
+					this.selfInvestmentProfit = rTeam.data.report.income || 0;
+				} catch (e) {
+					console.error(e);
+				} finally {
+					this.pageLoading = false;
+				}
 			},
 			logout() {
 				localStorage.removeItem('token');
 				this.$router.replace("/");
-			},
+			}
 		}
 	};
 </script>
 
 <style lang="less" scoped>
-	.user_wrap {
-		margin-bottom: 60px;
-	}
+.page {
+	min-height: 100vh;
+	background: #faf7ff;
+	padding: 20px 0 88px;
+	box-sizing: border-box;
+	z-index: 1;
+}
 
-	.red_top_bg {
-		position: fixed;
-		top: 0;
-		z-index: 10;
-		background-color: #051C3F;
-		box-shadow: unset;
-		.big_tit{
-			left: 50%;
-			transform: translateX(-50%);
-			color: #FFFFFF;
-		}
+.user_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding: 18px 12px 0;
+	box-sizing: border-box;
+}
 
-		.msg {
-			position: absolute;
-			top: 12px;
-			right: 15px;
+.avatar {
+	width: 60px;
+	height: 60px;
+	margin-bottom: 8px;
+}
 
-			img {
-				width: 22px;
-				height: 22px;
-			}
-		}
-	}
-	.top_header_bg{
-		background: #051C3F;
-		width: 100%;
-		height: 208px;
-	}
+.text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	font-weight: 700;
+	font-size: 13px;
+	color: #00001c;
+}
 
-	.top_header {
-		position: relative;
-		justify-content: space-between;
-		margin-top: -168px;
-		border-radius: 5px 5px 0 0;
-		box-shadow: unset;
-		color: #FFFFFF;
-		position: fixed;
-		z-index: 10;
-		background: #051C3F;
-		width: 100%;
-		margin-left: unset;
+.copy_button {
+	width: 14px;
+	height: 14px;
+	margin-left: 8px;
+	flex-shrink: 0;
+	cursor: pointer;
+}
 
-		.user_detail {
-			// width: 100%;
-			padding: 28px 15px 22px 20px;
-			top: 34px;
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
+.uid_row {
+	height: 16px;
+	margin-bottom: 6px;
+}
 
-			.user_header {
-				width: 60px;
-				height: 60px;
-				overflow: hidden;
-				border-radius: 50%;
-				border: 3px solid rgba(255, 255, 255, 0.3);
+.amount_card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 335px;
+	min-height: 102px;
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid #fff;
+	box-shadow: 0 9px 21px rgba(70, 74, 135, 0.08);
+	border-radius: 20px;
+	margin: 12px auto 0;
+	box-sizing: border-box;
+}
 
-				img {
-					width: 100%;
-					height: 100%;
-				}
-			}
+.item {
+	flex: 1;
+	padding: 12px 0;
+	box-sizing: border-box;
+}
 
-			.user_name {
-				margin-left: 3px;
-				margin-top: 3px;
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-start;
+.title {
+	width: 100%;
+	font-weight: 700;
+	font-size: 13px;
+	color: #64676e;
+	line-height: 19px;
+	text-align: center;
+}
 
-				.user_all {
-					// display: flex;
-					// justify-content: flex-start;
-					// align-items: center;
+.amount {
+	font-weight: 700;
+	font-size: 20px;
+	color: #00001c;
+	line-height: 28px;
+	text-align: center;
+	margin-top: 9px;
+	word-break: break-all;
+	padding: 0 10px;
+}
 
-					.user_nickname {
-						line-height: 21px;
-						font-size: 18px;
-						font-weight: bold;
-						margin-top: 2px;
-					}
+.amount_unit {
+	margin-top: 3px;
+	font-weight: 700;
+	font-size: 11px;
+	color: #64676e;
+	line-height: 17px;
+	text-align: center;
+}
 
-					img {
-						width: 22px;
-						border-radius: 50%;
-						margin-right: 3px;
-					}
+.amount_desc {
+	margin-top: 3px;
+	font-weight: 700;
+	font-size: 11px;
+	color: #64676e;
+	line-height: 17px;
+	text-align: center;
+	padding: 0 8px;
+	word-break: break-all;
+}
 
-					.auth {
-						justify-content: unset;
-						margin-top: 3px;
-					}
+.card_container {
+	box-sizing: border-box;
+	width: 335px;
+	background: rgba(255, 255, 255, 0.84);
+	border-radius: 20px;
+	border: 1px solid #fff;
+	padding: 11px 10px 12px;
+	margin: 14px auto 0;
+	backdrop-filter: blur(4px);
+}
 
-					.active {
-						border: 2px solid #FFEB3B;
-					}
-				}
-			}
-		}
+.card_title {
+	margin-bottom: 8px;
+	padding-left: 4px;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 15px;
+	color: #7a7f93;
+	letter-spacing: 0.5px;
+}
 
-		.invite_code {
-			margin-right: 30px;
-			text-align: center;
+.menu_grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 8px;
+	padding: 0;
+}
 
-			.invite_tips {
-				color: #999;
-				margin-bottom: 10px;
-			}
+.primary_actions {
+	grid-template-columns: repeat(2, 1fr);
+}
 
-			.copy {
-				justify-content: space-between;
-				font-size: 16px;
-				font-weight: bold;
+.menu_item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 52px;
+	padding: 9px 6px;
+	background: #fff;
+	border: 1px solid #edf0ff;
+	border-radius: 10px;
+	box-shadow: 0 6px 15px rgba(70, 74, 135, 0.08);
+	cursor: pointer;
+	box-sizing: border-box;
+}
 
-				.copy_img {
-					width: 14px;
-					height: 14px;
-					margin-left: 2px;
-				}
-			}
+.menu_item:active {
+	background: #f8f9ff;
+}
 
-		}
-	}
+.menu_item_column {
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 9px;
+}
 
-	.user_yw {
-		position: relative;
-		padding: 15px 0;
-		margin-bottom: 10px;
-		justify-content: space-between;
-		text-align: center;
+.menu_item_danger {
+	border-color: #ffd9de;
+	background: linear-gradient(180deg, #fff, #fff8f9);
+}
 
-		div {
-			width: 33.33%;
-		}
+.menu_item_danger:active {
+	background: #fff1f4;
+}
 
-		p {
-			margin-top: 8px;
-		}
+.menu_name {
+	font-size: 12px;
+	font-weight: 600;
+	color: #22273d;
+	text-align: center;
+	line-height: 1.4;
+}
 
-		img {
-			width: 30px;
-			height: 30px;
-		}
-	}
-
-
-	.money1 {
-		margin-bottom: 10px;
-		margin-top: -55px;
-		padding: 15px;
-		justify-content: space-between;
-
-		div:nth-child(1) {
-			p:nth-child(1) {
-				color: #999;
-				margin-bottom: 10px;
-			}
-
-			p:nth-child(2) {
-				font-size: 18px;
-				font-weight: bold;
-			}
-		}
-
-		div:nth-child(2) {}
-
-		.money_usd {
-			margin-top: 10px;
-			color: #999;
-		}
-
-		.recharge {
-			margin-top: 10px;
-
-			p {
-				padding: 5px 10px;
-				background: #3775f4;
-				margin: 0 10px 8px 0;
-				color: #FFFFFF;
-				border-radius: 8px;
-			}
-
-			p:nth-child(2) {
-				background: #FF5722;
-			}
-		}
-	}
-
-	.list {
-		margin-top: 10px;
-
-		img {
-			vertical-align: middle;
-			height: 30px;
-			width: 30px;
-			margin-right: 10px;
-		}
-	}
-
-	.logout_btn {
-		width: 80%;
-		margin: 30px 10%;
-	}
-
-	/deep/ .van-cell {
-		background: unset;
-	}
+.menu_desc {
+	margin-top: 3px;
+	font-weight: 700;
+	font-size: 10px;
+	line-height: 14px;
+	color: #7a7f93;
+	text-align: center;
+	word-break: break-word;
+}
 </style>

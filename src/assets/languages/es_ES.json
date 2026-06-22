@@ -45,7 +45,9 @@
 		"index": "Portada",
 		"invest": "Invertir",
 		"team": "Mi equipo",
-		"my": "Yo"
+		"my": "Yo",
+		"subscription": "Contract",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Tasa de interés: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "Número insuficiente de sorteos",
 		"congratulation": "Felicitaciones por obtener: ",
 		"unfortunately": "Desafortunadamente, no hay premio ganador",
-		"myPoints": "Puntos: " ,
+		"myPoints": "Puntos: ",
 		"pointsEmpty": "Falta de puntos"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "Descripción del Producto",
 		"redeemMoney": "Cantidad",
 		"redeemMoneyPlaceholder": "Ingrese el monto de la redención",
-		"redeemMoneyAva": "Cantidad disponible: " ,
+		"redeemMoneyAva": "Cantidad disponible: ",
 		"redeemRules": "Regla de redención",
 		"redeemRulesTips1": "Entregar",
 		"redeemRulesTips2": "Finalizar",

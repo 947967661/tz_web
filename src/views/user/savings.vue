@@ -92,11 +92,12 @@
 			};
 		},
 		created() {
+			window.document.title = this.$t('home.subscription');
 			if (window.plus) {
 				plus.navigator.setStatusBarBackground('#000002');
 				plus.navigator.setStatusBarStyle('light');
 			}
-			this.$parent.footer('user', false);
+			this.$parent.footer('subscription', true);
 		},
 		mounted() {
 			this.start();

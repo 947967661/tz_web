@@ -45,7 +45,9 @@
 		"index": "Beranda",
 		"invest": "Investas",
 		"team": "Tim saya",
-		"my": "Pusat Pribadi"
+		"my": "Pusat Pribadi",
+		"subscription": "Kontrak",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Suku bunga: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "Jumlah undian telah digunakan",
 		"congratulation": "Selamat atas mendapatkan: ",
 		"unfortunately": "Sayangnya, tidak ada hadiah kemenangan",
-		"myPoints": "Poin: " ,
+		"myPoints": "Poin: ",
 		"pointsEmpty": "Kurangnya poin"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "Deskripsi Produk",
 		"redeemMoney": "Jumlah Penukaran",
 		"redeemMoneyPlaceholder": "Harap masukkan jumlah penebusan",
-		"redeemMoneyAva": "Jumlah yang tersedia: " ,
+		"redeemMoneyAva": "Jumlah yang tersedia: ",
 		"redeemRules": "Aturan Penebusan",
 		"redeemRulesTips1": "Kirim",
 		"redeemRulesTips2": "Menyelesaikan",

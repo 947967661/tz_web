@@ -17,13 +17,23 @@
         </p>
       </router-link>
       <router-link
+        to="/savings"
+        class="footer_item"
+        :class="show_icon_type === 'subscription' ? 'footer_item_active' : ''"
+      >
+        <span class="footer_icon footer_icon_subscription" />
+        <p class="footer_info">
+          {{ $t('home.subscription') }}
+        </p>
+      </router-link>
+      <router-link
         to="/invest"
         class="footer_item"
-        :class="show_icon_type === 'invest' ? 'footer_item_active' : ''"
+        :class="show_icon_type === 'holdings' ? 'footer_item_active' : ''"
       >
-        <span class="footer_icon footer_icon_invest" />
+        <span class="footer_icon footer_icon_holdings" />
         <p class="footer_info">
-          {{ $t('home.invest') }}
+          {{ $t('home.holdings') }}
         </p>
       </router-link>
       <router-link
@@ -104,7 +114,6 @@
 					reload: reload
 				}, "", false).then((r) => {
 					this.setLang(r.data.language);
-					window.document.title = r.data.webname;
 					localStorage.setItem("logo", r.data.logo);
 					localStorage.setItem("logo2", r.data.logo2);
 					localStorage.setItem('currency', "");
@@ -218,7 +227,7 @@
 		flex-direction: column;
 		cursor: pointer;
 		color: #999999;
-		width: 25%;
+		width: 20%;
 	}
 
 	#app .footer .footer_item .footer_icon {
@@ -235,8 +244,12 @@
 		background-image: url(./views/img/home/home.png);
 	}
 
-	#app .footer .footer_item .footer_icon.footer_icon_invest {
-		background-image: url(./views/img/home/invest.png);
+	#app .footer .footer_item .footer_icon.footer_icon_subscription {
+		background-image: url(./views/img/home/subscription.png);
+	}
+
+	#app .footer .footer_item .footer_icon.footer_icon_holdings {
+		background-image: url(./views/img/home/holdings.png);
 	}
 
 	#app .footer .footer_item .footer_icon.footer_icon_team {
@@ -259,8 +272,12 @@
 		background-image: url(./views/img/home/home_cur.png);
 	}
 
-	#app .footer .footer_item.footer_item_active .footer_icon.footer_icon_invest {
-		background-image: url(./views/img/home/invest_cur.png);
+	#app .footer .footer_item.footer_item_active .footer_icon.footer_icon_subscription {
+		background-image: url(./views/img/home/subscription_cur.png);
+	}
+
+	#app .footer .footer_item.footer_item_active .footer_icon.footer_icon_holdings {
+		background-image: url(./views/img/home/holdings_cur.png);
 	}
 
 	#app .footer .footer_item.footer_item_active .footer_icon.footer_icon_team {

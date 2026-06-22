@@ -103,11 +103,12 @@
 		// 	document.querySelector('body').style["overflow-y"] = "scroll";
 		// },
 		created() {
+			window.document.title = 'Token';
 			if (window.plus) {
 				plus.navigator.setStatusBarBackground('#FAFAFA');
 				plus.navigator.setStatusBarStyle('dark');
 			}
-			this.$parent.footer('invest', true);
+			this.$parent.footer('holdings', true);
 		},
 		mounted() {
 			if (this.$router.history.current.query.type) {

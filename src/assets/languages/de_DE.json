@@ -45,7 +45,9 @@
 		"index": "Startseite",
 		"invest": "Investieren",
 		"team": "Team",
-		"my": "Mein Profil"
+		"my": "Mein Profil",
+		"subscription": "Contract",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Zinsrate: ",

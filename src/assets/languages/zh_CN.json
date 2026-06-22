@@ -45,7 +45,9 @@
 		"index": "首页",
 		"invest": "投资",
 		"team": "我的团队",
-		"my": "个人中心"
+		"my": "个人中心",
+		"subscription": "合同",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "利率：",

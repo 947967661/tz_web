@@ -235,6 +235,7 @@
 			};
 		},
 		created() {
+			window.document.title = this.$t('home.my');
 			if (window.plus) {
 				plus.navigator.setStatusBarBackground('#051C3F');
 				plus.navigator.setStatusBarStyle('light');

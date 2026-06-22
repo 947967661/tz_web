@@ -45,7 +45,9 @@
 		"index": "Ana sayfa",
 		"invest": "Yatırım",
 		"team": "Takımım",
-		"my": "Hesap"
+		"my": "Hesap",
+		"subscription": "Contract",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Faiz oranı: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "Çekme sayısı tükendi",
 		"congratulation": "Alındığınız için tebrikler: ",
 		"unfortunately": "Ne yazık ki, kazanan bir ödül yok",
-		"myPoints": "Puan: " ,
+		"myPoints": "Puan: ",
 		"pointsEmpty": "Puan eksikliği"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "Ürün Açıklaması",
 		"redeemMoney": "Miktar",
 		"redeemMoneyPlaceholder": "Lütfen miktarı girin",
-		"redeemMoneyAva": "Mevcut miktar: " ,
+		"redeemMoneyAva": "Mevcut miktar: ",
 		"redeemRules": "Kural",
 		"redeemRulesTips1": "Göndermek",
 		"redeemRulesTips2": "Bitiş",

@@ -45,7 +45,9 @@
 		"index": "โฮมเพจ",
 		"invest": "ลงทุน",
 		"team": "ทีมของฉัน",
-		"my": "บัญชี"
+		"my": "บัญชี",
+		"subscription": "Contract",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "อัตราดอกเบี้ย: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "จำนวนการจับฉลากถูกใช้ไปแล้ว",
 		"congratulation": "ขอแสดงความยินดีกับการรับ: ",
 		"unfortunately": "น่าเสียดายที่ไม่มีรางวัลชนะเลิศ",
-		"myPoints": "คะแนน: " ,
+		"myPoints": "คะแนน: ",
 		"pointsEmpty": "ขาดคะแนน"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "คำอธิบายผลิตภัณฑ์",
 		"redeemMoney": "ไถ่ถอนจำนวนเงิน",
 		"redeemMoneyPlaceholder": "โปรดป้อนจำนวนเงิน",
-		"redeemMoneyAva": "จำนวนเงินที่มีอยู่: " ,
+		"redeemMoneyAva": "จำนวนเงินที่มีอยู่: ",
 		"redeemRules": "กฎการไถ่ถอน",
 		"redeemRulesTips1": "ไถ่ถอน",
 		"redeemRulesTips2": "ไปที่บัญชีทันที",

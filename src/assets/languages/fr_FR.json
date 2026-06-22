@@ -45,7 +45,9 @@
 		"index": "Page d'accueil",
 		"invest": "Investir",
 		"team": "Équipe",
-		"my": "Mon profil"
+		"my": "Mon profil",
+		"subscription": "Contract",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Taux d'intérêt: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "Le nombre de tombola a été utilisé",
 		"congratulation": "Félicitations pour avoir obtenu: ",
 		"unfortunately": "Malheureusement, il n'y a pas de prix gagnant",
-		"myPoints": "Points: " ,
+		"myPoints": "Points: ",
 		"pointsEmpty": "Manque de points"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "Description du produit",
 		"redeemMoney": "Montant",
 		"redeemMoneyPlaceholder": "Veuillez saisir le montant de la rédemption",
-		"redeemMoneyAva": "Montant disponible: " ,
+		"redeemMoneyAva": "Montant disponible: ",
 		"redeemRules": "Règle de rachat",
 		"redeemRulesTips1": "Racheter",
 		"redeemRulesTips2": "Finir",

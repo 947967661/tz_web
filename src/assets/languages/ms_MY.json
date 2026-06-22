@@ -45,7 +45,9 @@
 		"index": "Laman Utama",
 		"invest": "Melabur",
 		"team": "Pasukan saya",
-		"my": "Akaun"
+		"my": "Akaun",
+		"subscription": "Contract",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Kadar faedah: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "Bilangan cabutan telah digunakan",
 		"congratulation": "Tahniah untuk mendapatkan: ",
 		"unfortunately": "Malangnya, tidak ada hadiah yang menang",
-		"myPoints": "Mata: " ,
+		"myPoints": "Mata: ",
 		"pointsEmpty": "Kekurangan mata"
 	},
 	"savings": {
@@ -321,7 +323,7 @@
 		"introduce": "Penerangan Produk",
 		"redeemMoney": "Jumlah",
 		"redeemMoneyPlaceholder": "Sila masukkan jumlahnya",
-		"redeemMoneyAva": "Jumlah yang ada: " ,
+		"redeemMoneyAva": "Jumlah yang ada: ",
 		"redeemRules": "Peraturan penebusan",
 		"redeemRulesTips1": "Menebus",
 		"redeemRulesTips2": "Pergi ke akaun dengan segera",

@@ -45,7 +45,9 @@
 		"index": "Home",
 		"invest": "Invest",
 		"team": "Team",
-		"my": "Account"
+		"my": "Account",
+		"subscription": "Contract",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "Interest rate: ",
@@ -307,7 +309,7 @@
 		"drawNumEmpty": "Insufficient number of draws",
 		"congratulation": "Congratulations to you to get: ",
 		"unfortunately": "Unfortunately, there is no winning prize",
-		"myPoints": "Puntos: " ,
+		"myPoints": "Puntos: ",
 		"pointsEmpty": "Falta de puntos"
 	},
 	"savings": {

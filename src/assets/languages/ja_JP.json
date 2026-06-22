@@ -45,7 +45,9 @@
 		"index": "ホームページ",
 		"invest": "投資",
 		"team": "私のチーム",
-		"my": "個人センター"
+		"my": "個人センター",
+		"subscription": "Contract",
+		"holdings": "Token"
 	},
 	"index": {
 		"rate": "金利：",

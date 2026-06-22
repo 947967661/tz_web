@@ -1,174 +1,172 @@
 <template>
-  <div class="basic_wrap">
-    <div class="block_div top_header">
-      <div class="flex_center user_detail_wrap">
-        <div class="user_detail">
-          <div class="user_header">
-            <img
-              :src="user_info.user_icon"
-              alt=""
-            >
-          </div>
-          <div class="user_name">
-            <div class="user_all">
-              <p class="user_nickname">
-                {{ user_info.username }}
-              </p>
-            </div>
-          </div>
+  <div class="page">
+    <!-- Stats Grid -->
+    <div class="stats_grid">
+      <div
+        v-for="t in statsCards"
+        :key="t.key"
+        class="stats_item"
+      >
+        <div class="stats_label">
+          {{ t.label }}
         </div>
-        <div class="invite_code">
-          <p class="invite_tips">
-            {{ $t('user.invite_code') }}
-          </p>
+        <div class="stats_value item_column">
+          <div class="item_amount">
+            {{ t.value }}
+          </div>
           <div
-            v-clipboard="()=>user_info.invite_code"
-            v-clipboard:success="copy"
-            class="flex_center copy"
+            v-if="t.key !== 'teamSize'"
+            class="item_unit"
           >
-            <p>{{ user_info.invite_code }}</p>
-            <img
-              class="copy_img"
-              src="../img/user/copy.png"
-            >
+            {{ platformMoneySymbol }}
           </div>
-        </div>
-      </div>
-      <!-- <div class="flex_center invite_link_wrap"  v-clipboard="()=>user_info.share_link" v-clipboard:success="copy">
-				<div class="invite_link" >
-					<span>{{$t('team.inviteLink')}}</span>
-					<span class="link">{{user_info.share_link}}</span>
-				</div>
-				<img class="copy_img" src="../img/user/copy.png">
-			</div> -->
-      <div class="user_earing">
-        <div class="flex_center today_earing">
-          <div class="total_earing">
-            <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(report.income) }}</p>
-            <p>{{ $t('team.totalRevenue') }}</p>
-          </div>
-          <div class="today">
-            <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(report.income_to) }}</p>
-            <p>{{ $t('team.today') }}</p>
-          </div>
-          <div class="yesterday">
-            <p>{{ common.currency_symbol_basic() }}{{ common.precision_basic(report.income_ye) }}</p>
-            <p>{{ $t('team.yesterday') }}</p>
+          <div
+            v-else
+            class="item_unit"
+          >
+            {{ $t('team.people') }}
           </div>
         </div>
       </div>
     </div>
-    <div class="block_div my_team_wrap">
-      <div class="flex_center team_detail">
-        <div>
-          <p>{{ report.add_count }}</p>
-          <p>{{ $t('team.total') }}({{ $t('team.people') }})</p>
+
+    <!-- Invitation Link Card -->
+    <div class="amount_card invite_card">
+      <div class="item invite_item">
+        <div class="title">
+          {{ translate('team.inviteLabel', '邀请链接', 'Invitation Link') }}
         </div>
-        <div>
-          <p>{{ report.add_count_to }}</p>
-          <p>{{ $t('team.today') }}({{ $t('team.people') }})</p>
+        <div class="invite_content">
+          <span class="invite_link">{{ user_info.share_link || "-" }}</span>
+          <img
+            v-clipboard="() => user_info.share_link"
+            v-clipboard:success="copy"
+            class="copy_button"
+            src="/static/images/web3/icon-copy.png"
+            alt="copy"
+          >
         </div>
       </div>
     </div>
-    <div class="block_div team_list_wrap">
-      <div class="team_list_title">
-        {{ $t('team.teamList') }}
-      </div>
-      <div class="list_item">
-        <van-list
-          v-model="loading"
-          offset="0"
-          :finished="finished"
-          @load="onLoad"
+
+    <!-- Leaderboard / Sub-users List Card -->
+    <div class="card_container">
+      <div class="leaderboard">
+        <!-- Level Tabs -->
+        <div class="level_tabs">
+          <div
+            class="level_tab"
+            :class="{ active: 1 === subLevel }"
+            @click="changeSubLevel(1)"
+          >
+            {{ translate('team.level1', '一级下线', 'Level 1') }}
+          </div>
+          <div
+            class="level_tab"
+            :class="{ active: 2 === subLevel }"
+            @click="changeSubLevel(2)"
+          >
+            {{ translate('team.level2', '二级下线', 'Level 2') }}
+          </div>
+          <div
+            class="level_tab"
+            :class="{ active: 3 === subLevel }"
+            @click="changeSubLevel(3)"
+          >
+            {{ translate('team.level3', '三级下线', 'Level 3') }}
+          </div>
+        </div>
+
+        <!-- Leaderboard Header -->
+        <div class="leaderboard_header">
+          <div class="header_item1">
+            {{ translate('team.registeredAccount', '注册账户', 'Registered Account') }}
+          </div>
+          <div class="header_item">
+            {{ translate('team.rechargeAmount', '投资金额', 'Investment Amount') }}
+          </div>
+          <div class="header_item">
+            {{ translate('team.selfInvestmentProfit', '投入收益总计', 'Self Investment Profit') }}
+          </div>
+        </div>
+
+        <!-- Leaderboard List -->
+        <div
+          v-if="subUsers.length"
+          class="leaderboard_list"
         >
           <div
-            v-for="(item,index) in list"
-            class="item"
+            v-for="item in subUsers"
+            :key="item.id"
+            class="leaderboard_item"
           >
-            <div class="flex_center">
-              <p>{{ item.act_time }}</p>
-              <p
-                v-if="item.level==1"
-                class="color_red"
-              >
-                {{ $t('team.direct') }}
-              </p>
-              <p v-if="item.level!=1">
-                {{ $t('team.indirect') }}
-              </p>
-            </div>
-            <div class="flex_center">
-              <p>{{ item.username }}</p>
-              <p>{{ common.currency_symbol_basic()+common.precision_basic(item.recharge_sum) }}</p>
-            </div>
-            <div class="flex_center">
-              <p>{{ $t('team.username') }}</p>
-              <p>{{ $t('team.totalRecharge') }}</p>
-            </div>
-          </div>
-        </van-list>
-        <van-empty
-          v-if="empty"
-          :description="$t('utils.noData')"
-        />
-      </div>
-    </div>
-    <van-popup
-      v-model:show="show_share"
-      position="bottom"
-      closeable
-      close-icon-position="top-left"
-    >
-      <div class="share_wrap">
-        <div class="share">
-          <div class="invite_friend">
-            <p />
-          </div>
-          <div class="share_code">
-            <img :src="user_info.share_code">
-          </div>
-          <div class="invite_code flex_center">
-            <p>{{ $t('user.invite_code') }}:</p>
-            <p
-              v-clipboard="()=>user_info.invite_code"
-              v-clipboard:success="copy"
-              class="code_link"
-            >
-              {{ user_info.invite_code }}
-              <img
-                class="copy_img"
-                src="../img/user/copy.png"
-              >
-            </p>
-          </div>
-          <div class="invite_code flex_center">
-            <p>{{ $t('team.inviteLink') }}</p>
-            <div class="flex_center invite_link">
-              <p
-                v-clipboard="()=>user_info.share_link"
-                v-clipboard:success="copy"
-                class="code_link"
-              >
-                {{ user_info.share_link }}
-              </p>
-              <img
-                class="copy_img"
-                src="../img/user/copy.png"
-              >
+            <div class="item-main">
+              <div class="item1">
+                {{ item.username }}
+              </div>
+              <div class="item item_column">
+                <div class="item_amount">
+                  {{ common.precision_basic(item.recharge_sum) }}
+                </div>
+                <div class="item_unit">
+                  {{ platformMoneySymbol }}
+                </div>
+              </div>
+              <div class="item item_column">
+                <div class="item_amount">
+                  0.00
+                </div>
+                <div class="item_unit">
+                  {{ platformMoneySymbol }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div
+          v-else
+          class="leaderboard_list"
+        >
+          <van-empty :description="$t('utils.noData')" />
+        </div>
+
+        <!-- Pagination -->
+        <div
+          v-if="totalPages > 1"
+          class="pagination"
+        >
+          <div
+            class="page-button"
+            :class="{disabled: 1 === currentPage}"
+            @click="handlePageChange(currentPage - 1)"
+          >
+            <img
+              class="icon-arrow icon-arrow-left"
+              src="/static/images/web3/icon-arrow.png"
+              alt="Previous"
+            >
+          </div>
+          <div
+            v-for="page in visiblePages"
+            :key="page"
+            :class="['page-item', {active: page === currentPage}]"
+            @click="handlePageChange(page)"
+          >
+            {{ page }}
+          </div>
+          <div
+            class="page-button"
+            :class="{disabled: currentPage === totalPages}"
+            @click="handlePageChange(currentPage + 1)"
+          >
+            <img
+              class="icon-arrow icon-arrow-right"
+              src="/static/images/web3/icon-arrow.png"
+              alt="Next"
+            >
+          </div>
+        </div>
       </div>
-    </van-popup>
-    <!-- 客服图标 -->
-    <div
-      class="kefu share_btn"
-      @click="show_share = true;"
-    >
-      <img
-        class="kefu_img"
-        src="../img/user/share.png"
-      >
     </div>
   </div>
 </template>
@@ -179,17 +177,17 @@
 	import Clipboard from "v-clipboard";
 	import {
 		Icon,
-		List,
 		Empty,
 		Popup
 	} from "vant";
 
-	Vue.use(Icon).use(Clipboard).use(List).use(Empty).use(Popup);
+	Vue.use(Icon).use(Clipboard).use(Empty).use(Popup);
+
 	export default {
 		name: "Team",
 		data() {
 			return {
-				user_info: [],
+				user_info: {},
 				report: {
 					"direct_count": 0,
 					"indirect_count": 0,
@@ -200,20 +198,63 @@
 					"add_count_to": 0,
 					"add_count_ye": 0
 				},
-				show_share: false,
-				empty: false,
-				loading: false,
-				finished: false,
-				list: [],
-				page: 1,
-				listRows: 8
+				subLevel: 1,
+				currentPage: 1,
+				pageSize: 10,
+				totalPages: 1,
+				allList: [],
+				allListLoaded: false,
+				subUsers: [],
+				pageLoading: true
 			};
+		},
+		computed: {
+			statsCards() {
+				return [
+					{
+						key: "totalRevenue",
+						label: this.$t('team.totalRevenue'),
+						value: this.common.precision_basic(this.report.income)
+					},
+					{
+						key: "revenueToday",
+						label: this.$t('team.revenueToday'),
+						value: this.common.precision_basic(this.report.income_to)
+					},
+					{
+						key: "yesterday",
+						label: this.$t('team.yesterday'),
+						value: this.common.precision_basic(this.report.income_ye)
+					},
+					{
+						key: "teamSize",
+						label: this.$t('team.teamSize'),
+						value: this.report.add_count
+					}
+				];
+			},
+			platformMoneySymbol() {
+				return this.common.currency_symbol_basic();
+			},
+			visiblePages() {
+				const size = 5;
+				let start = Math.max(1, this.currentPage - Math.floor(size / 2));
+				let end = Math.min(this.totalPages, start + size - 1);
+				if (end - start + 1 < size) {
+					start = Math.max(1, end - size + 1);
+				}
+				const pages = [];
+				for (let i = start; i <= end; i++) {
+					pages.push(i);
+				}
+				return pages;
+			}
 		},
 		created() {
 			window.document.title = this.$t('home.team');
 			if (window.plus) {
-				plus.navigator.setStatusBarBackground('#0F6EFF');
-				plus.navigator.setStatusBarStyle('light');
+				window.plus.navigator.setStatusBarBackground('#faf7ff');
+				window.plus.navigator.setStatusBarStyle('dark');
 			}
 			this.$parent.footer('team');
 		},
@@ -221,397 +262,342 @@
 			this.start();
 		},
 		methods: {
+			translate(key, defaultZh, defaultEn) {
+				const lang = this.$i18n.locale;
+				if (lang === 'zh_CN' || lang === 'zh_HK') {
+					return defaultZh;
+				}
+				const val = this.$t(key);
+				if (val && val !== key) {
+					return val;
+				}
+				return defaultEn || defaultZh;
+			},
 			copy() {
 				this.$toast(this.$t('recharge.copySuccess'));
 			},
-			start() {
-				Fetch('/user/myTeam').then((r) => {
-					this.user_info = r.data.user_info;
-					this.report = r.data.report;
-					this.rate = 100;
-				});
+			async start() {
+				this.pageLoading = true;
+				try {
+					const r = await Fetch('/user/myTeam');
+					this.user_info = r.data.user_info || {};
+					this.report = r.data.report || {};
+					await this.getSubUsers();
+				} catch (e) {
+					console.error(e);
+				} finally {
+					this.pageLoading = false;
+				}
 			},
-			onLoad() {
-				Fetch('/user/teamList', {
-					page: this.page,
-					listRows: this.listRows
-				}).then(r => {
-					if (r.data.length == 0) this.empty = true;
-					var list = r.data.list;
-					for (var i = 0; i < list.length; i++) {
-						this.list.push(list[i]);
-					}
-					if (this.list.length >= r.data.length) {
-						this.finished = true;
-						return;
-					}
-					this.page = this.page + 1;
-					this.loading = false;
+			async getSubUsers() {
+				if (this.allListLoaded) {
+					this.updateCurrentPageList();
+					return;
+				}
+				try {
+					const r = await Fetch('/user/teamList', {
+						page: 1,
+						listRows: 1000
+					});
+					this.allList = r.data.list || [];
+					this.allListLoaded = true;
+					this.updateCurrentPageList();
+				} catch (e) {
+					console.error(e);
+				}
+			},
+			updateCurrentPageList() {
+				const filtered = this.allList.filter(item => {
+					if (this.subLevel === 1) return item.level === 1;
+					if (this.subLevel === 2) return item.level === 2;
+					return item.level >= 3;
 				});
+
+				this.totalPages = Math.ceil(filtered.length / this.pageSize) || 1;
+				if (this.currentPage > this.totalPages) {
+					this.currentPage = this.totalPages;
+				}
+
+				const start = (this.currentPage - 1) * this.pageSize;
+				const end = start + this.pageSize;
+				this.subUsers = filtered.slice(start, end);
+			},
+			changeSubLevel(level) {
+				if (this.subLevel !== level) {
+					this.subLevel = level;
+					this.currentPage = 1;
+					this.updateCurrentPageList();
+				}
+			},
+			handlePageChange(page) {
+				if (page >= 1 && page <= this.totalPages) {
+					this.currentPage = page;
+					this.updateCurrentPageList();
+				}
 			}
 		}
 	};
 </script>
 
 <style lang="less" scoped>
-	.basic_wrap {
-		margin-bottom: 60px;
-	}
+.page {
+	min-height: 100vh;
+	background: #faf7ff;
+	padding: 20px 0 80px;
+	box-sizing: border-box;
+}
 
+.amount_card {
+	display: flex;
+	width: 335px;
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid #fff;
+	box-shadow: 0 9px 21px rgba(70, 74, 135, 0.08);
+	border-radius: 20px;
+	margin: 15px auto 0;
+}
 
-	.top_header {
-		justify-content: space-between;
-		margin-bottom: 10px;
-		background: #0F6EFF;
-		width: 100%;
-		margin: 0;
-		border-radius: 0;
-		color: #FFFFFF;
-		height: 240px;
-		.user_detail_wrap{
-			position: fixed;
-			    background: #0F6EFF;
-			    width: 100%;
-			    z-index: 10;
-		}
+.invite_card {
+	min-height: 90px;
+	padding: 12px 15px;
+	box-sizing: border-box;
+}
 
-		.user_detail {
-			// width: 100%;
-			padding: 28px 15px 15px 20px;
-			top: 34px;
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
+.stats_grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	width: 335px;
+	margin: 15px auto 0;
+}
 
-			.user_header {
-				width: 60px;
-				height: 60px;
-				overflow: hidden;
-				border-radius: 50%;
-				border: 3px solid rgba(255, 255, 255, 0.3);
+.stats_item {
+	min-height: 84px;
+	padding: 12px;
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid #fff;
+	border-radius: 16px;
+	box-shadow: 0 9px 21px rgba(70, 74, 135, 0.08);
+	box-sizing: border-box;
+}
 
-				img {
-					width: 100%;
-					height: 100%;
-				}
-			}
+.stats_label {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 20px;
+	color: #64676e;
+}
 
-			.user_name {
-				margin-left: 3px;
-				margin-top: 3px;
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-start;
+.stats_value {
+	margin-top: 9px;
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 25px;
+	color: #00001c;
+	word-break: break-all;
+}
 
-				.user_all {
-					// display: flex;
-					// justify-content: flex-start;
-					// align-items: center;
+.invite_item {
+	width: 100%;
+}
 
-					.user_nickname {
-						line-height: 21px;
-						font-size: 18px;
-						font-weight: bold;
-						margin-top: 2px;
-					}
+.title {
+	font-family: PingFang SC;
+	font-weight: 700;
+	font-size: 16px;
+	color: #64676e;
+	line-height: 22px;
+}
 
-					img {
-						width: 22px;
-						border-radius: 50%;
-						margin-right: 3px;
-					}
+.invite_content {
+	display: flex;
+	align-items: flex-start;
+	gap: 6px;
+	margin-top: 8px;
+}
 
-					.auth {
-						justify-content: unset;
-						margin-top: 3px;
-					}
+.invite_link {
+	flex: 1;
+	font-size: 12px;
+	color: #00001c;
+	word-break: break-all;
+	line-height: 1.6;
+}
 
-					.active {
-						border: 2px solid #FFEB3B;
-					}
-				}
-			}
-		}
+.copy_button {
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
+	cursor: pointer;
+}
 
-		.invite_code {
-			margin-right: 30px;
-			text-align: center;
+.card_container {
+	box-sizing: border-box;
+	width: 335px;
+	background: rgba(255, 255, 255, 0.84);
+	border-radius: 20px;
+	border: 1px solid #fff;
+	padding: 13px 12px 15px;
+	margin: 21px auto 0;
+	backdrop-filter: blur(4px);
+}
 
-			.invite_tips {
-				margin-bottom: 10px;
-			}
+.level_tabs {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 6px;
+	margin-bottom: 12px;
+	padding: 4px;
+	border-radius: 12px;
+	background: #f4f0ff;
+}
 
-			.copy {
-				justify-content: space-between;
-				font-size: 16px;
-				font-weight: bold;
+.level_tab {
+	min-height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 4px;
+	border-radius: 9px;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 17px;
+	color: #64676e;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
 
-				.copy_img {
-					width: 14px;
-					height: 14px;
-					margin-left: 2px;
-				}
-			}
+.level_tab.active {
+	color: #fff;
+	background: linear-gradient(135deg, #8b5cf6, #6d5dfc);
+	box-shadow: 0 5px 11px rgba(109, 93, 252, 0.22);
+}
 
-		}
-		.invite_link_wrap{
-			top: 105px;
-			margin: 0 10%;
-			position: relative;
-			.invite_link{
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				font-size: 14px;
-				font-weight: bold;
-				.link{
-					font-weight: 100;
-				}
-			}
-			.copy_img {
-				justify-content: space-between;
-				width: 14px;
-				height: 14px;
-				margin-left: 2px;
-			}
-		}
-		
+.leaderboard_header {
+	display: grid;
+	grid-template-columns: 110px minmax(0, 1fr) minmax(0, 1fr);
+	column-gap: 8px;
+	align-items: center;
+	width: 100%;
+	font-weight: 700;
+	font-size: 14px;
+	color: #64676e;
+}
 
-		.user_earing {
-			padding-bottom: 15px;
-			text-align: center;
-			position: relative;
-			top: 115px;
+.header_item1 {
+	text-align: left;
+}
 
-			.today_earing {
-				justify-content: space-around;
+.header_item {
+	text-align: center;
+	font-size: 12px;
+}
 
-				.total_earing {
-					p:nth-child(1) {
-						font-size: 16px;
-						font-weight: bold;
-						margin-bottom: 8px;
-						margin-top: 5px;
-					}
+.leaderboard_list {
+	margin-top: 9px;
+}
 
-					p:nth-child(2) {
-						// color: #999;
-					}
-				}
+.leaderboard_item {
+	margin-bottom: 8px;
+	border: 1px solid #edf0ff;
+	border-radius: 12px;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0 6px 15px rgba(70, 74, 135, 0.08);
+}
 
-				.today {
-					p:nth-child(1) {
-						font-size: 16px;
-						font-weight: bold;
-						margin-bottom: 8px;
-						margin-top: 5px;
-					}
+.item-main {
+	display: grid;
+	grid-template-columns: 110px minmax(0, 1fr) minmax(0, 1fr);
+	column-gap: 8px;
+	align-items: center;
+	padding: 11px 12px;
+	background-color: #fff;
+	box-sizing: border-box;
+}
 
-					p:nth-child(2) {
-						// color: #999;
-					}
-				}
+.item1 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 12px;
+	color: #1f2437;
+}
 
-				.yesterday {
-					p:nth-child(1) {
-						font-size: 16px;
-						font-weight: bold;
-						margin-bottom: 8px;
-						margin-top: 5px;
-					}
+.item {
+	flex: 1;
+	text-align: center;
+	font-size: 12px;
+	color: #444b66;
+}
 
-					p:nth-child(2) {
-						// color: #999;
-					}
-				}
-			}
-		}
-	}
+.item_column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
 
-	.my_team_wrap {
-		margin-top: -50px;
-		padding: 20px;
-		margin-bottom: 10px;
+.item_amount {
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 22px;
+	color: #00001c;
+	word-break: break-all;
+}
 
-		.team_detail {
-			justify-content: space-around;
-			padding: 10px 0;
+.item_unit {
+	margin-top: 2px;
+	font-weight: 700;
+	font-size: 10px;
+	line-height: 14px;
+	color: #64676e;
+}
 
-			div {
-				text-align: center;
+/* Pagination styles */
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+}
 
-				p:nth-child(1) {
-					font-size: 16px;
-					font-weight: bold;
-					margin-bottom: 15px;
+.page-item {
+	padding: 5px 10px;
+	margin: 0 3px;
+	border: 1px solid #ccc;
+	border-radius: 2.5px;
+	font-size: 12px;
+	cursor: pointer;
+}
 
-				}
+.page-item.active {
+	background-color: #767dff;
+	color: #fff;
+	border-color: #767dff;
+}
 
-				p:nth-child(2) {
-					// color: #999;
-				}
-			}
-		}
+.page-button {
+	padding: 5px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
 
-	}
+.page-button.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
 
-	.report_wrap {
-		margin-bottom: 20px;
+.icon-arrow {
+	width: 10px;
+	height: 15px;
+}
 
-		.report_item {
-			margin-bottom: 10px;
-			padding: 20px;
-		}
-
-		.title {
-			padding: 0 0 15px 0px;
-			font-size: 16px;
-			border-bottom: 1px solid #F7F7F7;
-		}
-
-		.report_detail {
-			justify-content: space-around;
-			padding: 10px 0;
-
-
-			div {
-				text-align: center;
-
-				p:nth-child(1) {
-					font-size: 16px;
-					font-weight: bold;
-					margin-bottom: 15px;
-					margin-top: 5px;
-					color: #3CB371;
-				}
-
-				p:nth-child(2) {
-					// color: #999;
-				}
-			}
-		}
-
-	}
-	.team_list_wrap{
-		background: unset;
-		box-shadow: unset;
-		.team_list_title{
-			padding: 15px 0 10px 3%;
-			font-size: 16px;
-		}
-		.list_item {
-		
-			.item {
-				box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05);
-				padding: 20px;
-				background: #FFFFFF;
-				margin-bottom: 10px;
-		
-				div:nth-child(1) {
-					margin-bottom: 20px;
-					justify-content: space-between;
-					border-bottom: 1px solid #ECECEC;
-					padding-bottom: 15px;
-					color: #999;
-		
-					p:nth-child(1) {
-						text-align: left;
-					}
-		
-					p:nth-child(2) {
-						text-align: right;
-					}
-				}
-		
-				div:nth-child(2) {
-					justify-content: space-between;
-					margin-bottom: 10px;
-					font-size: 14px;
-		
-					p:nth-child(1) {
-						text-align: left;
-						
-					}
-		
-					p:nth-child(2) {
-						text-align: right;
-					}
-				}
-		
-				div:nth-child(3) {
-					justify-content: space-between;
-					color: #999;
-		
-					p:nth-child(1) {
-						
-						text-align: right;
-						
-					}
-		
-					p:nth-child(2) {
-						text-align: left;
-						
-					}
-				}
-		
-			}
-		
-		}
-	}
-
-	.share_wrap {
-		text-align: center;
-
-		.share {
-			margin-top: 6%;
-		}
-
-		.invite_code {
-			margin: 10px 20px 20px 20px;
-			justify-content: space-between;
-
-			.code_link {
-				color: #FF0000;
-				font-weight: bold;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
-
-			.invite_link {
-				max-width: 50%;
-			}
-
-			img {
-				width: 16px;
-				height: 16px;
-			}
-		}
-
-		.invite_friend {
-			padding: 10px;
-			font-size: 16px;
-			font-weight: bold;
-		}
-
-		.share_code {
-			margin-bottom: 20px;
-		}
-
-		img {
-			max-width: 60%;
-		}
-	}
-	.share_btn{
-		width: 50px;
-		height: 50px;
-		bottom: 73px;
-	}
-
-	.color999 {
-		color: #999;
-		font-size: 12px;
-		margin-left: 5px;
-	}
+.icon-arrow-left {
+	transform: rotate(180deg);
+}
 </style>

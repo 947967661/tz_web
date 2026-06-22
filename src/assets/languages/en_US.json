@@ -158,7 +158,14 @@
 		"teamList": "User list",
 		"username": "Username",
 		"totalRecharge": "Total recharge",
-		"inviteLink": "Invite link: "
+		"inviteLink": "Invite link: ",
+		"inviteLabel": "Invitation Link",
+		"level1": "Level 1",
+		"level2": "Level 2",
+		"level3": "Level 3",
+		"registeredAccount": "Registered Account",
+		"rechargeAmount": "Investment Amount",
+		"selfInvestmentProfit": "Self Investment Profit"
 	},
 	"auth": {
 		"authCenter": "Certification Center",

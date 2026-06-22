@@ -158,7 +158,14 @@
 		"teamList": "团队列表",
 		"username": "用户名",
 		"totalRecharge": "累积充值",
-		"inviteLink": "邀请链接："
+		"inviteLink": "邀请链接：",
+		"inviteLabel": "邀请链接",
+		"level1": "一级下线",
+		"level2": "二级下线",
+		"level3": "三级下线",
+		"registeredAccount": "注册账户",
+		"rechargeAmount": "投资金额",
+		"selfInvestmentProfit": "投入收益总计"
 	},
 	"auth": {
 		"authCenter": "认证中心",

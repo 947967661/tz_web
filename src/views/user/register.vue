@@ -21,13 +21,32 @@
       class="form_div"
     >
       <form class="form">
-        <div class="item">
-          <van-dropdown-menu :overlay="false">
-            <van-dropdown-item
-              v-model="value"
-              :options="country_code"
-            />
-          </van-dropdown-menu>
+        <div
+          class="item"
+          style="z-index: 10;"
+        >
+          <div class="phone-prefix-wrap">
+            <div
+              class="phone-prefix-trigger"
+              @click.stop="togglePrefixList"
+            >
+              <span class="phone-prefix-text">{{ selectedCountryCode || '+' }}</span>
+              <span class="phone-prefix-arrow">▾</span>
+            </div>
+            <div
+              v-show="showPrefixList"
+              class="phone-prefix-list"
+            >
+              <div
+                v-for="item in country_code"
+                :key="item.value"
+                class="phone-prefix-item"
+                @click.stop="selectPhonePrefix(item)"
+              >
+                {{ item.text }}
+              </div>
+            </div>
+          </div>
           <input
             v-model.trim="data.username"
             type="text"
@@ -93,13 +112,32 @@
       class="form_div"
     >
       <form class="form">
-        <div class="item">
-          <van-dropdown-menu :overlay="false">
-            <van-dropdown-item
-              v-model="value"
-              :options="country_code"
-            />
-          </van-dropdown-menu>
+        <div
+          class="item"
+          style="z-index: 10;"
+        >
+          <div class="phone-prefix-wrap">
+            <div
+              class="phone-prefix-trigger"
+              @click.stop="togglePrefixList"
+            >
+              <span class="phone-prefix-text">{{ selectedCountryCode || '+' }}</span>
+              <span class="phone-prefix-arrow">▾</span>
+            </div>
+            <div
+              v-show="showPrefixList"
+              class="phone-prefix-list"
+            >
+              <div
+                v-for="item in country_code"
+                :key="item.value"
+                class="phone-prefix-item"
+                @click.stop="selectPhonePrefix(item)"
+              >
+                {{ item.text }}
+              </div>
+            </div>
+          </div>
           <input
             v-model.trim="data.phone"
             type="number"
@@ -242,6 +280,7 @@
 				lang: this.$i18n.locale || "en_us",
 				language_logo: localStorage.getItem('language_logo'),
 				show_kefu: false,
+				showPrefixList: false,
 				password: "password",
 				loading: false,
 				data: {
@@ -301,6 +340,10 @@
 					if (ev.target.className != "kefu_img") {
 						that.show_kefu = false;
 					}
+					// 点击外部关闭前缀下拉
+					if (!ev.target.closest || !ev.target.closest('.phone-prefix-wrap')) {
+						that.showPrefixList = false;
+					}
 				},
 				false
 			);
@@ -314,6 +357,13 @@
 				Fetch("/index/getWebInfo").then((r) => {
 					this.config = r.data;
 				});
+			},
+			togglePrefixList() {
+				this.showPrefixList = !this.showPrefixList;
+			},
+			selectPhonePrefix(item) {
+				this.value = item.value;
+				this.showPrefixList = false;
 			},
 			getLanguages() {
 				Fetch('/index/getLanguages').then((r) => {
@@ -616,8 +666,56 @@
 		margin-right: 10px;
 	}
 
-	/deep/ .van-popup--top {
-		left: 5%;
-		width: 30%;
+	/deep/ .van-dropdown-menu__bar {
+		background-color: unset;
+		box-shadow: unset;
+		height: 50px;
+		margin-right: 10px;
+	}
+
+	/* 自定义手机前缀下拉 */
+	.phone-prefix-wrap {
+		position: relative;
+		flex-shrink: 0;
+	}
+	.phone-prefix-trigger {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		height: 50px;
+		padding: 0 10px 0 0;
+		cursor: pointer;
+		color: #68326C;
+		font-weight: 700;
+		font-size: 15px;
+		white-space: nowrap;
+		user-select: none;
+	}
+	.phone-prefix-arrow {
+		font-size: 11px;
+		color: #aaa;
+		margin-top: 1px;
+	}
+	.phone-prefix-list {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 110px;
+		max-height: 220px;
+		overflow-y: auto;
+		background: #fff;
+		border-radius: 0 0 10px 10px;
+		box-shadow: 0 6px 16px rgba(100, 50, 120, 0.15);
+		z-index: 9999;
+	}
+	.phone-prefix-item {
+		padding: 10px 14px;
+		cursor: pointer;
+		font-size: 14px;
+		color: #374151;
+	}
+	.phone-prefix-item:hover {
+		background: #f9f5ff;
+		color: #68326C;
 	}
 </style>

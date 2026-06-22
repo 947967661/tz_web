@@ -51,17 +51,35 @@
           <div class="field-label">
             {{ $t('login.username') }}
           </div>
-          <div class="field-control">
+          <div
+            class="field-control"
+            style="z-index: 10;"
+          >
             <div class="field-icon">
               <div class="field-icon-text iconfont icon-login_icon_phone_number">
-                <span>
-                  <van-dropdown-menu :overlay="false">
-                    <van-dropdown-item
-                      v-model="value"
-                      :options="country_code"
-                    />
-                  </van-dropdown-menu>
-                </span>
+                <span />
+              </div>
+            </div>
+            <div class="phone-prefix-wrap">
+              <div
+                class="phone-prefix-trigger"
+                @click.stop="togglePrefixList"
+              >
+                <span class="phone-prefix-text">{{ selectedCountryCode || '+' }}</span>
+                <span class="phone-prefix-arrow">▾</span>
+              </div>
+              <div
+                v-show="showPrefixList"
+                class="phone-prefix-list"
+              >
+                <div
+                  v-for="item in country_code"
+                  :key="item.value"
+                  class="phone-prefix-item"
+                  @click.stop="selectPhonePrefix(item)"
+                >
+                  {{ item.text }}
+                </div>
               </div>
             </div>
             <input
@@ -79,14 +97,36 @@
           <div class="field-label">
             {{ $t('login.phone') }}
           </div>
-          <div class="field-control">
+          <div
+            class="field-control"
+            style="z-index: 10;"
+          >
             <div class="field-icon">
               <div class="field-icon-text iconfont icon-login_icon_phone_number">
                 <span />
               </div>
             </div>
-            <div class="field-prefix">
-              <div class="field-prefix-text" />
+            <div class="phone-prefix-wrap">
+              <div
+                class="phone-prefix-trigger"
+                @click.stop="togglePrefixList"
+              >
+                <span class="phone-prefix-text">{{ selectedCountryCode || '+' }}</span>
+                <span class="phone-prefix-arrow">▾</span>
+              </div>
+              <div
+                v-show="showPrefixList"
+                class="phone-prefix-list"
+              >
+                <div
+                  v-for="item in country_code"
+                  :key="item.value"
+                  class="phone-prefix-item"
+                  @click.stop="selectPhonePrefix(item)"
+                >
+                  {{ item.text }}
+                </div>
+              </div>
             </div>
             <input
               v-model.trim="data.username"
@@ -202,8 +242,10 @@
 				password: "111111"
 			};
 			return {
+				lang: this.$i18n.locale || "en_us",
 				language_logo: localStorage.getItem('language_logo'),
 				show_kefu: false,
+				showPrefixList: false,
 				password: "password",
 				loading: false,
 				data: {
@@ -219,6 +261,15 @@
         country_code: [],
         value: 0,
 			};
+		},
+		computed: {
+			selectedCountryCode() {
+				var current = this.country_code[this.value];
+				if (!current || !current.text) {
+					return '';
+				}
+				return current.text;
+			}
 		},
 		created() {
 			if (window.plus) {
@@ -253,6 +304,10 @@
 					if (ev.target.className != "kefu_img") {
 						that.show_kefu = false;
 					}
+					// 点击外部关闭前缀下拉
+					if (!ev.target.closest || !ev.target.closest('.phone-prefix-wrap')) {
+						that.showPrefixList = false;
+					}
 				},
 				false
 			);
@@ -265,6 +320,13 @@
 				Fetch("/index/getWebInfo").then((r) => {
 					this.config = r.data;
 				});
+			},
+			togglePrefixList() {
+				this.showPrefixList = !this.showPrefixList;
+			},
+			selectPhonePrefix(item) {
+				this.value = item.value;
+				this.showPrefixList = false;
 			},
       getLanguages() {
         Fetch('/index/getLanguages').then((r) => {
@@ -303,6 +365,9 @@
 				}
 				//数字、字母或下划线
 				var reg1 = /^[0-9a-zA-Z_]{1,}$/;
+				
+				this.data.country_code = this.selectedCountryCode;
+
 				//非手机号注册判断
 				if (!this.config.register_phone) {
 					if (!this.data.username) {
@@ -675,8 +740,51 @@
 		margin-right: 10px;
 	}
 
-	/deep/ .van-popup--top {
-		left: 5%;
-		width: 30%;
+	/* 自定义手机前缀下拉 */
+	.phone-prefix-wrap {
+		position: relative;
+		flex-shrink: 0;
+		border-right: 1px solid #ecebff;
+		margin-right: 10px;
+	}
+	.phone-prefix-trigger {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		height: 64px;
+		padding: 0 10px;
+		cursor: pointer;
+		color: #4f46e5;
+		font-weight: 600;
+		font-size: 15px;
+		white-space: nowrap;
+		user-select: none;
+	}
+	.phone-prefix-arrow {
+		font-size: 11px;
+		color: #9ca3af;
+		margin-top: 1px;
+	}
+	.phone-prefix-list {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 110px;
+		max-height: 220px;
+		overflow-y: auto;
+		background: #fff;
+		border-radius: 0 0 10px 10px;
+		box-shadow: 0 6px 16px rgba(100, 100, 200, 0.15);
+		z-index: 9999;
+	}
+	.phone-prefix-item {
+		padding: 10px 14px;
+		cursor: pointer;
+		font-size: 14px;
+		color: #374151;
+	}
+	.phone-prefix-item:hover {
+		background: #f5f3ff;
+		color: #4f46e5;
 	}
 </style>

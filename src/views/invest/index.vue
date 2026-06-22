@@ -79,7 +79,7 @@
           </div>
           <div
             v-if="showReferenceAnnualized(item)"
-            class="top_right"
+            class="rate_top_right"
           >
             <div class="text3">
               {{ $t('analyst.referenceAnnualized') }}
@@ -460,7 +460,7 @@ export default {
 				}
 			}
 
-			.top_right {
+			.rate_top_right {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;

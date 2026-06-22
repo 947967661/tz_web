@@ -81,7 +81,7 @@
           </div>
           <div
             v-if="showMonthlyYield(item)"
-            class="top_right"
+            class="rate_top_right"
           >
             <div class="text3">
               {{ $t('subscription.monthlyYieldRate') }}
@@ -483,7 +483,7 @@ export default {
 				}
 			}
 
-			.top_right {
+			.rate_top_right {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;

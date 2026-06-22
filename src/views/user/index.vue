@@ -155,6 +155,7 @@
           </div>
         </div>
         <div
+          v-if="false"
           class="menu_item"
           @click="$router.push('/questions')"
         >

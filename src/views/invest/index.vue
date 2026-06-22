@@ -415,12 +415,15 @@ export default {
 			.top_left {
 				display: flex;
 				align-items: center;
+				flex: 1;
+				min-width: 0;
 
 				.avatar {
 					width: 48px;
 					height: 48px;
 					border-radius: 50%;
 					object-fit: cover;
+					flex-shrink: 0;
 				}
 
 				.user_info {
@@ -428,6 +431,7 @@ export default {
 					flex-direction: column;
 					justify-content: center;
 					margin-left: 10px;
+					min-width: 0;
 
 					.text1 {
 						font-weight: 700;
@@ -435,6 +439,10 @@ export default {
 						color: #00001c;
 						line-height: 22px;
 						text-align: left;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						max-width: 100%;
 					}
 
 					.text2 {
@@ -444,6 +452,10 @@ export default {
 						line-height: 17px;
 						text-align: left;
 						margin-top: 3px;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						max-width: 100%;
 					}
 				}
 			}
@@ -455,6 +467,9 @@ export default {
 				padding: 7px 9px;
 				border-radius: 10px;
 				background: rgba(118, 125, 255, 0.08);
+				flex-shrink: 0;
+				margin-left: 10px;
+				min-width: 70px;
 
 				.text3 {
 					font-weight: 700;
@@ -462,6 +477,7 @@ export default {
 					color: #64676e;
 					line-height: 16px;
 					text-align: right;
+					white-space: nowrap;
 				}
 
 				.text4 {
@@ -470,6 +486,7 @@ export default {
 					color: #747cfd;
 					line-height: 21px;
 					text-align: right;
+					white-space: nowrap;
 				}
 			}
 		}

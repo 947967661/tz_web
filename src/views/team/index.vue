@@ -49,6 +49,20 @@
       </div>
     </div>
 
+    <!-- Team Bonus Panel -->
+    <div
+      v-if="bonusDisplayRows.length"
+      class="team_bonus_panel"
+    >
+      <div
+        v-for="t in bonusDisplayRows"
+        :key="t.key"
+        class="team_bonus_row"
+      >
+        <span class="team_bonus_line">{{ t.text }}</span>
+      </div>
+    </div>
+
     <!-- Leaderboard / Sub-users List Card -->
     <div class="card_container">
       <div class="leaderboard">
@@ -248,6 +262,34 @@
 					pages.push(i);
 				}
 				return pages;
+			},
+			bonusDisplayRows() {
+				return [
+					{
+						key: "bonus_line_1",
+						text: this.translate("team.bonus_line_1", "一级首投奖励 8%", "Team Level 1 First Investment Bonus 8%")
+					},
+					{
+						key: "bonus_line_2",
+						text: this.translate("team.bonus_line_2", "二级首投奖励 3%", "Team Level 2 First Investment Bonus 3%")
+					},
+					{
+						key: "bonus_line_3",
+						text: this.translate("team.bonus_line_3", "三级首投奖励 2%", "Team Level 3 First Investment Bonus 2%")
+					},
+					{
+						key: "bonus_line_4",
+						text: this.translate("team.bonus_line_4", "一级日返利 3%", "Team Level 1 Daily Rebate 3%")
+					},
+					{
+						key: "bonus_line_5",
+						text: this.translate("team.bonus_line_5", "二级日返利 2%", "Team Level 2 Daily Rebate 2%")
+					},
+					{
+						key: "bonus_line_6",
+						text: this.translate("team.bonus_line_6", "三级日返利 1%", "Team Level 3 Daily Rebate 1%")
+					}
+				];
 			}
 		},
 		created() {
@@ -282,6 +324,13 @@
 					const r = await Fetch('/user/myTeam');
 					this.user_info = r.data.user_info || {};
 					this.report = r.data.report || {};
+					
+					// Dynamic invitation link construct to target current domain
+					if (this.user_info.invite_code) {
+						const origin = window.location.origin;
+						this.user_info.share_link = `${origin}/#/register?code=${this.user_info.invite_code}`;
+					}
+					
 					await this.getSubUsers();
 				} catch (e) {
 					console.error(e);
@@ -429,6 +478,30 @@
 	height: 14px;
 	flex-shrink: 0;
 	cursor: pointer;
+}
+
+.team_bonus_panel {
+	width: 335px;
+	margin: 12px auto 0;
+	padding: 12px 14px;
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid #fff;
+	border-radius: 16px;
+	box-shadow: 0 9px 21px rgba(70, 74, 135, 0.08);
+	box-sizing: border-box;
+}
+
+.team_bonus_row + .team_bonus_row {
+	margin-top: 7px;
+}
+
+.team_bonus_line {
+	display: block;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 17px;
+	color: #64676e;
+	word-break: break-word;
 }
 
 .card_container {

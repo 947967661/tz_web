@@ -22,6 +22,12 @@
     >
       <form class="form">
         <div class="item">
+          <van-dropdown-menu :overlay="false">
+            <van-dropdown-item
+              v-model="value"
+              :options="country_code"
+            />
+          </van-dropdown-menu>
           <input
             v-model.trim="data.username"
             type="text"
@@ -260,6 +266,15 @@
 				verify_code: ''
 			};
 		},
+		computed: {
+			selectedCountryCode() {
+				var current = this.country_code[this.value];
+				if (!current || !current.text) {
+					return '';
+				}
+				return current.text;
+			}
+		},
 		created() {
 			if (window.plus) {
 				plus.navigator.setStatusBarBackground('#FAFAFA');
@@ -315,7 +330,7 @@
 					let country = this.country_code.find((country) => {
 						return country['counrty'] === this.lang;
 					});
-					this.value = country.value;
+					this.value = country ? country.value : 0;
 				});
 			},
 			timeCall() {
@@ -356,7 +371,7 @@
 				this.is_send = true;
 				Fetch("/user/getSmsCode", {
 					phone: this.data.phone,
-					country_code: this.country_code[this.value]['text'],
+					country_code: this.selectedCountryCode,
 					verify_code: this.verify_code
 				}).then(() => {
 					this.show_sms_verify = false;
@@ -396,6 +411,7 @@
 				var reg1 = /^[0-9a-zA-Z_]{1,}$/;
 				//非手机号注册判断
 				if (!this.config.register_phone) {
+					this.data.country_code = this.selectedCountryCode;
 					if (!this.data.username) {
 						this.$toast(this.$t('login.usernameEmpty'));
 						return false;
@@ -423,7 +439,7 @@
 						this.$toast(this.$t('login.codeEmpty'));
 						return false;
 					}
-					this.data.country_code = this.country_code[this.value]['text'];
+					this.data.country_code = this.selectedCountryCode;
 				}
 				if (!this.data.password) {
 					this.$toast(this.$t('login.passwordEmpty'));
@@ -530,33 +546,33 @@
 		}
 	}
 
-	.item {
-		height: 50px;
-		font-size: 14px;
-		display: flex;
-		justify-content: flex-start;
-		align-items: flex-end;
-		padding-bottom: 4px;
-		background: #FFFFFF;
-		margin-bottom: 15px;
+		.item {
+			height: 50px;
+			font-size: 14px;
+			display: flex;
+			justify-content: flex-start;
+			align-items: flex-end;
+			padding-bottom: 4px;
+			background: #FFFFFF;
+			margin-bottom: 15px;
 		border-radius: 25px;
 		padding: 0 20px;
 
-		input {
-			height: 50px;
-			flex: 1;
+			input {
+				height: 50px;
+				flex: 1;
+			}
+
+			.get_captcha {
+				line-height: 50px;
+			}
+
+			.eye_bi {
+				margin-bottom: 12px;
+			}
 		}
 
-		.get_captcha {
-			line-height: 50px;
-		}
-
-		.eye_bi {
-			margin-bottom: 12px;
-		}
-	}
-
-	.sms_verify {
+		.sms_verify {
 		padding: 20px 20px 0 20px;
 
 		input {

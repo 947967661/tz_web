@@ -92,12 +92,12 @@
 			};
 		},
 		created() {
-			window.document.title = this.$t('home.subscription');
+			window.document.title = this.$t('savings.savings');
 			if (window.plus) {
 				plus.navigator.setStatusBarBackground('#000002');
 				plus.navigator.setStatusBarStyle('light');
 			}
-			this.$parent.footer('subscription', true);
+			this.$parent.footer('user', false);
 		},
 		mounted() {
 			this.start();

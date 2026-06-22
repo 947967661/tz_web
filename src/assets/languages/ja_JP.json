@@ -46,7 +46,7 @@
 		"invest": "投資",
 		"team": "私のチーム",
 		"my": "個人センター",
-		"subscription": "Contract",
+		"subscription": "Kontrak",
 		"holdings": "Token"
 	},
 	"index": {
@@ -376,5 +376,29 @@
 		"hotGoods": "人気のある製品",
 		"exchange": "交換",
 		"exchangeRecord": "交換記録"
+	},
+	"subscription": {
+		"inProgress": "In Progress",
+		"completed": "Completed",
+		"monthlyYieldRate": "Monthly Yield",
+		"orderNo": "Order No",
+		"investmentAmount": "Amount",
+		"duration": "Duration",
+		"day": "d",
+		"subscriptionTime": "Time",
+		"interestPeriod": "Interest Period",
+		"everyDay": "Daily",
+		"yieldDistribution": "Distribution",
+		"nextDay": "Next Day",
+		"endTime": "End Time",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"earnedIncome": "Earned Income",
+		"autoRenew": "Auto Renew",
+		"noAutoRenew": "Manual",
+		"cancelRenewal": "Cancel Renewal",
+		"renewal": "Renew",
+		"renewalEnabledSuccess": "Auto renewal enabled",
+		"renewalDisabledSuccess": "Auto renewal cancelled"
 	}
 }

@@ -46,7 +46,7 @@
 		"invest": "투자하다",
 		"team": "내 팀",
 		"my": "개인 중심",
-		"subscription": "Contract",
+		"subscription": "Kontrak",
 		"holdings": "Token"
 	},
 	"index": {
@@ -376,5 +376,29 @@
 		"hotGoods": "인기있는 제품",
 		"exchange": "교환",
 		"exchangeRecord": "교환 기록"
+	},
+	"subscription": {
+		"inProgress": "In Progress",
+		"completed": "Completed",
+		"monthlyYieldRate": "Monthly Yield",
+		"orderNo": "Order No",
+		"investmentAmount": "Amount",
+		"duration": "Duration",
+		"day": "d",
+		"subscriptionTime": "Time",
+		"interestPeriod": "Interest Period",
+		"everyDay": "Daily",
+		"yieldDistribution": "Distribution",
+		"nextDay": "Next Day",
+		"endTime": "End Time",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"earnedIncome": "Earned Income",
+		"autoRenew": "Auto Renew",
+		"noAutoRenew": "Manual",
+		"cancelRenewal": "Cancel Renewal",
+		"renewal": "Renew",
+		"renewalEnabledSuccess": "Auto renewal enabled",
+		"renewalDisabledSuccess": "Auto renewal cancelled"
 	}
 }

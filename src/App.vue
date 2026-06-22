@@ -17,7 +17,7 @@
         </p>
       </router-link>
       <router-link
-        to="/savings"
+        to="/subscription"
         class="footer_item"
         :class="show_icon_type === 'subscription' ? 'footer_item_active' : ''"
       >
@@ -206,11 +206,12 @@
 		-webkit-box-align: center;
 		-ms-flex-align: center;
 		align-items: center;
-		background: #fff;
-		box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+		background: #fffffffa;
+		border-top: 1px solid #e9edff;
+		box-shadow: 0 -5px 15px rgba(70, 74, 135, 0.08);
 		width: 100%;
 		bottom: 0;
-		height: 60px;
+		height: 64px;
 		z-index: 4;
 	}
 
@@ -232,12 +233,13 @@
 
 	#app .footer .footer_item .footer_icon {
 		display: inline-block;
-		width: 26px;
-		height: 26px;
+		width: 28px;
+		height: 28px;
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: center;
-		margin-bottom: 6px;
+		margin-bottom: 4px;
+		transition: transform 0.2s ease;
 	}
 
 	#app .footer .footer_item .footer_icon.footer_icon_home {
@@ -261,11 +263,20 @@
 	}
 
 	#app .footer .footer_item .footer_info {
-		font-size: 12px;
+		font-size: 11px;
+		line-height: 1;
+		max-width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	#app .footer .footer_item.footer_item_active {
-		color: #3775f4;
+		color: #0f172a;
+	}
+
+	#app .footer .footer_item.footer_item_active .footer_icon {
+		transform: translateY(-2px);
 	}
 
 	#app .footer .footer_item.footer_item_active .footer_icon.footer_icon_home {

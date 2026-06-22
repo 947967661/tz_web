@@ -376,5 +376,29 @@
 		"hotGoods": "熱門商品",
 		"exchange": "兌換",
 		"exchangeRecord": "兌換記錄"
+	},
+	"subscription": {
+		"inProgress": "进行中",
+		"completed": "已完成",
+		"monthlyYieldRate": "月收益率",
+		"orderNo": "订单编号",
+		"investmentAmount": "投资金额",
+		"duration": "期限",
+		"day": "天",
+		"subscriptionTime": "申购时间",
+		"interestPeriod": "计息周期",
+		"everyDay": "每天",
+		"yieldDistribution": "收益发放",
+		"nextDay": "次日",
+		"endTime": "结束时间",
+		"dailyIncome": "每日收益",
+		"maturityIncome": "到期收益",
+		"earnedIncome": "已获收益",
+		"autoRenew": "自动续订",
+		"noAutoRenew": "不自动续订",
+		"cancelRenewal": "取消续订",
+		"renewal": "续订",
+		"renewalEnabledSuccess": "已设置续订",
+		"renewalDisabledSuccess": "已取消续订"
 	}
 }

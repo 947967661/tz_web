@@ -46,7 +46,7 @@
 		"invest": "Invest",
 		"team": "Team",
 		"my": "Account",
-		"subscription": "Contract",
+		"subscription": "Kontrak",
 		"holdings": "Token"
 	},
 	"index": {
@@ -376,5 +376,29 @@
 		"hotGoods": "Popular product",
 		"exchange": "Exchange",
 		"exchangeRecord": "Exchange record"
+	},
+	"subscription": {
+		"inProgress": "In Progress",
+		"completed": "Completed",
+		"monthlyYieldRate": "Monthly Yield",
+		"orderNo": "Order No",
+		"investmentAmount": "Amount",
+		"duration": "Duration",
+		"day": "d",
+		"subscriptionTime": "Time",
+		"interestPeriod": "Interest Period",
+		"everyDay": "Daily",
+		"yieldDistribution": "Distribution",
+		"nextDay": "Next Day",
+		"endTime": "End Time",
+		"dailyIncome": "Daily Income",
+		"maturityIncome": "Maturity Income",
+		"earnedIncome": "Earned Income",
+		"autoRenew": "Auto Renew",
+		"noAutoRenew": "Manual",
+		"cancelRenewal": "Cancel Renewal",
+		"renewal": "Renew",
+		"renewalEnabledSuccess": "Auto renewal enabled",
+		"renewalDisabledSuccess": "Auto renewal cancelled"
 	}
 }

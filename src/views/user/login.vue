@@ -137,11 +137,13 @@
               class="inp"
               :placeholder="$t('login.code')"
             >
-            <img
-              style="height: 32px;margin-bottom: 8px;"
-              :src="verify_img"
-              @click="getVerifyCode()"
-            >
+            <div class="verify-img-wrap">
+              <img
+                style="height: 32px;margin-bottom: 8px;"
+                :src="verify_img"
+                @click="getVerifyCode()"
+              >
+            </div>
           </div>
         </div>
         <div
@@ -493,6 +495,13 @@
     border-radius: 16px;
     box-shadow: inset 0 1px 0 #fffc;
     transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .verify-img-wrap {
+    margin-left: auto;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
   }
   .field-icon-text {
     font-size: 17px;

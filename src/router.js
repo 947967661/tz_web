@@ -30,8 +30,7 @@ export default new Router({
 		{
 		    path: "/register",
 		    name: "register",
-		    component: () =>
-		        import(/* webpackChunkName: "home" */ "./views/user/register.vue")
+		    redirect: "/login?tab=register"
 		},
         {
             path: "/user",

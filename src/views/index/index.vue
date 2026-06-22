@@ -41,16 +41,6 @@
     </div>
 
     <section class="hero-section">
-      <div
-        v-if="showHeroLogo"
-        class="hero-brand"
-      >
-        <img
-          class="hero-brand-image"
-          :src="heroLogo"
-          alt="brand"
-        >
-      </div>
       <div class="hero-visual">
         <img
           class="hero-banner"
@@ -148,7 +138,6 @@
 			return {
 				language_logo: localStorage.getItem('language_logo'),
 				logo: localStorage.getItem("logo2"),
-				heroLogo: localStorage.getItem("logo"),
 				show_kefu: false,
 				bgMain: require('../img/index/web3/bg.png'),
 				bgSecond: require('../img/index/web3/bg1.png'),
@@ -184,9 +173,6 @@
 			};
 		},
 		computed: {
-			showHeroLogo() {
-				return !!this.heroLogo;
-			},
 			featureCards() {
 				return [
 					{
@@ -243,7 +229,6 @@
 					localStorage.setItem("logo", r.data.logo);
 					localStorage.setItem("logo2", r.data.logo2);
 					localStorage.setItem("language_logo", r.data.language_logo);
-					this.heroLogo = r.data.logo;
 					this.logo = r.data.logo2 || r.data.logo;
 					this.language_logo = r.data.language_logo;
 					if (r.data.webname) {
@@ -342,29 +327,17 @@
 	}
 
 	.hero-section {
-		padding: 10px 38px 0;
-	}
-
-	.hero-brand {
-		display: flex;
-		justify-content: flex-start;
-		margin-top: 4px;
-
-		.hero-brand-image {
-			width: 200px;
-			height: 84px;
-			object-fit: contain;
-		}
+		padding: 20px 38px 0;
 	}
 
 	.hero-visual {
 		display: flex;
 		justify-content: center;
-		margin-top: 24px;
+		margin-top: 20px;
 
 		.hero-banner {
 			width: 282px;
-			height: 282px;
+			height: 233px;
 			object-fit: contain;
 		}
 	}
@@ -377,7 +350,7 @@
 	}
 
 	.hero-title {
-		margin-top: 36px;
+		margin-top: 37px;
 		font-size: 42px;
 		line-height: 50px;
 	}
@@ -391,7 +364,7 @@
 	}
 
 	.hero-desc {
-		margin-top: 20px;
+		margin-top: 10px;
 		font-size: 28px;
 		line-height: 40px;
 		color: #00001c;

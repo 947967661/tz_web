@@ -1,5 +1,21 @@
 <template>
   <div class="page">
+    <img
+      class="page-bg bg-main"
+      src="../img/index/web3/bg.png"
+      alt=""
+    >
+    <img
+      class="page-bg bg-second"
+      src="../img/index/web3/bg2.png"
+      alt=""
+    >
+    <img
+      class="page-bg bg-third"
+      src="../img/index/web3/bg3.png"
+      alt=""
+    >
+
     <!-- Stats Grid -->
     <div class="stats_grid">
       <div
@@ -390,10 +406,33 @@
 
 <style lang="less" scoped>
 .page {
+	position: relative;
 	min-height: 100vh;
 	background: #faf7ff;
 	padding: 20px 0 80px;
 	box-sizing: border-box;
+	z-index: 1;
+	overflow: hidden;
+}
+
+.page-bg {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.bg-main {
+	top: 0;
+}
+
+.bg-second {
+	top: 626px;
+}
+
+.bg-third {
+	top: 1315px;
 }
 
 .amount_card {

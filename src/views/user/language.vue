@@ -53,8 +53,18 @@
 		},
 		methods: {
 			start() {
+				const allowed = ['en_us', 'ko_kr', 'ja_jp', 'de_de', 'zh_hk', 'ur_pk', 'fr_fr', 'es_es'];
 				Fetch('/index/getLanguages').then(r => {
-					this.languages = r.data.list;
+					let list = (r.data.list || []).slice();
+					const hasUrdu = list.some(item => String(item.country).toLowerCase() === 'ur_pk');
+					if (!hasUrdu) {
+						list.push({
+							country: 'ur_pk',
+							country_loc: 'اردو',
+							logo: '/images/language/ur_pk.png'
+						});
+					}
+					this.languages = list.filter(item => allowed.includes(String(item.country).toLowerCase()));
 				})
 			},
 			changeLang(lang, event) {

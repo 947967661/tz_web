@@ -96,6 +96,7 @@
 	import Vue from "vue";
 
 	import Fetch from '../../utils/fetch';
+	import { getCountryCodeList } from '../../utils/language';
 	import bsHeader from '../../components/bsHeader.vue';
 	import {
 		CountDown,
@@ -138,21 +139,9 @@
 		},
 		methods: {
 			start() {
-				Fetch('/index/getLanguages').then((r) => {
-					var list = r.data.list;
-					var countryCode = [];
-					for (var i = 0; i < list.length; i++) {
-						countryCode.push({
-							text: list[i]['country_code'],
-							value: i,
-							counrty: list[i]['country']
-						});
-					}
-					this.country_code = countryCode;
-					let country = this.country_code.find((country) => {
-						return country['counrty'] === this.lang;
-					});
-					this.value = country.value;
+				getCountryCodeList().then(({ list, defaultIndex }) => {
+					this.country_code = list;
+					this.value = defaultIndex;
 				});
 			},
 			timeCall() {

@@ -460,6 +460,7 @@
 <script>
 import Vue from 'vue';
 import Fetch from '../utils/fetch';
+import { getCountryCodeList } from '../utils/language';
 import { CountDown, Checkbox, Dialog, Popup } from 'vant';
 
 Vue.use(CountDown).use(Checkbox).use(Dialog).use(Popup);
@@ -505,7 +506,8 @@ export default {
       },
       config: {
         invite_code: 0,
-        register_phone: 1
+        // 前端强制关闭手机注册（短信验证码），如需恢复服务端控制请改回 1
+        register_phone: 0
       },
       verify_img: '',
       countryCodeList: [],
@@ -583,20 +585,8 @@ export default {
       this.showRegisterPrefixList = false;
     },
     getLanguages() {
-      Fetch('/index/getLanguages').then((r) => {
-        const list = r.data.list;
-        const countryCode = [];
-        for (let i = 0; i < list.length; i++) {
-          countryCode.push({
-            text: list[i]['country_code'],
-            value: i,
-            counrty: list[i]['country']
-          });
-        }
-        this.countryCodeList = countryCode;
-        
-        const country = this.countryCodeList.find((c) => c.counrty === this.lang);
-        const defaultIndex = country ? country.value : 0;
+      getCountryCodeList().then(({ list, defaultIndex }) => {
+        this.countryCodeList = list;
         this.loginPrefixIndex = defaultIndex;
         this.registerPrefixIndex = defaultIndex;
       });

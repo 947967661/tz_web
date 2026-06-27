@@ -23,11 +23,7 @@
 
     <div class="home-topbar">
       <div class="home-logo-wrap">
-        <img
-          class="home-logo"
-          :src="logo"
-          alt="logo"
-        >
+        <span class="home-logo-text">deepseek</span>
       </div>
       <div
         class="home-language"
@@ -157,10 +153,10 @@
 					{name: 'AWS', logo: require('../img/index/web3/partners/aws.png')}
 				],
 				homeCopy: {
-					heroTitle: 'Acexbit是全球领先的 AI 算力租赁平台',
-					heroDesc: '加入 Acexbit，利用全球领先的 AI 调度算法，将您的 Token 租赁给急需算力与资源的机构。无需操作，收益按期到账。',
+					heroTitle: 'deepseek是全球领先的 AI 算力租赁平台',
+					heroDesc: '加入 deepseek，利用全球领先的 AI 调度算法，将您的 Token 租赁给急需算力与资源的机构。无需操作，收益按期到账。',
 					whyAiTitle: '为什么选择 AI 租赁？',
-					whyAiDesc: 'Acexbit AI 算力租赁平台“汇集私募资金，租赁顶级上游 AI 算力，并将收益分配给投资者“',
+					whyAiDesc: 'deepseek AI 算力租赁平台“汇集私募资金，租赁顶级上游 AI 算力，并将收益分配给投资者“',
 					featureSniffTitle: '智能嗅探',
 					featureSniffDesc: 'AI 毫秒级监控全球租金，哪里贵，钱就租到哪里。',
 					featureSecurityTitle: '安全合规',
@@ -304,6 +300,13 @@
 			width: auto;
 			object-fit: contain;
 		}
+
+		.home-logo-text {
+			font-size: 20px;
+			font-weight: 700;
+			color: #00001c;
+			line-height: 42px;
+		}
 	}
 
 	.home-language {
@@ -326,7 +329,7 @@
 	}
 
 	.hero-section {
-		padding: 10px 19px 0;
+		padding: 10px 0 0;
 	}
 
 	.hero-visual {
@@ -335,9 +338,9 @@
 		margin-top: 20px;
 
 		.hero-banner {
-			width: 282px;
-			height: 233px;
-			object-fit: contain;
+			width: 100%;
+			height: auto;
+			display: block;
 		}
 	}
 
@@ -350,6 +353,7 @@
 
 	.hero-title {
 		margin-top: 37px;
+		padding: 0 19px;
 		font-size: 21px;
 		line-height: 25px;
 	}
@@ -364,6 +368,7 @@
 
 	.hero-desc {
 		margin-top: 10px;
+		padding: 0 19px;
 		font-size: 14px;
 		line-height: 20px;
 		color: #00001c;

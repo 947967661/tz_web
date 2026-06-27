@@ -30,7 +30,8 @@ const i18n = new VueI18n({
 	  'es_es': require('./assets/languages/es_ES.json'),
 	  'de_de': require('./assets/languages/de_DE.json'),
 	  'fr_fr': require('./assets/languages/fr_FR.json'),
-	  'id_id': require('./assets/languages/id_ID.json')
+	  'id_id': require('./assets/languages/id_ID.json'),
+	  'ur_pk': require('./assets/languages/ur_PK.json')
     }
 });
 Vue.config.productionTip = false;

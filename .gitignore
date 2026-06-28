@@ -5,3 +5,4 @@ package-lock.json
 dist*.tar
 ~$*
 .DS_Store
+.idea/

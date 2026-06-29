@@ -44,28 +44,6 @@
                     <span />
                   </div>
                 </div>
-                <div class="phone-prefix-wrap">
-                  <div
-                    class="phone-prefix-trigger"
-                    @click.stop="toggleLoginPrefix"
-                  >
-                    <span class="phone-prefix-text">{{ selectedLoginCountryCode || '+' }}</span>
-                    <span class="phone-prefix-arrow">▾</span>
-                  </div>
-                  <div
-                    v-show="showLoginPrefixList"
-                    class="phone-prefix-list"
-                  >
-                    <div
-                      v-for="item in countryCodeList"
-                      :key="item.value"
-                      class="phone-prefix-item"
-                      @click.stop="selectLoginPrefix(item)"
-                    >
-                      {{ item.text }}
-                    </div>
-                  </div>
-                </div>
                 <input
                   v-model.trim="loginData.username"
                   type="text"
@@ -200,28 +178,6 @@
                   class="field-control"
                   style="z-index: 10;"
                 >
-                  <div class="phone-prefix-wrap">
-                    <div
-                      class="phone-prefix-trigger"
-                      @click.stop="toggleRegisterPrefix"
-                    >
-                      <span class="phone-prefix-text">{{ selectedRegisterCountryCode || '+' }}</span>
-                      <span class="phone-prefix-arrow">▾</span>
-                    </div>
-                    <div
-                      v-show="showRegisterPrefixList"
-                      class="phone-prefix-list"
-                    >
-                      <div
-                        v-for="item in countryCodeList"
-                        :key="item.value"
-                        class="phone-prefix-item"
-                        @click.stop="selectRegisterPrefix(item)"
-                      >
-                        {{ item.text }}
-                      </div>
-                    </div>
-                  </div>
                   <input
                     v-model.trim="registerData.username"
                     type="text"

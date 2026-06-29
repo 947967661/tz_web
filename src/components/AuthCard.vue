@@ -47,7 +47,7 @@
                 <input
                   v-model.trim="loginData.username"
                   type="text"
-                  class="uni-input-input"
+                  class="uni-input-input login_box_input"
                   :placeholder="$t('login.username')"
                 >
               </div>
@@ -94,7 +94,7 @@
                 <input
                   v-model.trim="loginData.username"
                   type="number"
-                  class="uni-input-input"
+                  class="uni-input-input login_box_input"
                   :placeholder="$t('login.phone')"
                 >
               </div>
@@ -113,7 +113,7 @@
                 <input
                   v-model.trim="loginData.password"
                   :type="loginPwdType"
-                  class="field-input field-input-with-action"
+                  class="field-input field-input-with-action login_box_input"
                   :placeholder="$t('login.password')"
                 >
                 <div class="field-action">
@@ -126,7 +126,7 @@
               </div>
             </div>
 
-            <div class="field-group">
+            <div class="field-group" v-if="showImageCode">
               <div class="field-label">
                 {{ $t('login.code') }}
               </div>
@@ -139,7 +139,7 @@
                 <input
                   v-model.trim="loginData.code"
                   type="text"
-                  class="inp"
+                  class="inp login_box_input"
                   :placeholder="$t('login.code')"
                 >
                 <div class="verify-img-wrap">
@@ -154,7 +154,7 @@
 
             <div
               class="submit-button"
-              :class="loginData.username == '' || loginData.password == '' || loginData.code == '' ? 'no_touch' : ''"
+              :class="loginData.username == '' || loginData.password == '' || (showImageCode && loginData.code === '') ? 'no_touch' : ''"
               @click="submitLogin"
             >
               {{ $t('login.loginNow') }}
@@ -181,7 +181,7 @@
                   <input
                     v-model.trim="registerData.username"
                     type="text"
-                    class="uni-input-input"
+                    class="uni-input-input login_box_input"
                     :placeholder="$t('login.username')"
                   >
                 </div>
@@ -195,7 +195,7 @@
                   <input
                     v-model.trim="registerData.password"
                     :type="registerPwdType"
-                    class="field-input field-input-with-action"
+                    class="field-input field-input-with-action login_box_input"
                     :placeholder="$t('login.password')"
                   >
                   <div class="field-action">
@@ -216,13 +216,13 @@
                   <input
                     v-model.trim="registerData.invite_code"
                     type="text"
-                    class="uni-input-input"
+                    class="uni-input-input login_box_input"
                     :placeholder="config.invite_code ? $t('register.inviteCode') : $t('register.inviteCodeOptional')"
                   >
                 </div>
               </div>
 
-              <div class="field-group">
+              <div class="field-group" v-if="showImageCode">
                 <div class="field-label">
                   {{ $t('login.code') }}
                 </div>
@@ -230,7 +230,7 @@
                   <input
                     v-model.trim="registerData.code"
                     type="text"
-                    class="uni-input-input"
+                    class="uni-input-input login_box_input"
                     :placeholder="$t('login.code')"
                   >
                   <div class="verify-img-wrap">
@@ -245,7 +245,7 @@
 
               <div
                 class="submit-button"
-                :class="registerData.username == '' || registerData.password == '' || registerData.code == '' ? 'no_touch' : ''"
+                :class="registerData.username == '' || registerData.password == '' || (showImageCode && registerData.code === '') ? 'no_touch' : ''"
                 @click="submitRegister"
               >
                 {{ $t('login.registerNow') }}
@@ -293,7 +293,7 @@
                   <input
                     v-model.trim="registerData.phone"
                     type="number"
-                    class="uni-input-input"
+                    class="uni-input-input login_box_input"
                     :placeholder="$t('login.phone')"
                   >
                 </div>
@@ -307,7 +307,7 @@
                   <input
                     v-model.trim="registerData.smsCode"
                     type="text"
-                    class="uni-input-input"
+                    class="uni-input-input login_box_input"
                     :placeholder="$t('login.code')"
                   >
                   <div class="verify-img-wrap">
@@ -339,7 +339,7 @@
                   <input
                     v-model.trim="registerData.password"
                     :type="registerPwdType"
-                    class="field-input field-input-with-action"
+                    class="field-input field-input-with-action login_box_input"
                     :placeholder="$t('login.password')"
                   >
                   <div class="field-action">
@@ -360,7 +360,7 @@
                   <input
                     v-model.trim="registerData.invite_code"
                     type="text"
-                    class="uni-input-input"
+                    class="uni-input-input login_box_input"
                     :placeholder="config.invite_code ? $t('register.inviteCode') : $t('register.inviteCodeOptional')"
                   >
                 </div>
@@ -438,13 +438,14 @@ export default {
       password: '111111'
     };
     return {
-      activeTab: this.initialTab || this.$route.query.tab || 'login',
+      activeTab: this.$route.query.tab || this.initialTab || 'login',
       lang: this.$i18n.locale || 'en_us',
       showLoginPrefixList: false,
       showRegisterPrefixList: false,
       loginPwdType: 'password',
       registerPwdType: 'password',
       loading: false,
+      showImageCode: false,
       loginData: {
         username: devLoginDefaults.username,
         password: devLoginDefaults.password,
@@ -661,14 +662,18 @@ export default {
         this.$toast(this.$t('login.passwordLength'));
         return false;
       }
-      if (!this.loginData.code) {
+      if (this.showImageCode && !this.loginData.code) {
         this.$toast(this.$t('login.codeEmpty'));
         return false;
       }
       this.loading = true;
+      const _that = this;
       Fetch('/index/login', {
         ...this.loginData
       }).then((res) => {
+        if(res.code===2026){
+          _that.showImageCode=true
+        }
         if (res.data.token) {
           localStorage.setItem('token', res.data.token);
         }
@@ -729,14 +734,18 @@ export default {
         this.$toast(this.$t('register.inviteCodeEmpty'));
         return false;
       }
-      if (!this.config.register_phone && !this.registerData.code) {
+      if (!this.config.register_phone && (this.showImageCode && !this.registerData.code)) {
         this.$toast(this.$t('login.codeEmpty'));
         return false;
       }
       this.loading = true;
+      const _that=this;
       Fetch('/index/register', {
         ...this.registerData
       }).then((res) => {
+        if(res.code===2026){
+          _that.showImageCode=true
+        }
         if (res.data.token) {
           localStorage.setItem('token', res.data.token);
         }
@@ -752,6 +761,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.login_box_input{
+  padding-left: 20px;
+  font-size: 18px;
+}
 .auth-card-container {
   background: #ffffffdb;
   border: 1px solid #fff;

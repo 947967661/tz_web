@@ -139,7 +139,7 @@
 		},
 		methods: {
 			start() {
-				getCountryCodeList().then(({ list, defaultIndex }) => {
+				getCountryCodeList(this.lang).then(({ list, defaultIndex }) => {
 					this.country_code = list;
 					this.value = defaultIndex;
 				});

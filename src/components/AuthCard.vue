@@ -541,7 +541,7 @@ export default {
       this.showRegisterPrefixList = false;
     },
     getLanguages() {
-      getCountryCodeList().then(({ list, defaultIndex }) => {
+      getCountryCodeList(this.lang).then(({ list, defaultIndex }) => {
         this.countryCodeList = list;
         this.loginPrefixIndex = defaultIndex;
         this.registerPrefixIndex = defaultIndex;

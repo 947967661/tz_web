@@ -1,6 +1,6 @@
 import Fetch from './fetch';
 
-export function getCountryCodeList(defaultCode = '') {
+export function getCountryCodeList(defaultLocale = '') {
 	return Fetch('/index/getLanguages').then((r) => {
 		const list = r.data.list || [];
 		const countryCode = [];
@@ -11,7 +11,7 @@ export function getCountryCodeList(defaultCode = '') {
 				counrty: list[i]['country']
 			});
 		}
-		const defaultItem = countryCode.find((c) => c.text === defaultCode);
+		const defaultItem = countryCode.find((c) => c.counrty === defaultLocale);
 		const defaultIndex = defaultItem ? defaultItem.value : 0;
 		return { list: countryCode, defaultIndex };
 	});

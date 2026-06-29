@@ -1,6 +1,6 @@
 import Fetch from './fetch';
 
-export function getCountryCodeList(defaultCode = '+234') {
+export function getCountryCodeList(defaultLocale = '') {
 	return Fetch('/index/getLanguages').then((r) => {
 		const list = r.data.list || [];
 		const countryCode = [];
@@ -11,15 +11,7 @@ export function getCountryCodeList(defaultCode = '+234') {
 				counrty: list[i]['country']
 			});
 		}
-		const hasDefault = countryCode.some((c) => c.text === defaultCode);
-		if (!hasDefault) {
-			countryCode.push({
-				text: defaultCode,
-				value: countryCode.length,
-				counrty: 'en_ng'
-			});
-		}
-		const defaultItem = countryCode.find((c) => c.text === defaultCode);
+		const defaultItem = countryCode.find((c) => c.counrty === defaultLocale);
 		const defaultIndex = defaultItem ? defaultItem.value : 0;
 		return { list: countryCode, defaultIndex };
 	});

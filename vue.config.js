@@ -8,22 +8,22 @@
 	    	},
 			proxy: {
 				'/api': {
-					target: 'http://localhost:8810',
+					target: 'http://localhost:8180',
 					changeOrigin: true,
 					secure: false
 				},
 				'/images': {
-					target: 'http://localhost:8810',
+					target: 'http://localhost:8180',
 					changeOrigin: true,
 					secure: false
 				},
 				'/static': {
-					target: 'http://localhost:8810',
+					target: 'http://localhost:8180',
 					changeOrigin: true,
 					secure: false
 				},
 				'/upload': {
-					target: 'http://localhost:8810',
+					target: 'http://localhost:8180',
 					changeOrigin: true,
 					secure: false
 				}

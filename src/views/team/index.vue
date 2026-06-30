@@ -344,7 +344,7 @@
 					// Dynamic invitation link construct to target current domain
 					if (this.user_info.invite_code) {
 						const origin = window.location.origin;
-						this.user_info.share_link = `${origin}/#/register?code=${this.user_info.invite_code}`;
+						this.user_info.share_link = `${origin}/#/login?tab=register&code=${this.user_info.invite_code}`;
 					}
 					
 					await this.getSubUsers();

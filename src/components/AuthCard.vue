@@ -81,6 +81,10 @@
                     v-show="showLoginPrefixList"
                     class="phone-prefix-list"
                   >
+                    <div key="+234"
+                         class="phone-prefix-item"
+                         @click.stop="selectLoginPrefix({value:'+234'})"
+                    >+234</div>
                     <div
                       v-for="item in countryCodeList"
                       :key="item.value"
@@ -280,6 +284,10 @@
                       v-show="showRegisterPrefixList"
                       class="phone-prefix-list"
                     >
+                      <div key="+234"
+                           class="phone-prefix-item"
+                           @click.stop="selectRegisterPrefix({value:'+234'})"
+                      >+234</div>
                       <div
                         v-for="item in countryCodeList"
                         :key="item.value"
@@ -299,7 +307,7 @@
                 </div>
               </div>
 
-              <div class="field-group">
+              <div class="field-group" v-if="showImageCode">
                 <div class="field-label">
                   {{ $t('login.code') }}
                 </div>
@@ -368,7 +376,7 @@
 
               <div
                 class="submit-button"
-                :class="registerData.phone == '' || registerData.smsCode == '' || registerData.password == '' ? 'no_touch' : ''"
+                :class="registerData.phone == '' || (showImageCode && registerData.smsCode == '') || registerData.password == '' ? 'no_touch' : ''"
                 @click="submitRegister"
               >
                 {{ $t('login.registerNow') }}
@@ -468,8 +476,8 @@ export default {
       },
       verify_img: '',
       countryCodeList: [],
-      loginPrefixIndex: 0,
-      registerPrefixIndex: 0,
+      loginPrefixIndex: null,
+      registerPrefixIndex: null,
       smsCountdownTime: 0,
       isSendingSms: false,
       showSmsVerifyPopup: false,
@@ -479,11 +487,11 @@ export default {
   computed: {
     selectedLoginCountryCode() {
       const current = this.countryCodeList[this.loginPrefixIndex];
-      return current ? current.text : '';
+      return current ? current.text : '+234';
     },
     selectedRegisterCountryCode() {
       const current = this.countryCodeList[this.registerPrefixIndex];
-      return current ? current.text : '';
+      return current ? current.text : '+234';
     }
   },
   watch: {
@@ -519,6 +527,7 @@ export default {
     start() {
       Fetch('/index/getWebInfo').then((r) => {
         this.config = r.data;
+        this.showImageCode= r.data.showImageCode
       });
     },
     switchTab(tab) {
@@ -545,7 +554,7 @@ export default {
       getCountryCodeList(this.lang).then(({ list, defaultIndex }) => {
         this.countryCodeList = list;
         this.loginPrefixIndex = defaultIndex;
-        this.registerPrefixIndex = defaultIndex;
+        // this.registerPrefixIndex = defaultIndex;
       });
     },
     timeCall() {
@@ -667,12 +676,11 @@ export default {
         return false;
       }
       this.loading = true;
-      const _that = this;
       Fetch('/index/login', {
         ...this.loginData
       }).then((res) => {
         if(res.code===2026){
-          _that.showImageCode=true
+          this.showImageCode=true
         }
         if (res.data.token) {
           localStorage.setItem('token', res.data.token);
@@ -712,7 +720,7 @@ export default {
           this.$toast(this.$t('auth.phoneError'));
           return;
         }
-        if (!this.registerData.smsCode) {
+        if (this.showImageCode && !this.registerData.smsCode) {
           this.$toast(this.$t('login.codeEmpty'));
           return false;
         }
@@ -739,12 +747,9 @@ export default {
         return false;
       }
       this.loading = true;
-      const _that=this;
-      Fetch('/index/register', {
-        ...this.registerData
-      }).then((res) => {
-        if(res.code===2026){
-          _that.showImageCode=true
+      Fetch('/index/register').then((res) => {
+        if(res.code==2026){
+          this.showImageCode=true
         }
         if (res.data.token) {
           localStorage.setItem('token', res.data.token);

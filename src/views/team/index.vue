@@ -437,7 +437,7 @@
 
 .amount_card {
 	display: flex;
-	width: 335px;
+	width: 100%;
 	background: rgba(255, 255, 255, 0.95);
 	border: 1px solid #fff;
 	box-shadow: 0 9px 21px rgba(70, 74, 135, 0.08);
@@ -455,7 +455,6 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 10px;
-	width: 335px;
 	margin: 15px auto 0;
 }
 
@@ -520,7 +519,6 @@
 }
 
 .team_bonus_panel {
-	width: 335px;
 	margin: 12px auto 0;
 	padding: 12px 14px;
 	background: rgba(255, 255, 255, 0.95);
@@ -545,7 +543,6 @@
 
 .card_container {
 	box-sizing: border-box;
-	width: 335px;
 	background: rgba(255, 255, 255, 0.84);
 	border-radius: 20px;
 	border: 1px solid #fff;

@@ -190,6 +190,9 @@
 		background-color: #FAFAFA;
 	}
 
+	#app .page {
+    padding: 20px 20px 80px 20px;
+  }
 	#app .footer {
 		position: fixed;
 		margin: 0 auto;
@@ -213,6 +216,7 @@
 		bottom: 0;
 		height: 64px;
 		z-index: 4;
+    max-width: 750px;
 	}
 
 	#app .footer .footer_item {

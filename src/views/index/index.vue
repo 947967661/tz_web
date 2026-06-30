@@ -328,9 +328,9 @@
 		}
 	}
 
-	.hero-section {
-		padding: 10px 0 0;
-	}
+	//.hero-section {
+	//	padding: 10px 0 0;
+	//}
 
 	.hero-visual {
 		display: flex;

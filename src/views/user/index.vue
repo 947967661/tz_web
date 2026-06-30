@@ -362,7 +362,6 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 335px;
 	min-height: 102px;
 	background: rgba(255, 255, 255, 0.95);
 	border: 1px solid #fff;
@@ -420,7 +419,6 @@
 
 .card_container {
 	box-sizing: border-box;
-	width: 335px;
 	background: rgba(255, 255, 255, 0.84);
 	border-radius: 20px;
 	border: 1px solid #fff;

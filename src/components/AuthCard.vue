@@ -307,7 +307,7 @@
                 </div>
               </div>
 
-              <div class="field-group" v-if="showImageCode">
+              <div class="field-group" v-if="false"> <!-- smsCode -->
                 <div class="field-label">
                   {{ $t('login.code') }}
                 </div>

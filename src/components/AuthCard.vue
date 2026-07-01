@@ -158,7 +158,7 @@
 
             <div
               class="submit-button"
-              :class="loginData.username == '' || loginData.password == '' || (showImageCode && loginData.code === '') ? 'no_touch' : ''"
+              :class="loginData.username == '' || loginData.password == '' || loginData.code == '' ? 'no_touch' : ''"
               @click="submitLogin"
             >
               {{ $t('login.loginNow') }}
@@ -226,7 +226,7 @@
                 </div>
               </div>
 
-              <div class="field-group" v-if="showImageCode">
+              <div class="field-group">
                 <div class="field-label">
                   {{ $t('login.code') }}
                 </div>
@@ -249,7 +249,7 @@
 
               <div
                 class="submit-button"
-                :class="registerData.username == '' || registerData.password == '' || (showImageCode && registerData.code === '') ? 'no_touch' : ''"
+                :class="registerData.username == '' || registerData.password == '' || registerData.code == '' ? 'no_touch' : ''"
                 @click="submitRegister"
               >
                 {{ $t('login.registerNow') }}
@@ -376,7 +376,7 @@
 
               <div
                 class="submit-button"
-                :class="registerData.phone == '' || (showImageCode && registerData.smsCode == '') || registerData.password == '' ? 'no_touch' : ''"
+                :class="registerData.phone == '' || registerData.smsCode == '' || registerData.password == '' ? 'no_touch' : ''"
                 @click="submitRegister"
               >
                 {{ $t('login.registerNow') }}
@@ -453,7 +453,6 @@ export default {
       loginPwdType: 'password',
       registerPwdType: 'password',
       loading: false,
-      showImageCode: false,
       loginData: {
         username: devLoginDefaults.username,
         password: devLoginDefaults.password,
@@ -527,7 +526,6 @@ export default {
     start() {
       Fetch('/index/getWebInfo').then((r) => {
         this.config = r.data;
-        this.showImageCode= r.data.showImageCode
       });
     },
     switchTab(tab) {
@@ -671,7 +669,7 @@ export default {
         this.$toast(this.$t('login.passwordLength'));
         return false;
       }
-      if (this.showImageCode && !this.loginData.code) {
+      if (!this.loginData.code) {
         this.$toast(this.$t('login.codeEmpty'));
         return false;
       }
@@ -679,9 +677,6 @@ export default {
       Fetch('/index/login', {
         ...this.loginData
       }).then((res) => {
-        if(res.code===2026){
-          this.showImageCode=true
-        }
         if (res.data.token) {
           localStorage.setItem('token', res.data.token);
         }
@@ -720,7 +715,7 @@ export default {
           this.$toast(this.$t('auth.phoneError'));
           return;
         }
-        if (this.showImageCode && !this.registerData.smsCode) {
+        if (!this.registerData.smsCode) {
           this.$toast(this.$t('login.codeEmpty'));
           return false;
         }
@@ -742,15 +737,14 @@ export default {
         this.$toast(this.$t('register.inviteCodeEmpty'));
         return false;
       }
-      if (!this.config.register_phone && (this.showImageCode && !this.registerData.code)) {
+      if (!this.config.register_phone && !this.registerData.code) {
         this.$toast(this.$t('login.codeEmpty'));
         return false;
       }
       this.loading = true;
-      Fetch('/index/register').then((res) => {
-        if(res.code==2026){
-          this.showImageCode=true
-        }
+      Fetch('/index/register', {
+        ...this.registerData
+      }).then((res) => {
         if (res.data.token) {
           localStorage.setItem('token', res.data.token);
         }

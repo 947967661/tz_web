@@ -130,7 +130,6 @@
               </div>
             </div>
 
-            <div class="field-group" v-if="showImageCode">
               <div class="field-label">
                 {{ $t('login.code') }}
               </div>
@@ -154,7 +153,6 @@
                   >
                 </div>
               </div>
-            </div>
 
             <div
               class="submit-button"
@@ -340,7 +338,7 @@
               </div>
 
               <div class="field-group">
-                <div class="field-label">
+                <div class="field-label">s
                   {{ $t('login.password') }}
                 </div>
                 <div class="field-control">

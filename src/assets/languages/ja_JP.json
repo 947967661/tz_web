@@ -39,7 +39,10 @@
 		"type15": "投資の終了、校長を返します",
 		"type16": "節約（購読）",
 		"type17": "節約（償還）",
-		"type18": "節約（所得）"
+		"type18": "節約（所得）",
+		"type19": "Direct investment earnings",
+		"type20": "Indirect investment earnings",
+		"type21": "Indirect 3 investment earnings"
 	},
 	"home": {
 		"index": "ホームページ",

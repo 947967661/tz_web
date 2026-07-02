@@ -39,7 +39,10 @@
 		"type15": "สิ้นสุดการลงทุนคืนเงินต้น",
 		"type16": "เงินออม (ติดตาม)",
 		"type17": "เงินออม (การไถ่)",
-		"type18": "เงินออม (รายได้)"
+		"type18": "เงินออม (รายได้)",
+		"type19": "Direct investment earnings",
+		"type20": "Indirect investment earnings",
+		"type21": "Indirect 3 investment earnings"
 	},
 	"home": {
 		"index": "โฮมเพจ",

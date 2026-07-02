@@ -39,7 +39,10 @@
 		"type15": "Investissement en arrière-plan",
 		"type16": "Économies (s'abonner)",
 		"type17": "Économies (rachat)",
-		"type18": "Économies (revenu)"
+		"type18": "Économies (revenu)",
+		"type19": "Direct investment earnings",
+		"type20": "Indirect investment earnings",
+		"type21": "Indirect 3 investment earnings"
 	},
 	"home": {
 		"index": "Page d'accueil",

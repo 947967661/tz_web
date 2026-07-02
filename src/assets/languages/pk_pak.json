@@ -39,7 +39,10 @@
     "type15": "سرمایہ کاری اصل رقم کی واپسی",
     "type16": "بچت (سبسکرائب)",
     "type17": "بچت (واپس لینا)",
-    "type18": "بچت (آمدنی)"
+    "type18": "بچت (آمدنی)",
+    "type19": "Direct investment earnings",
+    "type20": "Indirect investment earnings",
+    "type21": "Indirect 3 investment earnings"
   },
   "home": {
     "index": "ہوم",

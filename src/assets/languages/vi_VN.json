@@ -39,7 +39,10 @@
 		"type15": "Kết thúc khoản đầu tư, trả lại hiệu trưởng",
 		"type16": "Tiết kiệm (đặt mua)",
 		"type17": "Tiết kiệm (chuộc lại)",
-		"type18": "Tiết kiệm (thu nhập)"
+		"type18": "Tiết kiệm (thu nhập)",
+		"type19": "Direct investment earnings",
+		"type20": "Indirect investment earnings",
+		"type21": "Indirect 3 investment earnings"
 	},
 	"home": {
 		"index": "Trang chủ",

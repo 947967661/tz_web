@@ -39,7 +39,10 @@
 		"type15": "La inversión expira, devuelve al director",
 		"type16": "Ahorros (suscribir)",
 		"type17": "Ahorros (redención)",
-		"type18": "Ahorros (ingreso)"
+		"type18": "Ahorros (ingreso)",
+		"type19": "Direct investment earnings",
+		"type20": "Indirect investment earnings",
+		"type21": "Indirect 3 investment earnings"
 	},
 	"home": {
 		"index": "Portada",

@@ -39,7 +39,10 @@
 		"type15": "Fim do investimento, devolva o diretor",
 		"type16": "Poupança (se inscrever)",
 		"type17": "Poupança (redenção)",
-		"type18": "Poupança (renda)"
+		"type18": "Poupança (renda)",
+		"type19": "Direct investment earnings",
+		"type20": "Indirect investment earnings",
+		"type21": "Indirect 3 investment earnings"
 	},
 	"home": {
 		"index": "Pagina inicial",

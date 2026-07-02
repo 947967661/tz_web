@@ -39,7 +39,10 @@
 		"type15": "Rückzahlung des Anlagekapitals",
 		"type16": "Einsparungen (Abonnieren)",
 		"type17": "Einsparungen (Einlösung)",
-		"type18": "Einsparungen (Einkommen)"
+		"type18": "Einsparungen (Einkommen)",
+		"type19": "Direct investment earnings",
+		"type20": "Indirect investment earnings",
+		"type21": "Indirect 3 investment earnings"
 	},
 	"home": {
 		"index": "Startseite",

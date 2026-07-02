@@ -39,7 +39,10 @@
 		"type15": "투자 종료, 교장을 반환하십시오",
 		"type16": "저축 (구독하다)",
 		"type17": "저축 (되찾기)",
-		"type18": "저축 (소득)"
+		"type18": "저축 (소득)",
+		"type19": "Direct investment earnings",
+		"type20": "Indirect investment earnings",
+		"type21": "Indirect 3 investment earnings"
 	},
 	"home": {
 		"index": "홈페지",

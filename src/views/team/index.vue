@@ -292,18 +292,6 @@
 					{
 						key: "bonus_line_3",
 						text: this.translate("team.bonus_line_3", "三级首投奖励 2%", "Team Level 3 First Investment Bonus 2%")
-					},
-					{
-						key: "bonus_line_4",
-						text: this.translate("team.bonus_line_4", "一级日返利 3%", "Team Level 1 Daily Rebate 3%")
-					},
-					{
-						key: "bonus_line_5",
-						text: this.translate("team.bonus_line_5", "二级日返利 2%", "Team Level 2 Daily Rebate 2%")
-					},
-					{
-						key: "bonus_line_6",
-						text: this.translate("team.bonus_line_6", "三级日返利 1%", "Team Level 3 Daily Rebate 1%")
 					}
 				];
 			}

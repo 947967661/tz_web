@@ -40,9 +40,9 @@
     "type16": "بچت (سبسکرائب)",
     "type17": "بچت (واپس لینا)",
     "type18": "بچت (آمدنی)",
-    "type19": "Direct investment earnings",
-    "type20": "Indirect investment earnings",
-    "type21": "Indirect 3 investment earnings"
+    "type19": "براہ راست سرمایہ کاری کمیشن",
+    "type20": "بالواسطہ سرمایہ کاری کمیشن",
+    "type21": "تیسرے درجے کی سرمایہ کاری کمیشن"
   },
   "home": {
     "index": "ہوم",

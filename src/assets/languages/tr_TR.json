@@ -40,9 +40,9 @@
 		"type16": "Tasarruf (abone)",
 		"type17": "Tasarruf (itfa)",
 		"type18": "Tasarruf (gelir)",
-		"type19": "Direct investment earnings",
-		"type20": "Indirect investment earnings",
-		"type21": "Indirect 3 investment earnings"
+		"type19": "Doğrudan Yatırım Komisyonu",
+		"type20": "Dolaylı Yatırım Komisyonu",
+		"type21": "Üçüncü Derece Yatırım Komisyonu"
 	},
 	"home": {
 		"index": "Ana sayfa",

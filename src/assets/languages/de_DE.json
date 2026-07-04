@@ -40,9 +40,9 @@
 		"type16": "Einsparungen (Abonnieren)",
 		"type17": "Einsparungen (Einlösung)",
 		"type18": "Einsparungen (Einkommen)",
-		"type19": "Direct investment earnings",
-		"type20": "Indirect investment earnings",
-		"type21": "Indirect 3 investment earnings"
+		"type19": "Provision für Direktinvestitionen",
+		"type20": "Provision für indirekte Investitionen",
+		"type21": "Provision für Investitionen dritter Ebene"
 	},
 	"home": {
 		"index": "Startseite",

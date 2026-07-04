@@ -40,9 +40,9 @@
 		"type16": "เงินออม (ติดตาม)",
 		"type17": "เงินออม (การไถ่)",
 		"type18": "เงินออม (รายได้)",
-		"type19": "Direct investment earnings",
-		"type20": "Indirect investment earnings",
-		"type21": "Indirect 3 investment earnings"
+		"type19": "ค่าคอมมิชชันการลงทุนโดยตรง",
+		"type20": "ค่าคอมมิชชันการลงทุนทางอ้อม",
+		"type21": "ค่าคอมมิชชันการลงทุนระดับที่สาม"
 	},
 	"home": {
 		"index": "โฮมเพจ",

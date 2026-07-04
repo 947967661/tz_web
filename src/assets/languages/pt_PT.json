@@ -40,9 +40,9 @@
 		"type16": "Poupança (se inscrever)",
 		"type17": "Poupança (redenção)",
 		"type18": "Poupança (renda)",
-		"type19": "Direct investment earnings",
-		"type20": "Indirect investment earnings",
-		"type21": "Indirect 3 investment earnings"
+		"type19": "Comissão de investimento direto",
+		"type20": "Comissão de investimento indireto",
+		"type21": "Comissão de investimento de terceiro nível"
 	},
 	"home": {
 		"index": "Pagina inicial",

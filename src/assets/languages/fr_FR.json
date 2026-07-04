@@ -40,9 +40,9 @@
 		"type16": "Économies (s'abonner)",
 		"type17": "Économies (rachat)",
 		"type18": "Économies (revenu)",
-		"type19": "Direct investment earnings",
-		"type20": "Indirect investment earnings",
-		"type21": "Indirect 3 investment earnings"
+		"type19": "Commission d'investissement direct",
+		"type20": "Commission d'investissement indirect",
+		"type21": "Commission d'investissement de troisième rang"
 	},
 	"home": {
 		"index": "Page d'accueil",

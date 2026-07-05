@@ -182,7 +182,7 @@
               {{ $t('subscription.earnedIncome') }}
             </div>
             <div class="value">
-              {{ platformMoneySymbol }} {{ formatMoney(item.total_interest) }}
+              {{ platformMoneySymbol }} {{ formatMoney(item.total_earn) }}
             </div>
           </div>
         </div>

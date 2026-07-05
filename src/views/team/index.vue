@@ -136,7 +136,7 @@
               </div>
               <div class="item item_column">
                 <div class="item_amount">
-                  {{ common.precision_basic(item.recharge_sum) }}
+                  {{ common.precision_basic(item.invest_sum) }}
                 </div>
                 <div class="item_unit">
                   {{ platformMoneySymbol }}
@@ -144,7 +144,7 @@
               </div>
               <div class="item item_column">
                 <div class="item_amount">
-                  0.00
+                  {{ common.precision_basic(item.invest_earn_sum) }}
                 </div>
                 <div class="item_unit">
                   {{ platformMoneySymbol }}

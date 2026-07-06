@@ -395,22 +395,26 @@ export default {
 .bg_totalRevenue {
   background-image: url(../img/index/web3/team/team-card-referral-total.png);
   background-position: 50%;
-  background-size: cover
+  background-size: cover;
+  max-height: 180px;
 }
 .bg_revenueToday {
   background-image: url(../img/index/web3/team/team-card-commission-total.png);
   background-position: 50%;
-  background-size: cover
+  background-size: cover;
+  max-height: 180px;
 }
 .bg_yesterday {
   background-image: url(../img/index/web3/team/team-card-today-referral.png);
-  background-position: 50%;
+  background-position: 50%;;
+  max-height: 180px;
   background-size: cover
 }
 .bg_teamSize {
   background-image: url(../img/index/web3/team/team-card-today-commission.png);
   background-position: 50%;
-  background-size: cover
+  background-size: cover;
+  max-height: 180px;
 }
 .page {
   position: relative;

@@ -1,4 +1,5 @@
 {
+	"name": "越南语",
 	"utils": {
 		"confirm": "Được",
 		"cancel": "Hủy bỏ",
@@ -161,7 +162,11 @@
 		"teamList": "Danh sách người dùng",
 		"username": "Tên người dùng",
 		"totalRecharge": "Tái chế tích lũy",
-		"inviteLink": "Liên kết mời: "
+		"inviteLink": "Liên kết mời: ",
+		"inviteSum": "Tổng thưởng giới thiệu",
+		"yongjinSum": "Tổng hoa hồng",
+		"inviteSumToday": "Thưởng giới thiệu hôm nay",
+		"yongjinSumToday": "Hoa hồng hôm nay"
 	},
 	"auth": {
 		"authCenter": "Trung tâm chứng nhận",

@@ -1,4 +1,5 @@
 {
+	"name": "乌尔都语",
 	"utils": {
 		"confirm": "ٹھیک ہے",
 		"cancel": "منسوخ",
@@ -171,7 +172,11 @@
 		"level3": "لیول 3",
 		"registeredAccount": "رجسٹرڈ اکاؤنٹ",
 		"rechargeAmount": "انویسٹمنٹ رقم",
-		"selfInvestmentProfit": "ذاتی انویسٹمنٹ منافع"
+		"selfInvestmentProfit": "ذاتی انویسٹمنٹ منافع",
+		"inviteSum": "کل سفارشاتی انعام",
+		"yongjinSum": "کل کمیشن",
+		"inviteSumToday": "آج کے سفارشاتی انعامات",
+		"yongjinSumToday": "آج کا کمیشن"
 	},
 	"auth": {
 		"authCenter": "تصدیقی سینٹر",

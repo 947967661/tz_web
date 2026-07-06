@@ -1,4 +1,5 @@
 {
+	"name": "繁体字",
 	"utils": {
 		"confirm": "確定",
 		"cancel": "取消",
@@ -171,7 +172,11 @@
 		"level3": "三級下線",
 		"registeredAccount": "註冊賬戶",
 		"rechargeAmount": "投資金額",
-		"selfInvestmentProfit": "投入收益總計"
+		"selfInvestmentProfit": "投入收益總計",
+		"inviteSum": "推薦獎勵總計",
+		"yongjinSum": "佣金總計",
+		"inviteSumToday": "今日推薦獎勵",
+		"yongjinSumToday": "今日佣金"
 	},
 	"auth": {
 		"authCenter": "認證中心",

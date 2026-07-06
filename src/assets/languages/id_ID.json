@@ -1,4 +1,5 @@
 {
+	"name":"印度尼西亚语",
 	"utils": {
 		"confirm": "Oke",
 		"cancel": "Batal",
@@ -161,7 +162,11 @@
 		"teamList": "Daftar pengguna",
 		"username": "Nama pengguna",
 		"totalRecharge": "Total Recharge",
-		"inviteLink": "Tautan undangan: "
+		"inviteLink": "Tautan undangan: ",
+		"inviteSum": "Total Hadiah Rekomendasi",
+		"yongjinSum": "Total Komisi",
+		"inviteSumToday": "Hadiah Rekomendasi Hari Ini",
+		"yongjinSumToday": "Komisi Hari Ini"
 	},
 	"auth": {
 		"authCenter": "Pusat Sertifikasi",

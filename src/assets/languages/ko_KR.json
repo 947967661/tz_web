@@ -1,4 +1,5 @@
 {
+	"name": "韩语",
 	"utils": {
 		"confirm": "확인",
 		"cancel": "취소",
@@ -161,7 +162,11 @@
 		"teamList": "사용자 목록",
 		"username": "사용자 이름",
 		"totalRecharge": "총 재충전",
-		"inviteLink": "초대 링크 : "
+		"inviteLink": "초대 링크 : ",
+		"inviteSum": "추천 보상 총합",
+		"yongjinSum": "커미션 총합",
+		"inviteSumToday": "오늘 추천 보상",
+		"yongjinSumToday": "오늘 커미션"
 	},
 	"auth": {
 		"authCenter": "인증 센터",

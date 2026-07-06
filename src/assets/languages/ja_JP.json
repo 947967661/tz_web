@@ -1,4 +1,5 @@
 {
+	"name": "日语",
 	"utils": {
 		"confirm": "もちろん",
 		"cancel": "キャンセル",
@@ -161,7 +162,11 @@
 		"teamList": "ユーザーリスト",
 		"username": "ユーザー名",
 		"totalRecharge": "総充電",
-		"inviteLink": "招待リンク："
+		"inviteLink": "招待リンク：",
+		"inviteSum": "推薦報酬合計",
+		"yongjinSum": "コミッション合計",
+		"inviteSumToday": "今日の推薦報酬",
+		"yongjinSumToday": "今日のコミッション"
 	},
 	"auth": {
 		"authCenter": "認証センター",

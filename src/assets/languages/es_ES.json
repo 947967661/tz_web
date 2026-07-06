@@ -1,4 +1,5 @@
 {
+	"name": "西班牙语",
 	"utils": {
 		"confirm": "Confirmar",
 		"cancel": "Cancelar",
@@ -161,7 +162,11 @@
 		"teamList": "Lista de usuarios",
 		"username": "Nombre de usuario",
 		"totalRecharge": "Recarga total",
-		"inviteLink": "Enlace de invitación: "
+		"inviteLink": "Enlace de invitación: ",
+		"inviteSum": "Total de recompensas por recomendaciones",
+		"yongjinSum": "Total de comisiones",
+		"inviteSumToday": "Recompensas por recomendaciones de hoy",
+		"yongjinSumToday": "Comisiones de hoy"
 	},
 	"auth": {
 		"authCenter": "Centro de certificación",

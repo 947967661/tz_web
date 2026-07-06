@@ -1,4 +1,5 @@
 {
+	"name": "法语",
 	"utils": {
 		"confirm": "Bien sûr",
 		"cancel": "Annuler",
@@ -161,7 +162,11 @@
 		"teamList": "Liste d'utilisateur",
 		"username": "Nom d'utilisateur",
 		"totalRecharge": "Recharge totale",
-		"inviteLink": "Lien d'invitation: "
+		"inviteLink": "Lien d'invitation: ",
+		"inviteSum": "Total des récompenses de parrainage",
+		"yongjinSum": "Total des commissions",
+		"inviteSumToday": "Récompenses de parrainage d'aujourd'hui",
+		"yongjinSumToday": "Commissions d'aujourd'hui"
 	},
 	"auth": {
 		"authCenter": "Centre de certification",

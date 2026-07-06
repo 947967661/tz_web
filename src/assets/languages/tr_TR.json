@@ -1,4 +1,5 @@
 {
+	"name":"土耳其语",
 	"utils": {
 		"confirm": "Iyi",
 		"cancel": "Iptal",
@@ -161,7 +162,11 @@
 		"teamList": "Kullanıcı listesi",
 		"username": "Kullanıcı adı",
 		"totalRecharge": "Kümülatif şarj",
-		"inviteLink": "Davet Bağlantısı: "
+		"inviteLink": "Davet Bağlantısı: ",
+		"inviteSum": "Toplam Tavsiye Ödülü",
+		"yongjinSum": "Toplam Komisyon",
+		"inviteSumToday": "Bugünkü Tavsiye Ödülü",
+		"yongjinSumToday": "Bugünkü Komisyon"
 	},
 	"auth": {
 		"authCenter": "Sertifikasyon merkezi",

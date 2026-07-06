@@ -1,4 +1,5 @@
 {
+	"name": "泰语",
 	"utils": {
 		"confirm": "โอเค",
 		"cancel": "ยกเลิก",
@@ -161,7 +162,11 @@
 		"teamList": "รายชื่อผู้ใช้",
 		"username": "ชื่อผู้ใช้",
 		"totalRecharge": "การเติมเงินสะสม",
-		"inviteLink": "ลิงค์เชิญ: "
+		"inviteLink": "ลิงค์เชิญ: ",
+		"inviteSum": "รางวัลแนะนำรวม",
+		"yongjinSum": "ค่าคอมมิชชั่นรวม",
+		"inviteSumToday": "รางวัลแนะนำวันนี้",
+		"yongjinSumToday": "ค่าคอมมิชชั่นวันนี้"
 	},
 	"auth": {
 		"authCenter": "ศูนย์รับรอง",

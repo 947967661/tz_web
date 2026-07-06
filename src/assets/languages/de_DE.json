@@ -1,4 +1,5 @@
 {
+	"name": "德语",
 	"utils": {
 		"confirm": "OK",
 		"cancel": "Absagen",
@@ -161,7 +162,11 @@
 		"teamList": "Benutzerliste",
 		"username": "Nutzername",
 		"totalRecharge": "Kumulatives Aufladen",
-		"inviteLink": "Einladungslink: "
+		"inviteLink": "Einladungslink: ",
+		"inviteSum": "Gesamte Empfehlungprämie",
+		"yongjinSum": "Gesamte Provision",
+		"inviteSumToday": "Empfehlungsprämie heute",
+		"yongjinSumToday": "Provision heute"
 	},
 	"auth": {
 		"authCenter": "Zertifizierungszentrum",

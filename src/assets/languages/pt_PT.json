@@ -1,4 +1,5 @@
 {
+	"name":"葡萄牙语",
 	"utils": {
 		"confirm": "OK",
 		"cancel": "Cancelar",
@@ -161,7 +162,11 @@
 		"teamList": "Lista de usuários",
 		"username": "Nome de usuário",
 		"totalRecharge": "Recarga cumulativa",
-		"inviteLink": "Link de convite: "
+		"inviteLink": "Link de convite: ",
+		"inviteSum": "Total de prémios de recomendação",
+		"yongjinSum": "Total de comissões",
+		"inviteSumToday": "Prémios de recomendação de hoje",
+		"yongjinSumToday": "Comissões de hoje"
 	},
 	"auth": {
 		"authCenter": "Centro de Certificação",

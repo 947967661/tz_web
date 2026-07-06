@@ -1,4 +1,5 @@
 {
+	"name": "马来语",
 	"utils": {
 		"confirm": "Okey",
 		"cancel": "Batalkan",
@@ -161,7 +162,11 @@
 		"teamList": "Senarai pengguna",
 		"username": "Nama pengguna",
 		"totalRecharge": "Jumlah Recharge",
-		"inviteLink": "Pautan Jemputan: "
+		"inviteLink": "Pautan Jemputan: ",
+		"inviteSum": "Jumlah Ganjaran Cadangan",
+		"yongjinSum": "Jumlah Komisen",
+		"inviteSumToday": "Ganjaran Cadangan Hari Ini",
+		"yongjinSumToday": "Komisen Hari Ini"
 	},
 	"auth": {
 		"authCenter": "Pusat pensijilan",

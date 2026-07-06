@@ -21,7 +21,7 @@
       <div
           v-for="t in statsCards"
           :key="t.key"
-          class="stats_item"
+          :class="`stats_item bg_${t.key}`"
       >
         <div class="stats_label">
           {{ t.label }}
@@ -392,6 +392,26 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.bg_totalRevenue {
+  background-image: url(../img/index/web3/team/team-card-referral-total.png);
+  background-position: 50%;
+  background-size: cover
+}
+.bg_revenueToday {
+  background-image: url(../img/index/web3/team/team-card-commission-total.png);
+  background-position: 50%;
+  background-size: cover
+}
+.bg_yesterday {
+  background-image: url(../img/index/web3/team/team-card-today-referral.png);
+  background-position: 50%;
+  background-size: cover
+}
+.bg_teamSize {
+  background-image: url(../img/index/web3/team/team-card-today-commission.png);
+  background-position: 50%;
+  background-size: cover
+}
 .page {
   position: relative;
   min-height: 100vh;
@@ -436,6 +456,9 @@ export default {
   min-height: 90px;
   padding: 12px 15px;
   box-sizing: border-box;
+  background-image: url(../img/index/web3/team/team-card-invite-bg.png);
+  background-position: 50%;
+  background-size: cover
 }
 
 .stats_grid {
@@ -447,8 +470,9 @@ export default {
 
 .stats_item {
   min-height: 84px;
+  height: 40vw;
   padding: 12px;
-  background: rgba(255, 255, 255, 0.95);
+  //background: rgba(255, 255, 255, 0.95);
   border: 1px solid #fff;
   border-radius: 16px;
   box-shadow: 0 9px 21px rgba(70, 74, 135, 0.08);
@@ -459,16 +483,14 @@ export default {
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
-  color: #64676e;
+  color: #1a1d26;
 }
 
 .stats_value {
-  margin-top: 9px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 25px;
-  color: #00001c;
-  word-break: break-all;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .invite_item {
@@ -631,25 +653,25 @@ export default {
 }
 
 .item_column {
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
 }
 
 .item_amount {
   font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 22px;
+  line-height: 28px;
   color: #00001c;
   word-break: break-all;
 }
 
 .item_unit {
-  margin-top: 2px;
+  margin-top: 1px;
   font-weight: 700;
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 11px;
+  line-height: 15px;
   color: #64676e;
 }
 

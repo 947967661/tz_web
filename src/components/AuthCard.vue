@@ -147,7 +147,7 @@
                 >
                 <div class="verify-img-wrap">
                   <img
-                    style="height: 32px;margin-bottom: 8px;"
+                    class="verify-img"
                     :src="verify_img"
                     @click="getVerifyCode"
                   >
@@ -237,7 +237,7 @@
                   >
                   <div class="verify-img-wrap">
                     <img
-                      style="height: 32px;margin-bottom: 8px;"
+                      class="verify-img"
                       :src="verify_img"
                       @click="getVerifyCode"
                     >
@@ -395,7 +395,7 @@
       <div class="sms_verify">
         <div>
           <img
-            style="height: 40px;"
+            class="verify-img verify-img-popup"
             :src="verify_img"
             @click="getVerifyCode"
           >
@@ -846,6 +846,19 @@ export default {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+}
+.verify-img {
+  display: block;
+  width: 96px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+.verify-img-popup {
+  width: 120px;
+  height: 40px;
+  margin: 0 auto;
 }
 .field-icon-text {
   font-size: 17px;

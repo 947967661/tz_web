@@ -191,7 +191,10 @@
 	}
 
 	#app .page {
-    padding: 20px 20px 80px 20px;
+    padding: 20px 20px calc(80px + env(safe-area-inset-bottom)) 20px;
+    padding: 20px 20px calc(80px + constant(safe-area-inset-bottom)) 20px;
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    padding-bottom: calc(80px + constant(safe-area-inset-bottom));
   }
 	#app .footer {
 		position: fixed;
@@ -214,7 +217,11 @@
 		box-shadow: 0 -5px 15px rgba(70, 74, 135, 0.08);
 		width: 100%;
 		bottom: 0;
-		height: 64px;
+		height: calc(64px + env(safe-area-inset-bottom));
+		height: calc(64px + constant(safe-area-inset-bottom));
+		padding-bottom: env(safe-area-inset-bottom);
+		padding-bottom: constant(safe-area-inset-bottom);
+		box-sizing: border-box;
 		z-index: 4;
     max-width: 750px;
 	}

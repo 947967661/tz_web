@@ -51,7 +51,19 @@
 		"team": "Đội của tôi",
 		"my": "Tài khoản",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi là nền tảng cho thuê sức mạnh AI hàng đầu thế giới",
+		"heroDesc": "Tham gia NexaAi, sử dụng thuật toán điều phối AI hàng đầu thế giới để cho thuê Token của bạn cho các cơ quan đang cần sức mạnh tính toán và tài nguyên. Không cần thao tác, lợi nhuận sẽ được trả đúng hạn.",
+		"whyAiTitle": "Tại sao lại chọn cho thuê AI?",
+		"whyAiDesc": "NexaAi – nền tảng cho thuê sức mạnh tính toán AI ‘tập hợp vốn tư nhân, thuê sức mạnh AI hàng đầu và phân chia lợi nhuận cho các nhà đầu tư‘",
+		"featureSniffTitle": "Khứu giác thông minh",
+		"featureSniffDesc": "AI giám sát giá thuê toàn cầu trong mili giây, nơi nào đắt, tiền sẽ được cho thuê tới đó.",
+		"featureSecurityTitle": "An toàn và hợp quy",
+		"featureSecurityDesc": "Tất cả các hành vi cho thuê được thực hiện qua hợp đồng thông minh, tiền không rời khỏi kho an toàn.",
+		"featureReinvestTitle": "Tái đầu tư tự động",
+		"featureReinvestDesc": "Tiền thuê phát sinh tự động tham gia vào vòng cho thuê tiếp theo, đạt được tăng trưởng lãi kép.",
+		"partnerTitle": "Đối tác chiến lược",
+		"partnerDesc": "Hợp tác cùng các tổ chức AI và điện toán đám mây hàng đầu thế giới, cung cấp hỗ trợ nền tảng cho việc cho thuê Token, điều phối sức mạnh tính toán và thanh toán an toàn."
 	},
 	"index": {
 		"rate": "Lãi suất: ",

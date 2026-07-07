@@ -51,7 +51,19 @@
 		"team": "Takımım",
 		"my": "Hesap",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi, dünya çapında lider bir yapay zekâ hesaplama gücü kiralama platformudur",
+		"heroDesc": "NexaAi'ye katılın ve dünya çapında lider yapay zekâ zamanlama algoritmalarını kullanarak Token’larınızı hesaplama gücüne ve kaynaklara ihtiyaç duyan kuruluşlara kiralayın. İşlem yapmanıza gerek yok, geliriniz zamanında hesabınıza gelir.",
+		"whyAiTitle": "Neden Yapay Zekâ Kiralaması?",
+		"whyAiDesc": "NexaAi Yapay Zekâ Hesaplama Gücü Kiralama Platformu \"özel sermayeyi bir araya getirir, en üst düzey üst akış AI hesaplama gücünü kiralar ve getiriyi yatırımcılara dağıtır\"",
+		"featureSniffTitle": "Akıllı Algılama",
+		"featureSniffDesc": "AI, dünya genelindeki kiraları milisaniye düzeyinde izler, hangi yer pahalıysa paranız oraya gider.",
+		"featureSecurityTitle": "Güvenli ve Uyumluluk",
+		"featureSecurityDesc": "Tüm kiralamalar akıllı sözleşmelerle gerçekleştirilir, fonlar güvenlik havuzundan çıkmaz.",
+		"featureReinvestTitle": "Otomatik Yeniden Yatırım",
+		"featureReinvestDesc": "Oluşan kiralar otomatik olarak bir sonraki kira turuna eklenir, bileşik büyüme sağlanır.",
+		"partnerTitle": "Stratejik Ortaklar",
+		"partnerDesc": "Dünya çapında lider AI ve bulut bilişim kuruluşlarıyla iş birliği yaparak Token kiralama, hesaplama gücü planlama ve güvenli ödeme altyapısı sağlar."
 	},
 	"index": {
 		"rate": "Faiz oranı: ",

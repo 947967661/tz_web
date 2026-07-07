@@ -51,7 +51,19 @@
 		"team": "Team",
 		"my": "Mein Profil",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi ist die weltweit führende Plattform für AI-Rechenleistung-Vermietung",
+		"heroDesc": "Schließe dich NexaAi an und nutze den weltweit führenden AI-Planungsalgorithmus, um deine Token an Institutionen zu vermieten, die dringend Rechenleistung und Ressourcen benötigen. Keine Bedienung nötig, die Einnahmen werden pünktlich gutgeschrieben.",
+		"whyAiTitle": "Warum AI-Vermietung wählen?",
+		"whyAiDesc": "Die NexaAi AI-Rechenleistungsvermietungsplattform \"bündelt Private-Finanzierungen, vermietet erstklassige obere AI-Rechenleistung und verteilt die Gewinne an die Investoren",
+		"featureSniffTitle": "Intelligentes Aufspüren",
+		"featureSniffDesc": "AI überwacht global in Millisekunden die Mieten – wo es teuer ist, wird das Geld hingemietet.",
+		"featureSecurityTitle": "Sicher und konform",
+		"featureSecurityDesc": "Alle Vermietungsvorgänge werden über Smart Contracts ausgeführt, das Geld verlässt nicht den Sicherheits-Pool.",
+		"featureReinvestTitle": "Vollautomatisches Reinvestieren",
+		"featureReinvestDesc": "Die entstandenen Mieten werden automatisch in die nächste Runde der Vermietung reinvestiert, für Zinseszinseffekt.",
+		"partnerTitle": "Strategische Partner",
+		"partnerDesc": "In Zusammenarbeit mit weltweit führenden AI- und Cloud-Computing-Unternehmen bieten wir die Basis für Token-Vermietung, Rechenleistungsplanung und sichere Abwicklung."
 	},
 	"index": {
 		"rate": "Zinsrate: ",

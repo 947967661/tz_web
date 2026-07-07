@@ -23,7 +23,7 @@
 
     <div class="home-topbar">
       <div class="home-logo-wrap">
-        <span class="home-logo-text">deepseek</span>
+        <span class="home-logo-text">NexaAi</span>
       </div>
       <div
         class="home-language"
@@ -45,19 +45,19 @@
         >
       </div>
       <h1 class="hero-title">
-        {{ homeCopy.heroTitle }}
+        {{ $t('home.heroTitle') }}
       </h1>
       <p class="hero-desc">
-        {{ homeCopy.heroDesc }}
+        {{ $t('home.heroDesc') }}
       </p>
     </section>
 
     <section class="feature-section">
       <h2 class="section-title">
-        {{ homeCopy.whyAiTitle }}
+        {{ $t('home.whyAiTitle') }}
       </h2>
       <p class="section-desc">
-        {{ homeCopy.whyAiDesc }}
+        {{ $t('home.whyAiDesc') }}
       </p>
 
       <div class="feature-list">
@@ -81,10 +81,10 @@
 
     <section class="partner-section">
       <h2 class="section-title">
-        {{ homeCopy.partnerTitle }}
+        {{ $t('home.partnerTitle') }}
       </h2>
       <p class="section-desc">
-        {{ homeCopy.partnerDesc }}
+        {{ $t('home.partnerDesc') }}
       </p>
 
       <div class="partner-grid">
@@ -151,21 +151,7 @@
 					{name: 'Google', logo: require('../img/index/web3/partners/google.png')},
 					{name: 'IBM', logo: require('../img/index/web3/partners/ibm.svg')},
 					{name: 'AWS', logo: require('../img/index/web3/partners/aws.png')}
-				],
-				homeCopy: {
-					heroTitle: 'deepseek是全球领先的 AI 算力租赁平台',
-					heroDesc: '加入 deepseek，利用全球领先的 AI 调度算法，将您的 Token 租赁给急需算力与资源的机构。无需操作，收益按期到账。',
-					whyAiTitle: '为什么选择 AI 租赁？',
-					whyAiDesc: 'deepseek AI 算力租赁平台“汇集私募资金，租赁顶级上游 AI 算力，并将收益分配给投资者“',
-					featureSniffTitle: '智能嗅探',
-					featureSniffDesc: 'AI 毫秒级监控全球租金，哪里贵，钱就租到哪里。',
-					featureSecurityTitle: '安全合规',
-					featureSecurityDesc: '所有租赁行为通过智能合约执行，资金不离开安全池。',
-					featureReinvestTitle: '全自动复投',
-					featureReinvestDesc: '产生的租金自动加入下一轮租赁，实现复利增长。',
-					partnerTitle: '战略伙伴',
-					partnerDesc: '联合全球领先的 AI 与云计算机构，为 Token 租赁、算力调度与安全结算提供底层支撑。'
-				}
+				]
 			};
 		},
 		computed: {
@@ -173,18 +159,18 @@
 				return [
 					{
 						index: '01',
-						title: this.homeCopy.featureSniffTitle,
-						desc: this.homeCopy.featureSniffDesc
+						title: this.$t('home.featureSniffTitle'),
+						desc: this.$t('home.featureSniffDesc')
 					},
 					{
 						index: '02',
-						title: this.homeCopy.featureSecurityTitle,
-						desc: this.homeCopy.featureSecurityDesc
+						title: this.$t('home.featureSecurityTitle'),
+						desc: this.$t('home.featureSecurityDesc')
 					},
 					{
 						index: '03',
-						title: this.homeCopy.featureReinvestTitle,
-						desc: this.homeCopy.featureReinvestDesc
+						title: this.$t('home.featureReinvestTitle'),
+						desc: this.$t('home.featureReinvestDesc')
 					}
 				];
 			}

@@ -51,7 +51,19 @@
 		"team": "Team",
 		"my": "Account",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi is the world’s leading AI computing power rental platform",
+		"heroDesc": "Join NexaAi and use our world-leading AI scheduling algorithms to lease your Tokens to organizations in urgent need of computing power and resources. No action needed, earnings arrive on time.",
+		"whyAiTitle": "Why choose AI leasing?",
+		"whyAiDesc": "NexaAi AI computing power rental platform 'gathers private funds, leases top-tier upstream AI computing power, and distributes the returns to investors.'",
+		"featureSniffTitle": "Smart Sniffing",
+		"featureSniffDesc": "AI monitors global rental prices in milliseconds. Wherever it’s expensive, your money rents there.",
+		"featureSecurityTitle": "Safe & Compliant",
+		"featureSecurityDesc": "All leasing activities are executed through smart contracts, and funds never leave the secure pool.",
+		"featureReinvestTitle": "Fully Automatic Reinvestment",
+		"featureReinvestDesc": "The generated rent is automatically added to the next round of leasing, achieving compound growth.",
+		"partnerTitle": "Strategic Partners",
+		"partnerDesc": "Partnering with leading global AI and cloud computing organizations, providing underlying support for Token leasing, computing power scheduling, and secure settlement."
 	},
 	"index": {
 		"rate": "Interest rate: ",

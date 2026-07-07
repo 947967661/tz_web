@@ -51,7 +51,19 @@
 		"team": "Meu time",
 		"my": "Conta",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi é a principal plataforma global de aluguer de capacidade de IA",
+		"heroDesc": "Junta-te à NexaAi e utiliza o mais avançado algoritmo de agendamento de IA do mundo para alugar os teus Tokens a instituições que precisam urgentemente de capacidade e recursos de computação. Sem necessidade de intervenção, os lucros chegam conforme o planeado.",
+		"whyAiTitle": "Por que escolher o aluguer de IA?",
+		"whyAiDesc": "A plataforma de aluguer de capacidade de IA NexaAi 'reúne fundos de investimento privado, aluga capacidade de IA de topo e distribui os lucros aos investidores.'",
+		"featureSniffTitle": "Detecção Inteligente",
+		"featureSniffDesc": "A IA monitoriza o preço do aluguer global em milissegundos; onde estiver mais caro, é lá que o dinheiro vai.",
+		"featureSecurityTitle": "Seguro e em conformidade",
+		"featureSecurityDesc": "Todas as actividades de aluguer são executadas através de contratos inteligentes e os fundos nunca saem do cofre seguro.",
+		"featureReinvestTitle": "Reinvestimento automático",
+		"featureReinvestDesc": "As rendas geradas são automaticamente aplicadas na próxima ronda de aluguer, permitindo crescimento composto.",
+		"partnerTitle": "Parceiros estratégicos",
+		"partnerDesc": "Em colaboração com as principais instituições globais de IA e computação em nuvem, fornecemos suporte fundamental para o aluguer de Tokens, agendamento de capacidade e liquidação segura."
 	},
 	"index": {
 		"rate": "Taxa de juros: ",

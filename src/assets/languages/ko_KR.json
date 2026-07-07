@@ -51,7 +51,19 @@
 		"team": "내 팀",
 		"my": "개인 중심",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi는 글로벌 선도 AI 연산력 렌탈 플랫폼입니다",
+		"heroDesc": "NexaAi에 참여하고, 글로벌 선도 AI 스케줄링 알고리즘을 활용하여, 당신의 토큰을 연산력과 자원이 필요한 기관에 임대하세요. 별도 조작 없이, 수익은 정기적으로 지급됩니다.",
+		"whyAiTitle": "왜 AI 렌탈을 선택해야 할까요?",
+		"whyAiDesc": "NexaAi AI 연산력 렌탈 플랫폼은 '사모 자금을 모아, 최고급 상위 AI 연산력을 임대하고, 수익을 투자자에게 배분합니다'",
+		"featureSniffTitle": "지능형 탐지",
+		"featureSniffDesc": "AI가 밀리초 단위로 전 세계 임대료를 모니터링하여, 가격이 높은 곳으로 자금을 임대합니다.",
+		"featureSecurityTitle": "안전과 규정 준수",
+		"featureSecurityDesc": "모든 렌탈 활동은 스마트 계약을 통해 실행되며, 자금은 안전 풀을 떠나지 않습니다.",
+		"featureReinvestTitle": "완전 자동 재투자",
+		"featureReinvestDesc": "생성된 임대료는 자동으로 다음 렌탈에 참여하여 복리 성장 효과를 냅니다.",
+		"partnerTitle": "전략적 파트너",
+		"partnerDesc": "세계 선두 AI 및 클라우드 컴퓨팅 기관과 협력하여, 토큰 렌탈, 연산력 스케줄링 및 안전 정산을 위한 기반을 제공합니다."
 	},
 	"index": {
 		"rate": "이자율: ",

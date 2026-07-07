@@ -51,7 +51,19 @@
 		"team": "Équipe",
 		"my": "Mon profil",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi est la principale plateforme de location de puissance AI au monde",
+		"heroDesc": "Rejoignez NexaAi et utilisez notre algorithme de planification AI de pointe pour louer vos Tokens aux institutions qui ont un besoin urgent de puissance de calcul et de ressources. Pas besoin d'agir, les revenus sont versés à temps.",
+		"whyAiTitle": "Pourquoi choisir la location AI ?",
+		"whyAiDesc": "La plateforme de location de puissance AI de NexaAi \"réunit des fonds privés, loue la puissance AI de pointe, et redistribue les bénéfices aux investisseurs",
+		"featureSniffTitle": "Détection intelligente",
+		"featureSniffDesc": "L'AI surveille en millisecondes les prix mondiaux de la location : là où c'est cher, l'argent est loué.",
+		"featureSecurityTitle": "Sécurité et conformité",
+		"featureSecurityDesc": "Toutes les activités de location sont exécutées via des contrats intelligents, et les fonds restent dans un pool sécurisé.",
+		"featureReinvestTitle": "Réinvestissement automatique",
+		"featureReinvestDesc": "Les revenus générés sont automatiquement réinvestis dans le prochain cycle de location, permettant une croissance composée.",
+		"partnerTitle": "Partenaires stratégiques",
+		"partnerDesc": "Nous collaborons avec des leaders mondiaux de l'AI et du cloud computing pour fournir une base solide pour la location de Tokens, la planification de puissance et le règlement sécurisé."
 	},
 	"index": {
 		"rate": "Taux d'intérêt: ",

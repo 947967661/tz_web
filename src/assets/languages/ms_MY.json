@@ -51,7 +51,19 @@
 		"team": "Pasukan saya",
 		"my": "Akaun",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi ialah platform penyewaan kuasa AI terkemuka di dunia",
+		"heroDesc": "Sertai NexaAi dan gunakan algoritma penyusunan AI terkemuka dunia untuk menyewakan Token anda kepada institusi yang memerlukan kuasa pemprosesan dan sumber dengan segera. Tidak perlu buat apa-apa, pendapatan diterima tepat pada masanya.",
+		"whyAiTitle": "Kenapa pilih penyewaan AI?",
+		"whyAiDesc": "Platform penyewaan kuasa AI NexaAi mengumpul dana swasta, menyewa kuasa AI tahap atas, dan mengagihkan keuntungan kepada pelabur.",
+		"featureSniffTitle": "Pengesan Pintar",
+		"featureSniffDesc": "AI memantau kadar sewa di seluruh dunia dalam milisaat, di mana mahal, wang akan disewa ke sana.",
+		"featureSecurityTitle": "Selamat & Patuh",
+		"featureSecurityDesc": "Semua aktiviti penyewaan dijalankan melalui kontrak pintar dan dana tidak keluar dari kolam selamat.",
+		"featureReinvestTitle": "Pelaburan Semula Automatik",
+		"featureReinvestDesc": "Sewa yang dihasilkan dimasukkan secara automatik ke pusingan sewa seterusnya, mencapai pertumbuhan faedah berganda.",
+		"partnerTitle": "Rakan Strategik",
+		"partnerDesc": "Bekerjasama dengan institusi AI dan pengkomputeran awan terkemuka dunia, memberikan sokongan asas untuk penyewaan Token, penyusunan kuasa dan penyelesaian selamat."
 	},
 	"index": {
 		"rate": "Kadar faedah: ",

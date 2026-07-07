@@ -51,7 +51,19 @@
 		"team": "Tim saya",
 		"my": "Pusat Pribadi",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi adalah platform sewa daya komputasi AI terkemuka di dunia",
+		"heroDesc": "Bergabunglah dengan NexaAi, manfaatkan algoritma penjadwalan AI terdepan di dunia untuk menyewakan Token Anda kepada lembaga yang sangat membutuhkan daya komputasi dan sumber daya. Tidak perlu repot, pendapatan masuk tepat waktu.",
+		"whyAiTitle": "Mengapa Memilih Sewa AI?",
+		"whyAiDesc": "Platform sewa daya komputasi AI NexaAi 'mengumpulkan dana privat, menyewakan daya komputasi AI tingkat atas, dan membagikan keuntungan kepada investor.'",
+		"featureSniffTitle": "Deteksi Cerdas",
+		"featureSniffDesc": "AI memantau harga sewa global dalam hitungan milidetik, di mana mahal, uang akan disewa ke sana.",
+		"featureSecurityTitle": "Aman & Patuh",
+		"featureSecurityDesc": "Semua aktivitas sewa dijalankan melalui smart contract, dana tetap aman dalam pool.",
+		"featureReinvestTitle": "Investasi Ulang Otomatis",
+		"featureReinvestDesc": "Pendapatan sewa otomatis masuk ke putaran sewa berikutnya, mencapai pertumbuhan bunga majemuk.",
+		"partnerTitle": "Mitra Strategis",
+		"partnerDesc": "Bekerja sama dengan perusahaan AI dan cloud computing terkemuka dunia untuk memberikan dukungan dasar bagi sewa Token, penjadwalan daya komputasi, dan penyelesaian yang aman."
 	},
 	"index": {
 		"rate": "Suku bunga: ",

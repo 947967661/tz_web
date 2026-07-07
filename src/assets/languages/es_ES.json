@@ -51,7 +51,19 @@
 		"team": "Mi equipo",
 		"my": "Yo",
 		"subscription": "Kontrak",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi es la principal plataforma de alquiler de potencia de IA del mundo",
+		"heroDesc": "Únete a NexaAi y aprovecha los algoritmos de programación de IA de clase mundial para alquilar tus Tokens a instituciones que necesitan urgentemente potencia y recursos. No necesitas hacer nada, las ganancias se reciben puntualmente.",
+		"whyAiTitle": "¿Por qué elegir el alquiler de IA?",
+		"whyAiDesc": "La plataforma de alquiler de potencia de IA de NexaAi 'reúne fondos privados, alquila potencia de IA de primer nivel y distribuye las ganancias a los inversores'",
+		"featureSniffTitle": "Olfato inteligente",
+		"featureSniffDesc": "La IA monitorea los precios de alquiler en todo el mundo en milisegundos; donde es caro, ahí se alquila.",
+		"featureSecurityTitle": "Seguridad y cumplimiento",
+		"featureSecurityDesc": "Todas las operaciones de alquiler se ejecutan mediante contratos inteligentes, el dinero nunca sale del fondo seguro.",
+		"featureReinvestTitle": "Reinversión automática",
+		"featureReinvestDesc": "Las rentas generadas se agregan automáticamente a la siguiente ronda de alquiler, logrando crecimiento compuesto.",
+		"partnerTitle": "Socios estratégicos",
+		"partnerDesc": "En colaboración con las principales instituciones globales de IA y computación en la nube, proporcionamos soporte fundamental para el alquiler de Tokens, la programación de potencia y la liquidación segura."
 	},
 	"index": {
 		"rate": "Tasa de interés: ",

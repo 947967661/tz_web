@@ -51,7 +51,19 @@
 		"team": "我的团队",
 		"my": "个人中心",
 		"subscription": "合同",
-		"holdings": "Token"
+		"holdings": "Token",
+		"heroTitle": "NexaAi是全球领先的 AI 算力租赁平台",
+		"heroDesc": "加入 NexaAi，利用全球领先的 AI 调度算法，将您的 Token 租赁给急需算力与资源的机构。无需操作，收益按期到账。",
+		"whyAiTitle": "为什么选择 AI 租赁？",
+		"whyAiDesc": "NexaAi AI 算力租赁平台“汇集私募资金，租赁顶级上游 AI 算力，并将收益分配给投资者“",
+		"featureSniffTitle": "智能嗅探",
+		"featureSniffDesc": "AI 毫秒级监控全球租金，哪里贵，钱就租到哪里。",
+		"featureSecurityTitle": "安全合规",
+		"featureSecurityDesc": "所有租赁行为通过智能合约执行，资金不离开安全池。",
+		"featureReinvestTitle": "全自动复投",
+		"featureReinvestDesc": "产生的租金自动加入下一轮租赁，实现复利增长。",
+		"partnerTitle": "战略伙伴",
+		"partnerDesc": "联合全球领先的 AI 与云计算机构，为 Token 租赁、算力调度与安全结算提供底层支撑。"
 	},
 	"index": {
 		"rate": "利率：",

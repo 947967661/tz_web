@@ -133,7 +133,7 @@
               <div class="field-label">
                 {{ $t('login.code') }}
               </div>
-              <div class="field-control">
+              <div class="field-control field-control-verify">
                 <div class="field-icon">
                   <div class="field-icon-text iconfont icon-login_icon_password">
                     <span />
@@ -228,7 +228,7 @@
                 <div class="field-label">
                   {{ $t('login.code') }}
                 </div>
-                <div class="field-control">
+                <div class="field-control field-control-verify">
                   <input
                     v-model.trim="registerData.code"
                     type="text"
@@ -847,6 +847,17 @@ export default {
   align-items: center;
   flex-shrink: 0;
 }
+.field-control-verify .login_box_input {
+  flex: 1;
+  min-width: 0;
+  padding-right: 8px;
+}
+.field-control-verify .verify-img-wrap {
+  width: 104px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  justify-content: flex-end;
+}
 .verify-img {
   display: block;
   width: 96px;
@@ -977,5 +988,19 @@ export default {
 .no_touch {
   pointer-events: none;
   opacity: 0.6;
+}
+
+@media (max-width: 340px) {
+  .login_box_input {
+    padding-left: 14px;
+    font-size: 16px;
+  }
+  .field-control-verify .verify-img-wrap {
+    width: 94px;
+    padding-right: 8px;
+  }
+  .field-control-verify .verify-img {
+    width: 86px;
+  }
 }
 </style>
